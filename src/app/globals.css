@@ -331,28 +331,52 @@ h1, h2, h3, h4 {
 }
 
 .service-card {
-  padding: 2rem;
+  padding: 2.5rem;
   border-radius: var(--radius-md);
   background: white;
-  border: 1px solid var(--border-color);
+  border: 1px solid rgba(0, 0, 0, 0.05);
   transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .service-card:hover {
   border-color: var(--primary);
-  background: var(--bg-blue);
+  background: var(--bg-soft);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
 }
 
 .service-card .icon-box {
-  width: 50px;
-  height: 50px;
-  background: var(--primary-light);
-  color: var(--primary);
-  border-radius: 12px;
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 214, 10, 0.1);
+  color: var(--primary-dark);
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 1.5rem;
+  transition: var(--transition);
+}
+
+.service-card:hover .icon-box {
+  background: var(--primary);
+  color: #000814;
+  transform: rotate(-5deg) scale(1.1);
+}
+
+.service-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--secondary-dark);
+}
+
+.service-card p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 /* Why Us Styles */
@@ -407,19 +431,33 @@ h1, h2, h3, h4 {
 
 .training-card {
   text-align: center;
-  padding: 3rem 2rem;
+  padding: 3.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .training-card h4 {
-  font-size: 0.9rem;
-  color: var(--primary);
+  font-size: 0.85rem;
+  color: var(--primary-dark);
   text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 800;
   margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .training-card h3 {
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
+  font-size: 1.75rem;
+  color: var(--secondary-dark);
+}
+
+.training-card p {
+  color: var(--text-muted);
+  margin-bottom: 2rem;
 }
 
 /* Portfolio Styles */
