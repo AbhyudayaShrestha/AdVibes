@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Phone, MessageCircle, Mail, ChevronDown } from 'lucide-react';
+import { Phone, MessageCircle, Mail, ChevronDown, Zap } from 'lucide-react';
 
 const navItems = [
   { 
@@ -76,10 +76,11 @@ export default function Navbar() {
       <nav className="navbar">
         <div className="container nav-container">
           <Link href="#home" className="logo-group">
-            <div className="logo-icon">IDA</div>
+            <div className="logo-icon-box">
+              <Zap size={24} fill="var(--primary)" color="var(--primary)" />
+            </div>
             <div className="logo-text">
-              <span className="logo-brand">INFINITY</span>
-              <span className="logo-sub">DIGITAL AGENCY</span>
+              <span className="logo-brand">Ad<span style={{ color: 'var(--primary)' }}>Vibes</span></span>
             </div>
           </Link>
           
@@ -112,9 +113,7 @@ export default function Navbar() {
           </ul>
 
           <div className="nav-actions">
-            <Link href="#contact" className="btn btn-primary btn-accelerate">
-              Accelerate
-            </Link>
+            {/* Accelerate button removed as per request */}
           </div>
         </div>
       </nav>
