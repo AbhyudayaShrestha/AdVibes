@@ -57,32 +57,10 @@ export default function Navbar() {
 
   return (
     <header className={`navbar-wrapper ${isScrolled ? 'scrolled' : ''}`}>
-      {/* Top Bar */}
-      <div className="top-bar">
-        <div className="container top-bar-container">
-          <div className="top-bar-info">
-            <a href="tel:#" className="info-item"><Phone size={14} /> <span>+1 234 567 890</span></a>
-            <a href="mailto:#" className="info-item"><Mail size={14} /> <span>info@advibes.com</span></a>
-          </div>
-          <div className="top-bar-social">
-            <a href="#" className="social-icon"><Phone size={14} /></a>
-            <a href="#" className="social-icon"><MessageCircle size={14} /></a>
-            <a href="#" className="social-icon"><Mail size={14} /></a>
-          </div>
-        </div>
-      </div>
-
       {/* Main Navbar */}
       <nav className="navbar">
         <div className="container nav-container">
-          <Link href="#home" className="logo-group">
-            <div className="logo-icon-box">
-              <Zap size={24} fill="var(--primary)" color="var(--primary)" />
-            </div>
-            <div className="logo-text">
-              <span className="logo-brand">Ad<span style={{ color: 'var(--primary)' }}>Vibes</span></span>
-            </div>
-          </Link>
+          {/* Logo removed as per request */}
           
           <ul className="nav-links">
             {navItems.map((item) => (
@@ -113,7 +91,7 @@ export default function Navbar() {
           </ul>
 
           <div className="nav-actions">
-            {/* Accelerate button removed as per request */}
+            {/* Action buttons removed as per request */}
           </div>
         </div>
       </nav>

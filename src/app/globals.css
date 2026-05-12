@@ -137,73 +137,16 @@ h1, h2, h3, h4 {
   transition: var(--transition);
 }
 
-.top-bar {
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(5px);
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.top-bar-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.top-bar-info {
-  display: flex;
-  gap: 1.5rem;
-}
-
-.info-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: var(--transition);
-}
-
-.info-item:hover {
-  color: var(--primary);
-}
-
-.top-bar-social {
-  display: flex;
-  gap: 1rem;
-}
-
-.social-icon {
-  width: 28px;
-  height: 28px;
-  background: rgba(255, 255, 255, 0.05);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-  transition: var(--transition);
-}
-
-.social-icon:hover {
-  background: var(--primary);
-  color: #000814;
-}
-
 .navbar {
-  height: 90px;
+  height: 80px;
   display: flex;
   align-items: center;
   background: transparent;
   transition: var(--transition);
 }
 
-.navbar-wrapper.scrolled .top-bar {
-  margin-top: -45px; /* Smoothly hide top bar */
-  opacity: 0;
-}
-
 .navbar-wrapper.scrolled .navbar {
-  height: 75px;
+  height: 70px;
   background: rgba(0, 8, 20, 0.95);
   backdrop-filter: blur(15px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
@@ -365,7 +308,7 @@ h1, h2, h3, h4 {
 }
 /* Hero Section Styles */
 .hero {
-  padding-top: 220px;
+  padding-top: 160px;
   padding-bottom: 120px;
   text-align: center;
   background: var(--gradient-hero);
