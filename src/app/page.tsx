@@ -15,7 +15,9 @@ import {
   Award,
   Users,
   Layout,
-  MessageSquare
+  MessageSquare,
+  Phone,
+  Mail
 } from 'lucide-react';
 
 export default function Home() {
@@ -284,37 +286,43 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="contact">
-        <div className="container contact-container">
-          <div className="contact-box" style={{ background: 'var(--gradient-hero)', border: '1px solid rgba(255,214,10,0.2)' }}>
+      {/* CTA Section */}
+      <section id="contact" className="cta-section">
+        <div className="container">
+          <div className="cta-content">
             <h2>Join the growth revolution.</h2>
-            <p>Ready to take your brand to the next level? Let's talk about your future.</p>
-            <div className="contact-btns">
-              <button className="btn btn-primary">Schedule a Call</button>
-              <button className="btn btn-outline" style={{ borderColor: 'rgba(255,255,255,0.2)', color: 'white' }}>Contact Support</button>
-            </div>
+            <p>Partner with AdVibes and turn your digital footprint into a powerful, data-driven engine for success.</p>
+            <button className="btn btn-primary cta-btn">Work with Us</button>
           </div>
         </div>
       </section>
 
-      <footer className="footer" style={{ background: '#000814', color: 'white', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+      <footer className="footer-new">
         <div className="container">
-          <div className="footer-content">
-            <div className="footer-logo" style={{ color: 'var(--primary)' }}>
-              Ad<span>Vibes</span>
+          <div className="footer-top">
+            <div className="footer-brand">
+              <p className="footer-copyright">© {new Date().getFullYear()} AdVibes. Precision Marketing for Modern Founders.</p>
             </div>
-            <div className="footer-links">
-              <a href="#" style={{ color: 'rgba(255,255,255,0.6)' }}>Privacy Policy</a>
-              <a href="#" style={{ color: 'rgba(255,255,255,0.6)' }}>Terms of Service</a>
-              <a href="#contact" style={{ color: 'rgba(255,255,255,0.6)' }}>Contact Us</a>
+            
+            <div className="footer-nav-groups">
+              <div className="footer-nav-col">
+                <a href="#services">Services</a>
+                <a href="#portfolio">Case Studies</a>
+              </div>
+              <div className="footer-nav-col">
+                <a href="#testimonials">Testimonials</a>
+                <a href="#about">About</a>
+              </div>
+              <div className="footer-nav-col">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+              </div>
             </div>
-            <div className="footer-social">
-              {/* Social icons */}
+
+            <div className="footer-social-new">
+              <a href="tel:#" className="social-link"><Phone size={20} /></a>
+              <a href="mailto:#" className="social-link"><Mail size={20} /></a>
             </div>
-          </div>
-          <div className="footer-bottom">
-            <p style={{ color: 'rgba(255,255,255,0.4)' }}>&copy; {new Date().getFullYear()} AdVibes. All rights reserved.</p>
           </div>
         </div>
       </footer>
