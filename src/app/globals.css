@@ -260,19 +260,37 @@ h1, h2, h3, h4 {
 }
 
 .hero-title {
-  font-size: clamp(3rem, 8vw, 5rem); /* Very responsive and bold */
-  margin-bottom: 1.5rem;
-  color: var(--text-light);
-  line-height: 1.05;
-  letter-spacing: -0.04em;
-  font-weight: 900;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  line-height: 1.1;
+  text-align: center;
 }
 
-.hero-title span.highlight-italic {
+.line-top {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  color: var(--text-light);
+  letter-spacing: -0.02em;
+}
+
+.line-middle {
+  font-size: clamp(1.1rem, 2.5vw, 1.8rem);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0.5rem 0;
+  font-family: var(--font-plus-jakarta), sans-serif;
+}
+
+.line-bottom {
+  font-size: clamp(3rem, 9vw, 5.5rem);
+  font-weight: 900;
   background: var(--gradient-accent);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-style: italic;
+  letter-spacing: -0.04em;
+  line-height: 1;
 }
 
 .reveal {

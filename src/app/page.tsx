@@ -28,7 +28,9 @@ export default function Home() {
         <div className="container">
           <div className="hero-content">
             <h1 className="hero-title">
-              Digital Marketing Powered by <span className="highlight-italic">AI & Real Strategy</span>
+              <span className="line-top">Digital Marketing</span>
+              <span className="line-middle">Powered by</span>
+              <span className="line-bottom">AI & Real Strategy</span>
             </h1>
             <p className="hero-description" style={{ color: 'rgba(255,255,255,0.8)' }}>
               We combine data science with creative intuition to unlock your brand's full potential in a digital-first world.
