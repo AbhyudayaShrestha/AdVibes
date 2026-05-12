@@ -2,33 +2,45 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { Phone, MessageCircle, Mail, ChevronDown } from 'lucide-react';
 
 const navItems = [
-  { name: 'Home', href: '#home' },
-  { name: 'Services', href: '#services' },
+  { 
+    name: 'What We Do', 
+    href: '#services',
+    subItems: [
+      { name: 'Services', href: '#services' },
+      { name: 'Courses', href: '#training' },
+      { name: 'Process', href: '#process' },
+    ]
+  },
+  { 
+    name: 'What Our Clients Say', 
+    href: '#testimonials',
+    subItems: [
+      { name: 'Case Studies', href: '#portfolio' },
+      { name: 'Testimonials', href: '#testimonials' },
+      { name: 'Blog', href: '#blog' },
+    ]
+  },
   { name: 'About Us', href: '#about' },
-  { name: 'Training/Courses', href: '#training' },
-  { name: 'Portfolio / Case Studies', href: '#portfolio' },
-  { name: 'Testimonials', href: '#testimonials' },
-  { name: 'Blog', href: '#blog' },
-  { name: 'Process', href: '#process' },
   { name: 'Contact Us', href: '#contact' },
 ];
 
 export default function Navbar() {
-  const [activeSection, setActiveSection] = useState('home');
+  const [activeSection, setActiveSection] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
 
-      const sections = navItems.map(item => item.href.substring(1));
+      const sections = ['services', 'training', 'process', 'portfolio', 'testimonials', 'blog', 'about', 'contact'];
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
-          // Adjust for navbar height
           return rect.top <= 120 && rect.bottom >= 120;
         }
         return false;
@@ -44,31 +56,68 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
-      <div className="container nav-container">
-        <Link href="#home" className="logo">
-          Ad<span>Vibes</span>
-        </Link>
-        
-        <ul className="nav-links">
-          {navItems.map((item) => (
-            <li key={item.name}>
-              <Link 
-                href={item.href} 
-                className={activeSection === item.href.substring(1) ? 'active' : ''}
-              >
-                {item.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
-
-        <div className="nav-actions">
-          <Link href="#contact" className="btn btn-primary">
-            Get Started
-          </Link>
+    <header className={`navbar-wrapper ${isScrolled ? 'scrolled' : ''}`}>
+      {/* Top Bar */}
+      <div className="top-bar">
+        <div className="container top-bar-container">
+          <div className="top-bar-info">
+            <a href="tel:#" className="info-item"><Phone size={14} /> <span>+1 234 567 890</span></a>
+            <a href="mailto:#" className="info-item"><Mail size={14} /> <span>info@advibes.com</span></a>
+          </div>
+          <div className="top-bar-social">
+            <a href="#" className="social-icon"><Phone size={14} /></a>
+            <a href="#" className="social-icon"><MessageCircle size={14} /></a>
+            <a href="#" className="social-icon"><Mail size={14} /></a>
+          </div>
         </div>
       </div>
-    </nav>
+
+      {/* Main Navbar */}
+      <nav className="navbar">
+        <div className="container nav-container">
+          <Link href="#home" className="logo-group">
+            <div className="logo-icon">IDA</div>
+            <div className="logo-text">
+              <span className="logo-brand">INFINITY</span>
+              <span className="logo-sub">DIGITAL AGENCY</span>
+            </div>
+          </Link>
+          
+          <ul className="nav-links">
+            {navItems.map((item) => (
+              <li 
+                key={item.name} 
+                className={`nav-item ${item.subItems ? 'has-dropdown' : ''}`}
+                onMouseEnter={() => item.subItems && setOpenDropdown(item.name)}
+                onMouseLeave={() => setOpenDropdown(null)}
+              >
+                <Link 
+                  href={item.href} 
+                  className={`nav-link ${activeSection === item.href.substring(1) ? 'active' : ''}`}
+                >
+                  {item.name} {item.subItems && <ChevronDown size={14} className="dropdown-arrow" />}
+                </Link>
+                
+                {item.subItems && (
+                  <ul className={`dropdown-menu ${openDropdown === item.name ? 'show' : ''}`}>
+                    {item.subItems.map((sub) => (
+                      <li key={sub.name}>
+                        <Link href={sub.href}>{sub.name}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+
+          <div className="nav-actions">
+            <Link href="#contact" className="btn btn-primary btn-accelerate">
+              Accelerate
+            </Link>
+          </div>
+        </div>
+      </nav>
+    </header>
   );
 }
