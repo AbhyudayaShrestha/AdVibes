@@ -27,24 +27,28 @@ export default function Home() {
       
       {/* Hero Section */}
       <section id="home" className="hero">
-        <div className="container">
+        <div className="container hero-grid">
           <div className="hero-content">
-            <h1 className="hero-title">
+            <div className="hero-tag reveal" style={{ animationDelay: '0.1s' }}>
+              <span className="tag-line">Future of Marketing</span>
+            </div>
+            <h1 className="hero-title reveal" style={{ animationDelay: '0.2s' }}>
               <span className="line-top">Digital Marketing</span>
               <span className="line-middle">Powered by</span>
               <span className="line-bottom">AI & Real Strategy</span>
             </h1>
-            <p className="hero-description" style={{ color: 'rgba(255,255,255,0.8)' }}>
+            <p className="hero-description reveal" style={{ color: 'rgba(255,255,255,0.8)', animationDelay: '0.3s' }}>
               We combine data science with creative intuition to unlock your brand's full potential in a digital-first world.
             </p>
-            <div className="hero-btns">
+            <div className="hero-btns reveal" style={{ animationDelay: '0.4s' }}>
               <a href="#contact" className="btn btn-primary">Get Started Today</a>
               <a href="#portfolio" className="btn btn-outline" style={{ borderColor: 'rgba(255,255,255,0.3)', color: 'white' }}>View Our Work</a>
             </div>
           </div>
-          <div className="hero-image reveal">
-            <div className="image-wrapper" style={{ border: '1px solid rgba(255,255,255,0.1)' }}>
-              <img src="/hero-bg.png" alt="Modern AdVibes Office" />
+          <div className="hero-image-container reveal" style={{ animationDelay: '0.5s' }}>
+            <div className="image-wrapper">
+              <img src="/hero-bg.png" alt="Modern AdVibes Office" className="floating-img" />
+              <div className="image-glow"></div>
             </div>
           </div>
         </div>

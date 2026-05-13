@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Phone, MessageCircle, Mail, ChevronDown, Zap } from 'lucide-react';
+import { Phone, MessageCircle, Mail, ChevronDown, Menu, X } from 'lucide-react';
 
 const navItems = [
   { 
@@ -30,6 +30,7 @@ const navItems = [
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   useEffect(() => {
@@ -55,14 +56,29 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+    if (!isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+    document.body.style.overflow = 'unset';
+  };
+
   return (
-    <header className={`navbar-wrapper ${isScrolled ? 'scrolled' : ''}`}>
+    <header className={`navbar-wrapper ${isScrolled ? 'scrolled' : ''} ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
       {/* Main Navbar */}
       <nav className="navbar">
         <div className="container nav-container">
           {/* Logo removed as per request */}
           
-          <ul className="nav-links">
+          {/* Desktop Nav */}
+          <ul className="nav-links desktop-only">
             {navItems.map((item) => (
               <li 
                 key={item.name} 
@@ -91,10 +107,43 @@ export default function Navbar() {
           </ul>
 
           <div className="nav-actions">
-            {/* Action buttons removed as per request */}
+            <button className="mobile-menu-btn" onClick={toggleMobileMenu} aria-label="Toggle Menu">
+              {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
           </div>
         </div>
       </nav>
+
+      {/* Mobile Menu Overlay */}
+      <div className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}>
+        <div className="mobile-menu-content">
+          <ul className="mobile-nav-links">
+            {navItems.map((item) => (
+              <li key={item.name} className="mobile-nav-item">
+                <Link 
+                  href={item.href} 
+                  className="mobile-nav-link"
+                  onClick={closeMobileMenu}
+                >
+                  {item.name}
+                </Link>
+                {item.subItems && (
+                  <ul className="mobile-sub-menu">
+                    {item.subItems.map((sub) => (
+                      <li key={sub.name}>
+                        <Link href={sub.href} onClick={closeMobileMenu}>{sub.name}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+          <div className="mobile-menu-footer">
+            <a href="#contact" className="btn btn-primary" onClick={closeMobileMenu}>Get Started</a>
+          </div>
+        </div>
+      </div>
     </header>
   );
 }
