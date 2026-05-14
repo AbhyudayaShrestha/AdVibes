@@ -1119,8 +1119,43 @@ h1, h2, h3, h4 {
   }
 
   .hero {
-    padding-top: 120px;
-    padding-bottom: 60px;
+    padding-top: 100px;
+    padding-bottom: 50px;
+    text-align: center;
+  }
+
+  .line-top {
+    font-size: clamp(2rem, 8vw, 2.5rem) !important;
+  }
+
+  .line-bottom {
+    font-size: clamp(2.2rem, 10vw, 3.5rem) !important;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+  }
+
+  .hero-btns {
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .hero-btns .btn {
+    width: 100%;
+  }
+
+  .hero-image-container {
+    margin-top: 3rem;
+  }
+
+  .image-wrapper {
+    border-radius: 20px;
   }
 
   .services-grid {
