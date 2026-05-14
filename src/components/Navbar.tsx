@@ -116,6 +116,9 @@ export default function Navbar() {
 
       {/* Mobile Menu Overlay */}
       <div className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}>
+        <button className="mobile-close-left" onClick={toggleMobileMenu} aria-label="Close Menu">
+          <X size={32} />
+        </button>
         <div className="mobile-menu-content">
           <ul className="mobile-nav-links">
             {navItems.map((item) => (
@@ -139,9 +142,6 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
-          <div className="mobile-menu-footer">
-            <a href="#contact" className="btn btn-primary" onClick={closeMobileMenu}>Get Started</a>
-          </div>
         </div>
       </div>
     </header>
