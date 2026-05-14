@@ -107,9 +107,11 @@ export default function Navbar() {
           </ul>
 
           <div className="nav-actions">
-            <button className="mobile-menu-btn" onClick={toggleMobileMenu} aria-label="Toggle Menu">
-              {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-            </button>
+            {!isMobileMenuOpen && (
+              <button className="mobile-menu-btn" onClick={toggleMobileMenu} aria-label="Toggle Menu">
+                <Menu size={28} />
+              </button>
+            )}
           </div>
         </div>
       </nav>
