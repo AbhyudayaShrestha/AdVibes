@@ -522,6 +522,11 @@ h1, h2, h3, h4 {
   pointer-events: none;
 }
 
+.services-overlay,
+.see-more-container {
+  display: none;
+}
+
 /* Services Styles */
 .services-grid {
   display: grid;
@@ -1220,6 +1225,52 @@ h1, h2, h3, h4 {
     opacity: 1;
     transform: none;
     color: #000814;
+  }
+
+  .services-wrapper {
+    position: relative;
+    transition: all 0.5s ease;
+  }
+
+  .services-wrapper.is-collapsed {
+    max-height: 440px; /* Adjust to show 2 rows of compact cards */
+    overflow: hidden;
+  }
+
+  .services-overlay {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 180px;
+    background: linear-gradient(to bottom, transparent, var(--bg-soft) 80%);
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .see-more-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    position: relative;
+    z-index: 20;
+  }
+
+  .see-more-btn {
+    background: var(--secondary-dark);
+    color: white;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: none;
+  }
+
+  .see-more-btn:active {
+    transform: scale(0.95);
   }
 
   .why-container {

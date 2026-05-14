@@ -24,6 +24,8 @@ import {
 } from 'lucide-react';
 
 export default function Home() {
+  const [showAllServices, setShowAllServices] = useState(false);
+
   return (
     <main>
       <Navbar />
@@ -66,57 +68,70 @@ export default function Home() {
             <p>Our service ecosystem is built to scale your impact across all digital touchpoints.</p>
           </div>
 
-          <div className="services-grid">
-            <ServiceCard
-              icon={<Users />}
-              title="Social Media Management"
-              desc="Engage your audience with platform-specific content and community management."
-            />
-            <ServiceCard
-              icon={<Globe />}
-              title="Website Development"
-              desc="High-performance, responsive websites built for conversion and speed."
-            />
-            <ServiceCard
-              icon={<Cpu />}
-              title="AI video, audio, music, Image"
-              desc="Cutting-edge AI-generated multimedia content for modern brands."
-            />
-            <ServiceCard
-              icon={<Search />}
-              title="SEO Optimization"
-              desc="Data-driven search engine optimization to boost your organic visibility."
-            />
-            <ServiceCard
-              icon={<Target />}
-              title="Meta Ads"
-              desc="Strategic Facebook and Instagram advertising focused on ROI."
-            />
-            <ServiceCard
-              icon={<PlayCircle />}
-              title="Google Ads"
-              desc="Targeted PPC campaigns that place your brand in front of ready-to-buy customers."
-            />
-            <ServiceCard
-              icon={<Palette />}
-              title="Graphic Designing"
-              desc="Visual storytelling through professional graphic design and branding."
-            />
-            <ServiceCard
-              icon={<PenTool />}
-              title="Content Creation"
-              desc="Compelling copy and multimedia content that resonates with your audience."
-            />
-            <ServiceCard
-              icon={<Lightbulb />}
-              title="Branding & Strategy"
-              desc="Long-term brand positioning and marketing strategies that drive growth."
-            />
-            <ServiceCard
-              icon={<Zap />}
-              title="AI-integrated Marketing"
-              desc="Harnessing artificial intelligence to automate and optimize your marketing funnel."
-            />
+          <div className={`services-wrapper ${!showAllServices ? 'is-collapsed' : ''}`}>
+            <div className="services-grid">
+              <ServiceCard
+                icon={<Users />}
+                title="Social Media Management"
+                desc="Engage your audience with platform-specific content and community management."
+              />
+              <ServiceCard
+                icon={<Globe />}
+                title="Website Development"
+                desc="High-performance, responsive websites built for conversion and speed."
+              />
+              <ServiceCard
+                icon={<Cpu />}
+                title="AI video, audio, music, Image"
+                desc="Cutting-edge AI-generated multimedia content for modern brands."
+              />
+              <ServiceCard
+                icon={<Search />}
+                title="SEO Optimization"
+                desc="Data-driven search engine optimization to boost your organic visibility."
+              />
+              <ServiceCard
+                icon={<Target />}
+                title="Meta Ads"
+                desc="Strategic Facebook and Instagram advertising focused on ROI."
+              />
+              <ServiceCard
+                icon={<PlayCircle />}
+                title="Google Ads"
+                desc="Targeted PPC campaigns that place your brand in front of ready-to-buy customers."
+              />
+              <ServiceCard
+                icon={<Palette />}
+                title="Graphic Designing"
+                desc="Visual storytelling through professional graphic design and branding."
+              />
+              <ServiceCard
+                icon={<PenTool />}
+                title="Content Creation"
+                desc="Compelling copy and multimedia content that resonates with your audience."
+              />
+              <ServiceCard
+                icon={<Lightbulb />}
+                title="Branding & Strategy"
+                desc="Long-term brand positioning and marketing strategies that drive growth."
+              />
+              <ServiceCard
+                icon={<Zap />}
+                title="AI-integrated Marketing"
+                desc="Harnessing artificial intelligence to automate and optimize your marketing funnel."
+              />
+            </div>
+            
+            {!showAllServices && <div className="services-overlay"></div>}
+          </div>
+
+          <div className="see-more-container">
+            <button 
+              className="see-more-btn" 
+              onClick={() => setShowAllServices(!showAllServices)}
+            >
+              {showAllServices ? 'Show Less' : 'See more services'}
+            </button>
           </div>
         </div>
       </section>
