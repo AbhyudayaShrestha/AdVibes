@@ -1,13 +1,13 @@
 import Navbar from '@/components/Navbar';
-import { 
-  Globe, 
-  Cpu, 
-  Search, 
-  Target, 
-  PlayCircle, 
-  Palette, 
-  PenTool, 
-  Lightbulb, 
+import {
+  Globe,
+  Cpu,
+  Search,
+  Target,
+  PlayCircle,
+  Palette,
+  PenTool,
+  Lightbulb,
   Zap,
   CheckCircle,
   ArrowRight,
@@ -24,7 +24,7 @@ export default function Home() {
   return (
     <main>
       <Navbar />
-      
+
       {/* Hero Section */}
       <section id="home" className="hero">
         <div className="container hero-grid">
@@ -47,7 +47,7 @@ export default function Home() {
           </div>
           <div className="hero-image-container reveal" style={{ animationDelay: '0.5s' }}>
             <div className="image-wrapper">
-              <img src="/hero-bg.png" alt="Modern AdVibes Office" className="floating-img" />
+              <img src="/hero-bg.webp" alt="Modern AdVibes Office" className="floating-img" />
               <div className="image-glow"></div>
             </div>
           </div>
@@ -58,60 +58,60 @@ export default function Home() {
       <section id="services" className="services">
         <div className="container">
           <div className="section-header">
-            <span className="section-subtitle">What We Do</span>
-            <h2 className="section-title">Innovate with <span style={{ color: 'var(--primary)' }}>Purpose</span></h2>
+            <span className="section-subtitle">Expert Solutions</span>
+            <h2 className="section-title">Innovate with <span style={{ color: '#fed803ff' }}>Purpose</span></h2>
             <p>Our service ecosystem is built to scale your impact across all digital touchpoints.</p>
           </div>
-          
+
           <div className="services-grid">
-            <ServiceCard 
-              icon={<Users />} 
-              title="Social Media Management" 
+            <ServiceCard
+              icon={<Users />}
+              title="Social Media Management"
               desc="Engage your audience with platform-specific content and community management."
             />
-            <ServiceCard 
-              icon={<Globe />} 
-              title="Website Development" 
+            <ServiceCard
+              icon={<Globe />}
+              title="Website Development"
               desc="High-performance, responsive websites built for conversion and speed."
             />
-            <ServiceCard 
-              icon={<Cpu />} 
-              title="AI video, audio, music, Image" 
+            <ServiceCard
+              icon={<Cpu />}
+              title="AI video, audio, music, Image"
               desc="Cutting-edge AI-generated multimedia content for modern brands."
             />
-            <ServiceCard 
-              icon={<Search />} 
-              title="SEO Optimization" 
+            <ServiceCard
+              icon={<Search />}
+              title="SEO Optimization"
               desc="Data-driven search engine optimization to boost your organic visibility."
             />
-            <ServiceCard 
-              icon={<Target />} 
-              title="Meta Ads" 
+            <ServiceCard
+              icon={<Target />}
+              title="Meta Ads"
               desc="Strategic Facebook and Instagram advertising focused on ROI."
             />
-            <ServiceCard 
-              icon={<PlayCircle />} 
-              title="Google Ads" 
+            <ServiceCard
+              icon={<PlayCircle />}
+              title="Google Ads"
               desc="Targeted PPC campaigns that place your brand in front of ready-to-buy customers."
             />
-            <ServiceCard 
-              icon={<Palette />} 
-              title="Graphic Designing" 
+            <ServiceCard
+              icon={<Palette />}
+              title="Graphic Designing"
               desc="Visual storytelling through professional graphic design and branding."
             />
-            <ServiceCard 
-              icon={<PenTool />} 
-              title="Content Creation" 
+            <ServiceCard
+              icon={<PenTool />}
+              title="Content Creation"
               desc="Compelling copy and multimedia content that resonates with your audience."
             />
-            <ServiceCard 
-              icon={<Lightbulb />} 
-              title="Branding & Strategy" 
+            <ServiceCard
+              icon={<Lightbulb />}
+              title="Branding & Strategy"
               desc="Long-term brand positioning and marketing strategies that drive growth."
             />
-            <ServiceCard 
-              icon={<Zap />} 
-              title="AI-integrated Marketing" 
+            <ServiceCard
+              icon={<Zap />}
+              title="AI-integrated Marketing"
               desc="Harnessing artificial intelligence to automate and optimize your marketing funnel."
             />
           </div>
@@ -157,23 +157,23 @@ export default function Home() {
             <h2 className="section-title">Marketing Master<span style={{ color: 'var(--primary)' }}>classes</span></h2>
             <p>Practical training programs designed to keep you ahead of the digital curve.</p>
           </div>
-          
+
           <div className="training-grid">
-            <TrainingCard 
-              icon={<GraduationCap />} 
-              title="Digital Marketing Training" 
+            <TrainingCard
+              icon={<GraduationCap />}
+              title="Digital Marketing Training"
               subtitle="Beginner to Advanced"
               desc="Master the fundamentals and advanced techniques of modern digital marketing."
             />
-            <TrainingCard 
-              icon={<Cpu />} 
-              title="AI in Marketing Training" 
+            <TrainingCard
+              icon={<Cpu />}
+              title="AI in Marketing Training"
               subtitle="Future-Ready Skills"
               desc="Learn how to leverage AI tools to transform your marketing efficiency and results."
             />
-            <TrainingCard 
-              icon={<Award />} 
-              title="Workshops & Certifications" 
+            <TrainingCard
+              icon={<Award />}
+              title="Workshops & Certifications"
               subtitle="Hands-on Experience"
               desc="Practical workshops that provide industry-recognized certifications."
             />
@@ -213,12 +213,12 @@ export default function Home() {
             <h2 className="section-title">What Our Clients Say</h2>
           </div>
           <div className="testimonials-grid">
-            <TestimonialCard 
+            <TestimonialCard
               text="AdVibes transformed our digital presence. Their AI-driven approach is truly revolutionary."
               author="Sarah Johnson"
               role="CEO, TechPulse"
             />
-            <TestimonialCard 
+            <TestimonialCard
               text="The results were beyond our expectations. A highly professional team that delivers on their promises."
               author="Michael Chen"
               role="Marketing Director, Bloom"
@@ -307,7 +307,7 @@ export default function Home() {
             <div className="footer-brand">
               <p className="footer-copyright">© {new Date().getFullYear()} AdVibes. Precision Marketing for Modern Founders.</p>
             </div>
-            
+
             <div className="footer-nav-groups">
               <div className="footer-nav-col">
                 <a href="#services">Services</a>
@@ -340,6 +340,9 @@ function ServiceCard({ icon, title, desc }: { icon: React.ReactNode, title: stri
       <div className="icon-box">{icon}</div>
       <h3>{title}</h3>
       <p>{desc}</p>
+      <div className="learn-more">
+        Learn More <ArrowRight size={16} />
+      </div>
     </div>
   );
 }
