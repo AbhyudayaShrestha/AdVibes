@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import {
   Globe,
@@ -335,11 +338,16 @@ export default function Home() {
 }
 
 function ServiceCard({ icon, title, desc }: { icon: React.ReactNode, title: string, desc: string }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   return (
-    <div className="service-card">
+    <div 
+      className={`service-card ${isExpanded ? 'active' : ''}`} 
+      onClick={() => setIsExpanded(!isExpanded)}
+    >
       <div className="icon-box">{icon}</div>
       <h3>{title}</h3>
-      <p>{desc}</p>
+      <p className="service-desc">{desc}</p>
       <div className="learn-more">
         Learn More <ArrowRight size={16} />
       </div>
