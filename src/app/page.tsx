@@ -1,7 +1,6 @@
 'use client';
 
-import { useState } from 'react';
-import Navbar from '@/components/Navbar';
+import Link from 'next/link';
 import {
   Globe,
   Cpu,
@@ -16,20 +15,14 @@ import {
   ArrowRight,
   GraduationCap,
   Award,
-  Users,
-  Layout,
-  MessageSquare,
-  Phone,
-  Mail
+  Users
 } from 'lucide-react';
+import CTASection from '@/components/CTASection';
+import { ServiceCard, TrainingCard, TestimonialCard } from '@/components/Cards';
 
 export default function Home() {
-  const [showAllServices, setShowAllServices] = useState(false);
-
   return (
     <main>
-      <Navbar />
-
       {/* Hero Section */}
       <section id="home" className="hero">
         <div className="container hero-grid">
@@ -46,8 +39,8 @@ export default function Home() {
               We combine data science with creative intuition to unlock your brand's full potential in a digital-first world.
             </p>
             <div className="hero-btns reveal" style={{ animationDelay: '0.4s' }}>
-              <a href="#contact" className="btn btn-primary">Get Started Today</a>
-              <a href="#portfolio" className="btn btn-outline" style={{ borderColor: 'rgba(255,255,255,0.3)', color: 'white' }}>View Our Work</a>
+              <Link href="/about#contact-form" className="btn btn-primary">Get Started Today</Link>
+              <Link href="/case-studies" className="btn btn-outline" style={{ borderColor: 'rgba(255,255,255,0.3)', color: 'white' }}>View Our Work</Link>
             </div>
           </div>
           <div className="hero-image-container reveal" style={{ animationDelay: '0.5s' }}>
@@ -59,7 +52,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services Section */}
+      {/* Services Showcase Section */}
       <section id="services" className="services">
         <div className="container">
           <div className="section-header">
@@ -68,87 +61,48 @@ export default function Home() {
             <p>Our service ecosystem is built to scale your impact across all digital touchpoints.</p>
           </div>
 
-          <div className={`services-wrapper ${!showAllServices ? 'is-collapsed' : ''}`}>
-            <div className="services-grid">
-              <ServiceCard
-                icon={<Users />}
-                title="Social Media Management"
-                desc="Engage your audience with platform-specific content and community management."
-              />
-              <ServiceCard
-                icon={<Globe />}
-                title="Website Development"
-                desc="High-performance, responsive websites built for conversion and speed."
-              />
-              <ServiceCard
-                icon={<Cpu />}
-                title="AI video, audio, music, Image"
-                desc="Cutting-edge AI-generated multimedia content for modern brands."
-              />
-              <ServiceCard
-                icon={<Search />}
-                title="SEO Optimization"
-                desc="Data-driven search engine optimization to boost your organic visibility."
-              />
-              <ServiceCard
-                icon={<Target />}
-                title="Meta Ads"
-                desc="Strategic Facebook and Instagram advertising focused on ROI."
-              />
-              <ServiceCard
-                icon={<PlayCircle />}
-                title="Google Ads"
-                desc="Targeted PPC campaigns that place your brand in front of ready-to-buy customers."
-              />
-              <ServiceCard
-                icon={<Palette />}
-                title="Graphic Designing"
-                desc="Visual storytelling through professional graphic design and branding."
-              />
-              <ServiceCard
-                icon={<PenTool />}
-                title="Content Creation"
-                desc="Compelling copy and multimedia content that resonates with your audience."
-              />
-              <ServiceCard
-                icon={<Lightbulb />}
-                title="Branding & Strategy"
-                desc="Long-term brand positioning and marketing strategies that drive growth."
-              />
-              <ServiceCard
-                icon={<Zap />}
-                title="AI-integrated Marketing"
-                desc="Harnessing artificial intelligence to automate and optimize your marketing funnel."
-              />
-            </div>
-            
-            {!showAllServices && <div className="services-overlay"></div>}
+          <div className="services-grid">
+            <ServiceCard
+              icon={<Users />}
+              title="Social Media Management"
+              desc="Engage your audience with platform-specific content and community management."
+            />
+            <ServiceCard
+              icon={<Globe />}
+              title="Website Development"
+              desc="High-performance, responsive websites built for conversion and speed."
+            />
+            <ServiceCard
+              icon={<Cpu />}
+              title="AI video, audio, music, Image"
+              className="hide-mobile"
+              desc="Cutting-edge AI-generated multimedia content for modern brands."
+            />
           </div>
 
-          <div className="see-more-container">
-            <button 
-              className="see-more-btn" 
-              onClick={() => setShowAllServices(!showAllServices)}
-            >
-              {showAllServices ? 'Show Less' : 'See more services'}
-            </button>
+          <div className="see-more-container" style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>
+            <Link href="/services" className="see-more-btn" style={{ background: 'var(--secondary-dark)', color: 'white', padding: '14px 32px', borderRadius: '50px', fontWeight: 700, fontSize: '0.95rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+              See all services <ArrowRight size={16} />
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Why Choose Us */}
+      {/* About Us Preview */}
       <section id="about" className="why-us">
         <div className="container why-container">
           <div className="why-content">
             <span className="section-subtitle">About Us</span>
             <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '1.5rem' }}>Why Choose AdVibes?</h2>
             <p className="mb-2">We don't just provide services; we partner with you to achieve measurable success.</p>
-            <ul className="why-list">
-              <li><CheckCircle className="icon" /> Data-Driven decision making</li>
-              <li><CheckCircle className="icon" /> Cutting-edge AI technology integration</li>
-              <li><CheckCircle className="icon" /> Dedicated team of specialists</li>
-              <li><CheckCircle className="icon" /> Transparent reporting and analytics</li>
+            <ul className="why-list" style={{ marginBottom: '2rem' }}>
+              <li><CheckCircle className="icon" style={{ color: 'var(--primary)', marginRight: '8px' }} /> Data-Driven decision making</li>
+              <li><CheckCircle className="icon" style={{ color: 'var(--primary)', marginRight: '8px' }} /> Cutting-edge AI technology integration</li>
+              <li><CheckCircle className="icon" style={{ color: 'var(--primary)', marginRight: '8px' }} /> Dedicated team of specialists</li>
             </ul>
+            <Link href="/about" className="btn btn-outline" style={{ border: '2px solid var(--secondary)', color: 'var(--secondary)' }}>
+              Read Our Story
+            </Link>
           </div>
           <div className="why-stats">
             <div className="stat-card">
@@ -167,7 +121,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Training Section */}
+      {/* Courses Showcase Section */}
       <section id="training" className="training">
         <div className="container">
           <div className="section-header">
@@ -176,7 +130,7 @@ export default function Home() {
             <p>Practical training programs designed to keep you ahead of the digital curve.</p>
           </div>
 
-          <div className="training-grid">
+          <div className="training-grid" style={{ gridTemplateColumns: 'repeat(2, 1fr)', maxWidth: '800px', margin: '0 auto' }}>
             <TrainingCard
               icon={<GraduationCap />}
               title="Digital Marketing Training"
@@ -189,63 +143,62 @@ export default function Home() {
               subtitle="Future-Ready Skills"
               desc="Learn how to leverage AI tools to transform your marketing efficiency and results."
             />
-            <TrainingCard
-              icon={<Award />}
-              title="Workshops & Certifications"
-              subtitle="Hands-on Experience"
-              desc="Practical workshops that provide industry-recognized certifications."
-            />
+          </div>
+
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>
+            <Link href="/courses" className="see-more-btn" style={{ background: 'var(--secondary-dark)', color: 'white', padding: '14px 32px', borderRadius: '50px', fontWeight: 700, fontSize: '0.95rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+              See all courses <ArrowRight size={16} />
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Portfolio Section */}
+      {/* Case Studies Preview */}
       <section id="portfolio" className="portfolio">
         <div className="container">
           <div className="section-header">
             <span className="section-subtitle">Our Work</span>
             <h2 className="section-title">Success Stories</h2>
           </div>
-          <div className="portfolio-grid">
+          <div className="portfolio-grid" style={{ gridTemplateColumns: '1fr', maxWidth: '650px', margin: '0 auto' }}>
             <div className="portfolio-item card">
-              <div className="portfolio-tag">Case Study</div>
+              <div className="portfolio-tag" style={{ background: 'rgba(255, 214, 10, 0.15)', color: 'var(--primary-dark)' }}>Case Study</div>
               <h3>Social Growth Revolution</h3>
               <p>How we increased engagement by 400% for a luxury fashion brand.</p>
-              <a href="#" className="link-btn">Read More <ArrowRight className="icon-sm" /></a>
+              <Link href="/case-studies" className="link-btn">Read Case Study <ArrowRight className="icon-sm" /></Link>
             </div>
-            <div className="portfolio-item card">
-              <div className="portfolio-tag">SEO</div>
-              <h3>The Organic Surge</h3>
-              <p>Dominating search results for a fintech startup in just 6 months.</p>
-              <a href="#" className="link-btn">Read More <ArrowRight className="icon-sm" /></a>
-            </div>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>
+            <Link href="/case-studies" className="see-more-btn" style={{ background: 'var(--secondary-dark)', color: 'white', padding: '14px 32px', borderRadius: '50px', fontWeight: 700, fontSize: '0.95rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+              See all case studies & testimonials <ArrowRight size={16} />
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Testimonials */}
+      {/* Testimonials Preview */}
       <section id="testimonials" className="testimonials">
         <div className="container">
           <div className="section-header">
             <span className="section-subtitle">Testimonials</span>
             <h2 className="section-title">What Our Clients Say</h2>
           </div>
-          <div className="testimonials-grid">
+          <div className="testimonials-grid" style={{ gridTemplateColumns: '1fr', maxWidth: '650px', margin: '0 auto' }}>
             <TestimonialCard
               text="AdVibes transformed our digital presence. Their AI-driven approach is truly revolutionary."
               author="Sarah Johnson"
               role="CEO, TechPulse"
             />
-            <TestimonialCard
-              text="The results were beyond our expectations. A highly professional team that delivers on their promises."
-              author="Michael Chen"
-              role="Marketing Director, Bloom"
-            />
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>
+            <Link href="/case-studies#testimonials" className="see-more-btn" style={{ background: 'var(--primary)', color: '#000814', padding: '14px 32px', borderRadius: '50px', fontWeight: 700, fontSize: '0.95rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+              See all testimonials <ArrowRight size={16} />
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Blog Section */}
+      {/* Blog Preview Section */}
       <section id="blog" className="blog">
         <div className="container">
           <div className="section-header">
@@ -253,25 +206,21 @@ export default function Home() {
             <h2 className="section-title">Latest From Our Blog</h2>
             <p>Stay ahead with our latest tips, trends, and strategies in digital marketing.</p>
           </div>
-          <div className="blog-grid">
+          <div className="blog-grid" style={{ gridTemplateColumns: '1fr', maxWidth: '600px', margin: '0 auto' }}>
             <div className="blog-card card">
               <div className="blog-image"></div>
               <div className="blog-content">
                 <span className="blog-date">May 12, 2026</span>
                 <h3>10 AI Tools to Transform Your Marketing in 2026</h3>
                 <p>Discover the most powerful AI tools that are redefining how brands engage with customers.</p>
-                <a href="#" className="link-btn">Read More <ArrowRight className="icon-sm" /></a>
+                <Link href="/blog" className="link-btn">Read Article <ArrowRight className="icon-sm" /></Link>
               </div>
             </div>
-            <div className="blog-card card">
-              <div className="blog-image"></div>
-              <div className="blog-content">
-                <span className="blog-date">May 05, 2026</span>
-                <h3>The Evolution of SEO: Beyond Keywords</h3>
-                <p>Why semantic search and user intent are the new pillars of search engine success.</p>
-                <a href="#" className="link-btn">Read More <ArrowRight className="icon-sm" /></a>
-              </div>
-            </div>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>
+            <Link href="/blog" className="see-more-btn" style={{ background: 'var(--secondary-dark)', color: 'white', padding: '14px 32px', borderRadius: '50px', fontWeight: 700, fontSize: '0.95rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+              See all articles <ArrowRight size={16} />
+            </Link>
           </div>
         </div>
       </section>
@@ -309,87 +258,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section id="contact" className="cta-section">
-        <div className="container">
-          <div className="cta-content">
-            <h2>Join the growth revolution.</h2>
-            <p>Partner with AdVibes and turn your digital footprint into a powerful, data-driven engine for success.</p>
-            <button className="btn btn-primary cta-btn">Work with Us</button>
-          </div>
-        </div>
-      </section>
-
-      <footer className="footer-new">
-        <div className="container">
-          <div className="footer-top">
-            <div className="footer-brand">
-              <p className="footer-copyright">© {new Date().getFullYear()} AdVibes. Precision Marketing for Modern Founders.</p>
-            </div>
-
-            <div className="footer-nav-groups">
-              <div className="footer-nav-col">
-                <a href="#services">Services</a>
-                <a href="#portfolio">Case Studies</a>
-              </div>
-              <div className="footer-nav-col">
-                <a href="#testimonials">Testimonials</a>
-                <a href="#about">About</a>
-              </div>
-              <div className="footer-nav-col">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-              </div>
-            </div>
-
-            <div className="footer-social-new">
-              <a href="tel:#" className="social-link"><Phone size={20} /></a>
-              <a href="mailto:#" className="social-link"><Mail size={20} /></a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <CTASection />
     </main>
-  );
-}
-
-function ServiceCard({ icon, title, desc }: { icon: React.ReactNode, title: string, desc: string }) {
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  return (
-    <div 
-      className={`service-card ${isExpanded ? 'active' : ''}`} 
-      onClick={() => setIsExpanded(!isExpanded)}
-    >
-      <div className="icon-box">{icon}</div>
-      <h3>{title}</h3>
-      <p className="service-desc">{desc}</p>
-      <div className="learn-more">
-        Learn More <ArrowRight size={16} />
-      </div>
-    </div>
-  );
-}
-
-function TrainingCard({ icon, title, subtitle, desc }: { icon: React.ReactNode, title: string, subtitle: string, desc: string }) {
-  return (
-    <div className="training-card card" style={{ position: 'relative', overflow: 'hidden' }}>
-      <div className="icon-box" style={{ margin: '0 auto', display: 'flex', justifyContent: 'center', color: 'var(--primary)' }}>{icon}</div>
-      <h4>{subtitle}</h4>
-      <h3>{title}</h3>
-      <p>{desc}</p>
-      <button className="btn btn-primary" style={{ marginTop: '1.5rem', width: '100%' }}>Enroll Now</button>
-    </div>
-  );
-}
-
-function TestimonialCard({ text, author, role }: { text: string, author: string, role: string }) {
-  return (
-    <div className="testimonial-card">
-      <p>"{text}"</p>
-      <div className="testimonial-author">
-        <h4>{author}</h4>
-        <span>{role}</span>
-      </div>
-    </div>
   );
 }

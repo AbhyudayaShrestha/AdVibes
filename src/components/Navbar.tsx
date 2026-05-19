@@ -2,32 +2,35 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Phone, MessageCircle, Mail, ChevronDown, Menu, X } from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import { ChevronDown, Menu, X } from 'lucide-react';
 
 const navItems = [
+  { name: 'Home', href: '/' },
   { 
     name: 'What We Do', 
-    href: '#services',
+    href: '/services',
     subItems: [
-      { name: 'Services', href: '#services' },
-      { name: 'Courses', href: '#training' },
-      { name: 'Process', href: '#process' },
+      { name: 'Services', href: '/services' },
+      { name: 'Courses', href: '/courses' },
+      { name: 'Process', href: '/#process' },
     ]
   },
   { 
     name: 'What Our Clients Say', 
-    href: '#testimonials',
+    href: '/case-studies',
     subItems: [
-      { name: 'Case Studies', href: '#portfolio' },
-      { name: 'Testimonials', href: '#testimonials' },
-      { name: 'Blog', href: '#blog' },
+      { name: 'Case Studies', href: '/case-studies' },
+      { name: 'Testimonials', href: '/case-studies#testimonials' },
+      { name: 'Blog', href: '/blog' },
     ]
   },
-  { name: 'About Us', href: '#about' },
-  { name: 'Contact Us', href: '#contact' },
+  { name: 'About Us', href: '/about' },
+  { name: 'Contact Us', href: '/about#contact-form' },
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [activeSection, setActiveSection] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -37,24 +40,29 @@ export default function Navbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
 
-      const sections = ['services', 'training', 'process', 'portfolio', 'testimonials', 'blog', 'about', 'contact'];
-      const currentSection = sections.find(section => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 120 && rect.bottom >= 120;
-        }
-        return false;
-      });
+      if (pathname === '/') {
+        const sections = ['services', 'training', 'process', 'portfolio', 'testimonials', 'blog', 'about', 'contact'];
+        const currentSection = sections.find(section => {
+          const element = document.getElementById(section);
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            return rect.top <= 120 && rect.bottom >= 120;
+          }
+          return false;
+        });
 
-      if (currentSection) {
-        setActiveSection(currentSection);
+        if (currentSection) {
+          setActiveSection(currentSection);
+        } else if (window.scrollY < 200) {
+          setActiveSection('');
+        }
       }
     };
 
     window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial call
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [pathname]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -70,12 +78,34 @@ export default function Navbar() {
     document.body.style.overflow = 'unset';
   };
 
+  const isLinkActive = (href: string) => {
+    if (href.startsWith('/#')) {
+      return pathname === '/' && activeSection === href.substring(2);
+    }
+    if (href.startsWith('#')) {
+      return pathname === '/' && activeSection === href.substring(1);
+    }
+    return pathname === href;
+  };
+
+  const isParentActive = (item: typeof navItems[0]) => {
+    if (isLinkActive(item.href)) return true;
+    if (item.subItems) {
+      return item.subItems.some(sub => isLinkActive(sub.href));
+    }
+    return false;
+  };
+
   return (
     <header className={`navbar-wrapper ${isScrolled ? 'scrolled' : ''} ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
       {/* Main Navbar */}
       <nav className="navbar">
         <div className="container nav-container">
-          {/* Logo removed as per request */}
+          <div className="logo-group">
+            <Link href="/" className="logo-brand" onClick={closeMobileMenu}>
+              AdVibes
+            </Link>
+          </div>
           
           {/* Desktop Nav */}
           <ul className="nav-links desktop-only">
@@ -88,7 +118,7 @@ export default function Navbar() {
               >
                 <Link 
                   href={item.href} 
-                  className={`nav-link ${activeSection === item.href.substring(1) ? 'active' : ''}`}
+                  className={`nav-link ${isParentActive(item) ? 'active' : ''}`}
                 >
                   {item.name} {item.subItems && <ChevronDown size={14} className="dropdown-arrow" />}
                 </Link>
@@ -97,7 +127,9 @@ export default function Navbar() {
                   <ul className={`dropdown-menu ${openDropdown === item.name ? 'show' : ''}`}>
                     {item.subItems.map((sub) => (
                       <li key={sub.name}>
-                        <Link href={sub.href}>{sub.name}</Link>
+                        <Link href={sub.href} className={isLinkActive(sub.href) ? 'active-sub' : ''}>
+                          {sub.name}
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -127,7 +159,7 @@ export default function Navbar() {
               <li key={item.name} className="mobile-nav-item">
                 <Link 
                   href={item.href} 
-                  className="mobile-nav-link"
+                  className={`mobile-nav-link ${isParentActive(item) ? 'active' : ''}`}
                   onClick={closeMobileMenu}
                 >
                   {item.name}
@@ -136,7 +168,9 @@ export default function Navbar() {
                   <ul className="mobile-sub-menu">
                     {item.subItems.map((sub) => (
                       <li key={sub.name}>
-                        <Link href={sub.href} onClick={closeMobileMenu}>{sub.name}</Link>
+                        <Link href={sub.href} onClick={closeMobileMenu} className={isLinkActive(sub.href) ? 'active-sub' : ''}>
+                          {sub.name}
+                        </Link>
                       </li>
                     ))}
                   </ul>
