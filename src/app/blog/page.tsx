@@ -125,7 +125,7 @@ export default function BlogPage() {
           {/* Grid of Posts */}
           <div className="blog-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))', gap: '2.5rem' }}>
             {filteredPosts.map((post) => (
-              <article key={post.id} className="blog-card card" style={{ background: 'white', borderRadius: '20px', padding: '0', overflow: 'hidden', border: '1px solid rgba(0, 53, 102, 0.05)', display: 'flex', flexTheme: 'column', flexDirection: 'column', height: '100%', boxShadow: '0 10px 30px rgba(0,0,0,0.02)', transition: 'all 0.4s ease' }}>
+              <article key={post.id} className="blog-card card" style={{ background: 'white', borderRadius: '20px', padding: '0', overflow: 'hidden', border: '1px solid rgba(0, 53, 102, 0.05)', display: 'flex', flexDirection: 'column', height: '100%', boxShadow: '0 10px 30px rgba(0,0,0,0.02)', transition: 'all 0.4s ease' }}>
                 {/* Simulated Blog Header / Illustration */}
                 <div style={{ background: 'var(--secondary-dark)', height: '180px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '4.5rem', position: 'relative' }}>
                   {post.image}
