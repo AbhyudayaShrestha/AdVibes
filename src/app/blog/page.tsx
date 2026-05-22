@@ -94,7 +94,7 @@ export default function BlogPage() {
       </section>
 
       {/* Blog Feed Section */}
-      <section style={{ background: 'var(--bg-soft)', padding: '80px 0 100px' }}>
+      <section className="premium-gradient-bg" style={{ padding: '80px 0 100px' }}>
         <div className="container">
           {/* Interactive Tag Filter Bar */}
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '4rem' }}>
@@ -123,9 +123,9 @@ export default function BlogPage() {
           </div>
 
           {/* Grid of Posts */}
-          <div className="blog-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))', gap: '2.5rem' }}>
+          <div className="blog-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 360px), 1fr))', gap: '2.5rem' }}>
             {filteredPosts.map((post) => (
-              <article key={post.id} className="blog-card card" style={{ background: 'white', borderRadius: '20px', padding: '0', overflow: 'hidden', border: '1px solid rgba(0, 53, 102, 0.05)', display: 'flex', flexDirection: 'column', height: '100%', boxShadow: '0 10px 30px rgba(0,0,0,0.02)', transition: 'all 0.4s ease' }}>
+              <article key={post.id} className="blog-card card glass-card card-glow-hover" style={{ borderRadius: '20px', padding: '0', overflow: 'hidden', display: 'flex', flexDirection: 'column', height: '100%' }}>
                 {/* Simulated Blog Header / Illustration */}
                 <div style={{ background: 'var(--secondary-dark)', height: '180px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '4.5rem', position: 'relative' }}>
                   {post.image}
@@ -135,7 +135,7 @@ export default function BlogPage() {
                 </div>
 
                 {/* Content Block */}
-                <div style={{ padding: '2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', flex: 1 }}>
+                <div className="responsive-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', flex: 1 }}>
                   <div>
                     {/* Meta Indicators */}
                     <div style={{ display: 'flex', gap: '1.25rem', marginBottom: '1.25rem' }}>

@@ -66,7 +66,7 @@ export default function AboutPage() {
       {/* Main Narrative & Stats */}
       <section style={{ background: 'white', padding: '100px 0' }}>
         <div className="container">
-          <div className="why-container" style={{ display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: '4rem', alignItems: 'center' }}>
+          <div className="why-container">
             <div>
               <span className="section-subtitle" style={{ textAlign: 'left' }}>The Mission</span>
               <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '1.5rem', fontWeight: 800 }}>Pioneering Performance Marketing</h2>
@@ -125,9 +125,9 @@ export default function AboutPage() {
             <p>Our decisions, campaigns, and corporate alignments are bound by three foundational rules.</p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '3rem' }}>
+          <div className="responsive-three-col">
             {values.map((val, idx) => (
-              <div key={idx} style={{ background: 'white', padding: '3.5rem 2.5rem', borderRadius: '20px', border: '1px solid rgba(0, 53, 102, 0.05)', boxShadow: '0 10px 30px rgba(0,0,0,0.02)' }}>
+              <div key={idx} className="glass-card card-glow-hover responsive-card">
                 <div style={{ marginBottom: '1.5rem', display: 'inline-block', background: 'rgba(255, 214, 10, 0.08)', padding: '1rem', borderRadius: '16px' }}>
                   {val.icon}
                 </div>
@@ -148,7 +148,7 @@ export default function AboutPage() {
             <p>Fill out the form below. Our lead strategist will audit your domain and respond with a customized playbook in 24 hours.</p>
           </div>
 
-          <div style={{ background: 'var(--bg-soft)', padding: '4rem', borderRadius: '24px', border: '1px solid rgba(0, 53, 102, 0.05)', boxShadow: '0 10px 40px rgba(0,0,0,0.02)' }}>
+          <div className="glass-card responsive-card" style={{ borderRadius: '24px', border: '1px solid rgba(0, 53, 102, 0.05)', boxShadow: '0 10px 40px rgba(0,0,0,0.02)' }}>
             {formSubmitted ? (
               <div style={{ textAlign: 'center', padding: '2rem 0' }}>
                 <div style={{ width: '80px', height: '80px', background: 'var(--primary)', color: '#000814', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem auto', fontSize: '2.5rem', fontWeight: 800 }}>
@@ -161,7 +161,7 @@ export default function AboutPage() {
               </div>
             ) : (
               <form onSubmit={handleFormSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+                <div className="responsive-form-row">
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                     <label htmlFor="name" style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--secondary-dark)', textTransform: 'uppercase', letterSpacing: '1px' }}>Full Name *</label>
                     <input

@@ -70,11 +70,11 @@ export default function CoursesPage() {
       </section>
 
       {/* Grid of Courses */}
-      <section className="all-courses-section" style={{ background: '#e2e8f0', padding: '100px 0' }}>
+      <section className="all-courses-section premium-gradient-bg" style={{ padding: '100px 0' }}>
         <div className="container">
-          <div className="courses-grid-layout" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(450px, 1fr))', gap: '3rem' }}>
+          <div className="responsive-two-col">
             {courses.map((course, index) => (
-              <div key={index} className="training-card card" style={{ padding: '3.5rem', background: 'white', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', borderRadius: '24px', border: '1px solid rgba(0, 0, 0, 0.05)', boxShadow: '0 10px 30px rgba(0,0,0,0.05)' }}>
+              <div key={index} className="training-card card glass-card card-glow-hover responsive-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', borderRadius: '24px' }}>
                 <div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '2rem' }}>
                     <div style={{ color: 'var(--secondary)', background: 'rgba(0, 53, 102, 0.05)', padding: '1.25rem', borderRadius: '20px' }}>
@@ -101,7 +101,7 @@ export default function CoursesPage() {
                   {/* Syllabus / Syllabus highlights */}
                   <div style={{ marginBottom: '2.5rem' }}>
                     <h4 style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--secondary-dark)', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Syllabus Highlights</h4>
-                    <ul style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+                    <ul className="syllabus-grid">
                       {course.syllabus.map((topic, i) => (
                         <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.85rem', color: 'rgba(0,0,0,0.7)', fontWeight: 500 }}>
                           <span style={{ width: '6px', height: '6px', background: 'var(--primary)', borderRadius: '50%' }}></span> {topic}
@@ -129,7 +129,7 @@ export default function CoursesPage() {
             <p>Our educational program combines theory with direct practical execution to ensure long-term retention.</p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '3rem', textAlign: 'center' }}>
+          <div className="responsive-three-col" style={{ textAlign: 'center' }}>
             <div>
               <div style={{ fontSize: '3rem', fontWeight: 900, color: 'var(--primary)', marginBottom: '1rem' }}>92%</div>
               <h4 style={{ fontSize: '1.2rem', color: 'var(--secondary-dark)', marginBottom: '0.5rem', fontWeight: 700 }}>Completion Rate</h4>

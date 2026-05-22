@@ -87,7 +87,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Grid of All Services */}
-      <section className="all-services-grid-section" style={{ background: 'var(--bg-soft)', padding: '100px 0' }}>
+      <section className="all-services-grid-section premium-gradient-bg" style={{ padding: '100px 0' }}>
         <div className="container">
           <div className="services-grid">
             {allServices.map((service, index) => (
@@ -112,15 +112,15 @@ export default function ServicesPage() {
           </div>
 
           <div className="why-stats deliver-stats-grid">
-            <div className="stat-card" style={{ background: 'var(--bg-soft)', padding: '3rem 2rem', borderRadius: '16px', textAlign: 'center' }}>
+            <div className="stat-card glass-card responsive-card" style={{ textAlign: 'center' }}>
               <h3 style={{ fontSize: '1.8rem', color: 'var(--secondary)', marginBottom: '1rem' }}>AI-Accelerated</h3>
               <p style={{ color: 'var(--text-muted)' }}>We leverage the latest AI models to produce assets 5x faster, giving your brand an unparalleled speed-to-market advantage.</p>
             </div>
-            <div className="stat-card" style={{ background: 'var(--bg-soft)', padding: '3rem 2rem', borderRadius: '16px', textAlign: 'center' }}>
+            <div className="stat-card glass-card responsive-card" style={{ textAlign: 'center' }}>
               <h3 style={{ fontSize: '1.8rem', color: 'var(--secondary)', marginBottom: '1rem' }}>100% Data-Driven</h3>
               <p style={{ color: 'var(--text-muted)' }}>We map every click, view, and conversion back to hard analytics so you know exactly where your marketing spend yields results.</p>
             </div>
-            <div className="stat-card" style={{ background: 'var(--bg-soft)', padding: '3rem 2rem', borderRadius: '16px', textAlign: 'center' }}>
+            <div className="stat-card glass-card responsive-card" style={{ textAlign: 'center' }}>
               <h3 style={{ fontSize: '1.8rem', color: 'var(--secondary)', marginBottom: '1rem' }}>Tailored Strategy</h3>
               <p style={{ color: 'var(--text-muted)' }}>No generic copy-paste templates. We formulate a completely unique funnel optimized specifically for your target audience.</p>
             </div>

@@ -82,7 +82,7 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* Case Studies Section */}
-      <section id="case-studies-list" style={{ background: 'var(--bg-soft)', padding: '100px 0' }}>
+      <section id="case-studies-list" className="premium-gradient-bg" style={{ padding: '100px 0' }}>
         <div className="container">
           <div className="section-header" style={{ marginBottom: '5rem' }}>
             <span className="section-subtitle">Deep Dives</span>
@@ -92,7 +92,7 @@ export default function CaseStudiesPage() {
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
             {caseStudies.map((study, index) => (
-              <div key={index} className="case-study-item card" style={{ background: 'white', borderRadius: '24px', padding: '4rem', border: '1px solid rgba(0, 53, 102, 0.05)', display: 'grid', gridTemplateColumns: '1fr 2.5fr', gap: '3rem', alignItems: 'center', boxShadow: '0 10px 40px rgba(0,0,0,0.02)' }}>
+              <div key={index} className="case-study-item card glass-card card-glow-hover responsive-card case-study-grid" style={{ alignItems: 'center' }}>
                 {/* Metric Graphic Block */}
                 <div style={{ background: 'var(--secondary-dark)', color: 'white', padding: '3rem 2rem', borderRadius: '20px', textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                   <TrendingUp size={44} style={{ color: 'var(--primary)', marginBottom: '1.5rem' }} />
@@ -107,7 +107,7 @@ export default function CaseStudiesPage() {
                   </span>
                   <h3 style={{ fontSize: '1.8rem', color: 'var(--secondary-dark)', fontWeight: 800, marginBottom: '1.5rem', lineHeight: '1.3' }}>{study.title}</h3>
                   
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginBottom: '2rem', borderBottom: '1px solid #f1f5f9', paddingBottom: '2rem' }}>
+                  <div className="responsive-two-col" style={{ gap: '2rem', marginBottom: '2rem', borderBottom: '1px solid #f1f5f9', paddingBottom: '2rem' }}>
                     <div>
                       <h4 style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--secondary)', marginBottom: '0.5rem' }}>The Challenge</h4>
                       <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>{study.challenge}</p>
@@ -143,9 +143,9 @@ export default function CaseStudiesPage() {
             <p style={{ color: 'rgba(255,255,255,0.7)' }}>Read verified reviews from digital brands and growth-focused founders who chose AdVibes.</p>
           </div>
 
-          <div className="testimonials-grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(450px, 1fr))', gap: '2.5rem' }}>
+          <div className="testimonials-grid" style={{ gap: '2.5rem' }}>
             {testimonials.map((test, index) => (
-              <div key={index} className="testimonial-card" style={{ padding: '3.5rem', background: 'rgba(255, 255, 255, 0.04)', borderRadius: '24px', border: '1px solid rgba(255, 255, 255, 0.08)', backdropFilter: 'blur(10px)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <div key={index} className="testimonial-card responsive-card" style={{ background: 'rgba(255, 255, 255, 0.04)', border: '1px solid rgba(255, 255, 255, 0.08)', backdropFilter: 'blur(10px)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 <div>
                   <div style={{ display: 'flex', gap: '4px', marginBottom: '1.5rem' }}>
                     {[...Array(test.stars)].map((_, idx) => (
