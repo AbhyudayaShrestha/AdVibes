@@ -87,7 +87,7 @@ export default function CoursesPage() {
 
                   <h3 style={{ fontSize: '1.8rem', color: 'var(--secondary-dark)', marginBottom: '1.25rem', fontWeight: 800 }}>{course.title}</h3>
                   <p style={{ color: 'var(--text-muted)', marginBottom: '2rem', fontSize: '1rem', lineHeight: '1.7' }}>{course.desc}</p>
-                  
+
                   {/* Course Details Bar */}
                   <div style={{ display: 'flex', gap: '1.5rem', borderBottom: '1px solid #e2e8f0', paddingBottom: '1.5rem', marginBottom: '1.5rem' }}>
                     <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.9rem', color: 'var(--text-dark)', fontWeight: 600 }}>
@@ -112,7 +112,7 @@ export default function CoursesPage() {
                 </div>
 
                 <button className="btn btn-primary" style={{ width: '100%', padding: '16px', fontWeight: 700 }}>
-                  Enroll in Cohort
+                  Enroll Now
                 </button>
               </div>
             ))}
