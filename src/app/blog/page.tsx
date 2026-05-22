@@ -78,9 +78,9 @@ export default function BlogPage() {
     : posts.filter(post => post.category === selectedCategory);
 
   return (
-    <main className="blog-page-wrapper" style={{ paddingTop: '100px' }}>
+    <main className="blog-page-wrapper">
       {/* Inner Hero Section */}
-      <section className="inner-hero" style={{ background: 'var(--gradient-hero)', color: 'white', padding: '120px 0 80px', position: 'relative', overflow: 'hidden', textAlign: 'center' }}>
+      <section className="inner-hero" style={{ background: 'var(--gradient-hero)', color: 'white', padding: '160px 0 80px', position: 'relative', overflow: 'hidden', textAlign: 'center' }}>
         <div className="container">
           <span className="section-subtitle" style={{ color: 'var(--primary)', letterSpacing: '2px' }}>Insights & Guides</span>
           <h1 className="line-bottom" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontWeight: 900, marginBottom: '1.5rem', background: 'var(--gradient-accent)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>

@@ -48,9 +48,9 @@ export default function AboutPage() {
   ];
 
   return (
-    <main className="about-page-wrapper" style={{ paddingTop: '100px' }}>
+    <main className="about-page-wrapper">
       {/* Inner Hero */}
-      <section className="inner-hero" style={{ background: 'var(--gradient-hero)', color: 'white', padding: '120px 0 80px', position: 'relative', overflow: 'hidden', textAlign: 'center' }}>
+      <section className="inner-hero" style={{ background: 'var(--gradient-hero)', color: 'white', padding: '160px 0 80px', position: 'relative', overflow: 'hidden', textAlign: 'center' }}>
         <div className="container">
           <span className="section-subtitle" style={{ color: 'var(--primary)', letterSpacing: '2px' }}>Our Identity</span>
           <h1 className="line-bottom" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontWeight: 900, marginBottom: '1.5rem', background: 'var(--gradient-accent)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
