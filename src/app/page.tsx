@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
   Globe,
@@ -21,32 +22,88 @@ import CTASection from '@/components/CTASection';
 import { ServiceCard, TrainingCard, TestimonialCard } from '@/components/Cards';
 
 export default function Home() {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <main>
       {/* Hero Section */}
-      <section id="home" className="hero">
-        <div className="container hero-grid">
-          <div className="hero-content">
-            <div className="hero-tag reveal" style={{ animationDelay: '0.1s' }}>
-              <span className="tag-line">Future of Marketing</span>
+      <section id="home" className="hero-new">
+        {/* Decorative background grid and circles */}
+        <div className="hero-wireframe-grid"></div>
+        <div className="hero-circle-outline outline-1" style={{ transform: `translateY(${scrollY * 0.04}px)` }}></div>
+        <div className="hero-circle-outline outline-2" style={{ transform: `translateY(${scrollY * 0.08}px)` }}></div>
+        
+        <div className="container hero-grid-new">
+          {/* Left Column */}
+          <div className="hero-content-new">
+            <div className="hero-badge-pill reveal" style={{ animationDelay: '0.1s' }}>
+              <span className="star-icon">★</span> Awards Winning Agency
             </div>
-            <h1 className="hero-title reveal" style={{ animationDelay: '0.2s' }}>
-              <span className="line-top">Digital Marketing</span>
-              <span className="line-middle">Powered by</span>
-              <span className="line-bottom">AI & Real Strategy</span>
+            
+            <h1 className="hero-title-new reveal" style={{ animationDelay: '0.2s' }}>
+              CONSTRUCTING <br />
+              THE FUTURE WITH <br />
+              <span className="highlight-text">CONFIDENCE</span>
             </h1>
-            <p className="hero-description reveal" style={{ color: 'rgba(255,255,255,0.8)', animationDelay: '0.3s' }}>
-              We combine data science with creative intuition to unlock your brand's full potential in a digital-first world.
+            
+            <p className="hero-description-new reveal" style={{ animationDelay: '0.3s' }}>
+              Your trusted partner in digital growth—from innovative marketing strategies to expert brand management that delivers excellence.
             </p>
-            <div className="hero-btns reveal" style={{ animationDelay: '0.4s' }}>
-              <Link href="/about#contact-form" className="btn btn-primary">Get Started Today</Link>
-              <Link href="/case-studies" className="btn btn-outline" style={{ borderColor: 'rgba(255,255,255,0.3)', color: 'white' }}>View Our Work</Link>
+            
+            <div className="hero-actions-new reveal" style={{ animationDelay: '0.4s' }}>
+              <Link href="/services" className="btn btn-primary-new">
+                Explore Services <span className="arrow-icon">→</span>
+              </Link>
+              <Link href="/about" className="btn btn-outline-new">
+                Learn More <span className="arrow-icon">→</span>
+              </Link>
             </div>
           </div>
-          <div className="hero-image-container reveal" style={{ animationDelay: '0.5s' }}>
-            <div className="image-wrapper">
-              <img src="/hero-bg.webp" alt="Modern AdVibes Office" className="floating-img" />
-              <div className="image-glow"></div>
+          
+          {/* Right Column */}
+          <div className="hero-visual-new reveal" style={{ animationDelay: '0.5s' }}>
+            <div className="hero-arch-container">
+              {/* The Arch background shape */}
+              <div className="hero-arch-bg"></div>
+              {/* Person image cut-out */}
+              <img src="/heroPicture.png" alt="AdVibes Team Expert" className="hero-person-img" />
+            </div>
+
+            {/* Widget 1: 100% Clients Are Happy */}
+            <div 
+              className="floating-widget widget-satisfaction" 
+              style={{ transform: `translateY(${scrollY * -0.15}px)` }}
+            >
+              <div className="widget-grid-pattern"></div>
+              <div className="widget-content">
+                <span className="percent-text">100%</span>
+                <span className="label-text">Clients Are<br />happy</span>
+              </div>
+            </div>
+
+            {/* Widget 2: 25k+ Reviews */}
+            <div 
+              className="floating-widget widget-reviews" 
+              style={{ transform: `translateY(${scrollY * -0.08}px)` }}
+            >
+              <span className="reviews-count">25k+ reviews</span>
+              <div className="stars-container">
+                <span className="star">★</span>
+                <span className="star">★</span>
+                <span className="star">★</span>
+                <span className="star">★</span>
+                <span className="star">★</span>
+              </div>
             </div>
           </div>
         </div>
