@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { CheckCircle, Mail, Phone, MapPin, Send, Target, Eye, Heart } from 'lucide-react';
+import CTASection from '@/components/CTASection';
 
 export default function AboutPage() {
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -139,91 +140,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Interactive Contact Form Section */}
-      <section id="contact-form" style={{ background: 'white', padding: '100px 0' }}>
-        <div className="container" style={{ maxWidth: '900px' }}>
-          <div className="section-header" style={{ marginBottom: '4rem' }}>
-            <span className="section-subtitle">Get In Touch</span>
-            <h2 className="section-title">Ready To Accelerate Growth?</h2>
-            <p>Fill out the form below. Our lead strategist will audit your domain and respond with a customized playbook in 24 hours.</p>
-          </div>
-
-          <div className="glass-card responsive-card" style={{ borderRadius: '24px', border: '1px solid rgba(0, 53, 102, 0.05)', boxShadow: '0 10px 40px rgba(0,0,0,0.02)' }}>
-            {formSubmitted ? (
-              <div style={{ textAlign: 'center', padding: '2rem 0' }}>
-                <div style={{ width: '80px', height: '80px', background: 'var(--primary)', color: '#000814', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem auto', fontSize: '2.5rem', fontWeight: 800 }}>
-                  ✓
-                </div>
-                <h3 style={{ fontSize: '1.8rem', color: 'var(--secondary-dark)', fontWeight: 800, marginBottom: '1rem' }}>Playbook Requested!</h3>
-                <p style={{ color: 'var(--text-muted)', maxWidth: '450px', margin: '0 auto', lineHeight: '1.6' }}>
-                  Thank you! We've received your details. Our growth specialists have initiated your domain audit. Talk to you very soon!
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleFormSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-                <div className="responsive-form-row">
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                    <label htmlFor="name" style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--secondary-dark)', textTransform: 'uppercase', letterSpacing: '1px' }}>Full Name *</label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      required
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      placeholder="e.g. John Doe"
-                      style={{ padding: '14px 20px', borderRadius: '12px', border: '1px solid rgba(0,53,102,0.1)', fontSize: '0.95rem', outline: 'none', background: 'white' }}
-                    />
-                  </div>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                    <label htmlFor="email" style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--secondary-dark)', textTransform: 'uppercase', letterSpacing: '1px' }}>Work Email *</label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      placeholder="e.g. john@company.com"
-                      style={{ padding: '14px 20px', borderRadius: '12px', border: '1px solid rgba(0,53,102,0.1)', fontSize: '0.95rem', outline: 'none', background: 'white' }}
-                    />
-                  </div>
-                </div>
-
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                  <label htmlFor="company" style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--secondary-dark)', textTransform: 'uppercase', letterSpacing: '1px' }}>Company Name / Website</label>
-                  <input
-                    type="text"
-                    id="company"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleInputChange}
-                    placeholder="e.g. company.com"
-                    style={{ padding: '14px 20px', borderRadius: '12px', border: '1px solid rgba(0,53,102,0.1)', fontSize: '0.95rem', outline: 'none', background: 'white' }}
-                  />
-                </div>
-
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                  <label htmlFor="message" style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--secondary-dark)', textTransform: 'uppercase', letterSpacing: '1px' }}>How can we scale your brand?</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={4}
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    placeholder="Briefly describe your objectives or active traffic channels..."
-                    style={{ padding: '14px 20px', borderRadius: '12px', border: '1px solid rgba(0,53,102,0.1)', fontSize: '0.95rem', outline: 'none', background: 'white', resize: 'vertical', fontFamily: 'inherit' }}
-                  />
-                </div>
-
-                <button type="submit" className="btn btn-primary" style={{ padding: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', fontWeight: 700 }}>
-                  <Send size={16} /> Request Custom Domain Audit
-                </button>
-              </form>
-            )}
-          </div>
-        </div>
-      </section>
+      <CTASection />
     </main>
   );
 }

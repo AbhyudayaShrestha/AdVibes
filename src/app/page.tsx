@@ -39,6 +39,7 @@ export default function Home() {
 
   const coursesData = [
     {
+      slug: "digital-marketing-training",
       icon: <GraduationCap size={36} />,
       title: "Digital Marketing Training",
       subtitle: "Beginner to Advanced",
@@ -48,6 +49,7 @@ export default function Home() {
       syllabus: ["Audience Intelligence & Profiling", "Copywriting & Landing Page Architecture", "Multi-Channel Funnel Planning", "Performance Tracking & Reporting"]
     },
     {
+      slug: "ai-marketing-training",
       icon: <Cpu size={36} />,
       title: "AI in Marketing Training",
       subtitle: "Future-Ready Skills",
@@ -57,6 +59,7 @@ export default function Home() {
       syllabus: ["Prompt Engineering & Automation", "AI Video & Imagery Production", "Copy & SEO Automation Workflows", "AI Agents for Lead Generation"]
     },
     {
+      slug: "workshops-certifications",
       icon: <Award size={36} />,
       title: "Workshops & Certifications",
       subtitle: "Hands-on Experience",
@@ -66,6 +69,7 @@ export default function Home() {
       syllabus: ["Live Cohort Strategy Build", "Campaign Auditing Lab", "Interactive Dynamic Playbooks", "Final Certification Exam Prep"]
     },
     {
+      slug: "meta-ads-scale-blueprint",
       icon: <Target size={36} />,
       title: "Meta Ads Scale Blueprint",
       subtitle: "Professional Masterclass",
@@ -183,16 +187,19 @@ export default function Home() {
 
           <div className="services-grid">
             <ServiceCard
+              slug="social-media-management"
               icon={<Users />}
               title="Social Media Management"
               desc="Engage your audience with platform-specific content and community management."
             />
             <ServiceCard
+              slug="website-development"
               icon={<Globe />}
               title="Website Development"
               desc="High-performance, responsive websites built for conversion and speed."
             />
             <ServiceCard
+              slug="ai-multimedia-content"
               icon={<Cpu />}
               title="AI video, audio, music, Image"
               className="hide-mobile"
@@ -265,8 +272,8 @@ export default function Home() {
                 style={{ transform: `translateX(-${currentSlide * 100}%)` }}
               >
                 {coursesData.map((course, index) => (
-                  <div key={index} className="training-slide">
-                    <div className="training-slider-card">
+                  <Link key={index} href={`/courses/${course.slug}`} className="training-slide" style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <div className="training-slider-card" style={{ cursor: 'pointer' }}>
                       <div className="card-left">
                         <div className="slider-icon-box">
                           {course.icon}
@@ -300,12 +307,12 @@ export default function Home() {
                           </ul>
                         </div>
 
-                        <button className="btn btn-primary slider-enroll-btn">
-                          Enroll Now
-                        </button>
+                        <span className="btn btn-primary slider-enroll-btn">
+                          View Details
+                        </span>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -392,15 +399,17 @@ export default function Home() {
             <p>Stay ahead with our latest tips, trends, and strategies in digital marketing.</p>
           </div>
           <div className="blog-grid" style={{ gridTemplateColumns: '1fr', maxWidth: '600px', margin: '0 auto' }}>
-            <div className="blog-card card">
-              <div className="blog-image"></div>
-              <div className="blog-content">
-                <span className="blog-date">May 12, 2026</span>
-                <h3>10 AI Tools to Transform Your Marketing in 2026</h3>
-                <p>Discover the most powerful AI tools that are redefining how brands engage with customers.</p>
-                <Link href="/blog" className="link-btn">Read Article <ArrowRight className="icon-sm" /></Link>
+            <Link href="/blog/10-ai-tools-to-transform-your-marketing-in-2026" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <div className="blog-card card" style={{ overflow: 'hidden', cursor: 'pointer' }}>
+                <div className="blog-image" style={{ backgroundImage: 'url(/blog-ai-tools.png)', backgroundSize: 'cover', backgroundPosition: 'center', height: '240px' }}></div>
+                <div className="blog-content">
+                  <span className="blog-date">May 12, 2026</span>
+                  <h3>10 AI Tools to Transform Your Marketing in 2026</h3>
+                  <p>Discover the most powerful AI tools that are redefining how brands engage with customers.</p>
+                  <span className="link-btn">Read Article <ArrowRight className="icon-sm" /></span>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>
             <Link href="/blog" className="see-more-btn" style={{ background: 'var(--secondary-dark)', color: 'white', padding: '14px 32px', borderRadius: '50px', fontWeight: 700, fontSize: '0.95rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>

@@ -13,63 +13,75 @@ export default function BlogPage() {
   const posts = [
     {
       id: 1,
+      slug: "10-ai-tools-to-transform-your-marketing-in-2026",
       title: "10 AI Tools to Transform Your Marketing in 2026",
       desc: "Discover the most powerful artificial intelligence models and workflow integrations that are completely redefining brand scaling and content velocity.",
       date: "May 12, 2026",
       readTime: "6 Min Read",
       author: "AdVibes Team",
       category: "AI Marketing",
-      image: "🤖"
+      image: "/blog-ai-tools.png",
+      emoji: "🤖"
     },
     {
       id: 2,
+      slug: "evolution-of-seo-beyond-keywords",
       title: "The Evolution of SEO: Beyond Keywords in 2026",
       desc: "Why traditional keyword stuffing is obsolete. Learn how semantic search structures, user intent modeling, and page speed architecture dictate search rankings today.",
       date: "May 05, 2026",
       readTime: "8 Min Read",
       author: "Marcus Vance",
       category: "SEO",
-      image: "📈"
+      image: "/blog-seo-evolution.png",
+      emoji: "📈"
     },
     {
       id: 3,
+      slug: "mastering-meta-pixel-conversions-api",
       title: "Mastering the Meta Pixel: Conversions API Setup Guide",
       desc: "A technical walkthrough on establishing robust server-side tracking to completely bypass cookie deprecation limits and skyrocket your ad creative ROI.",
       date: "Apr 28, 2026",
       readTime: "10 Min Read",
       author: "Sarah Sterling",
       category: "Paid Advertising",
-      image: "🎯"
+      image: "",
+      emoji: "🎯"
     },
     {
       id: 4,
+      slug: "modern-brand-architecture-visual-identities",
       title: "Modern Brand Architecture: Crafting Visual Identities That Convert",
       desc: "Analyze the core visual components and cognitive strategies that top 1% tech startups use to command immense authority and visual recognition in saturated spaces.",
       date: "Apr 15, 2026",
       readTime: "7 Min Read",
       author: "Elena Rostova",
       category: "Branding",
-      image: "✨"
+      image: "",
+      emoji: "✨"
     },
     {
       id: 5,
+      slug: "dynamic-prompts-custom-ai-agents",
       title: "Dynamic Prompts: Custom AI Agent Orchestrations for Growth Teams",
       desc: "How we script advanced API integrations to automatically scrape inbound requests, scoring leads, and constructing personalized outbound sequences in milliseconds.",
       date: "Mar 30, 2026",
       readTime: "9 Min Read",
       author: "AdVibes Team",
       category: "AI Marketing",
-      image: "⚡"
+      image: "",
+      emoji: "⚡"
     },
     {
       id: 6,
+      slug: "scaling-google-search-campaigns",
       title: "Scaling Google Search Campaigns: Advanced Bidding Methods",
       desc: "Deep dive into target cost-per-acquisition (tCPA) configurations and smart-bidding optimizations to systematically dominate search engine results without exceeding budget caps.",
       date: "Mar 18, 2026",
       readTime: "8 Min Read",
       author: "Marcus Vance",
       category: "Paid Advertising",
-      image: "🔍"
+      image: "",
+      emoji: "🔍"
     }
   ];
 
@@ -125,46 +137,52 @@ export default function BlogPage() {
           {/* Grid of Posts */}
           <div className="blog-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 360px), 1fr))', gap: '2.5rem' }}>
             {filteredPosts.map((post) => (
-              <article key={post.id} className="blog-card card glass-card card-glow-hover" style={{ borderRadius: '20px', padding: '0', overflow: 'hidden', display: 'flex', flexDirection: 'column', height: '100%' }}>
-                {/* Simulated Blog Header / Illustration */}
-                <div style={{ background: 'var(--secondary-dark)', height: '180px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '4.5rem', position: 'relative' }}>
-                  {post.image}
-                  <span style={{ position: 'absolute', bottom: '15px', right: '15px', padding: '4px 12px', background: 'var(--primary)', color: '#000814', fontSize: '0.75rem', fontWeight: 800, borderRadius: '50px', textTransform: 'uppercase', letterSpacing: '1px' }}>
-                    {post.category}
-                  </span>
-                </div>
+              <Link key={post.id} href={`/blog/${post.slug}`} style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column' }}>
+                <article className="blog-card card glass-card card-glow-hover" style={{ borderRadius: '20px', padding: '0', overflow: 'hidden', display: 'flex', flexDirection: 'column', height: '100%', cursor: 'pointer' }}>
+                  {/* Simulated Blog Header / Illustration */}
+                  <div style={{ background: 'var(--secondary-dark)', height: '180px', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
+                    {post.image ? (
+                      <img src={post.image} alt={post.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    ) : (
+                      <span style={{ fontSize: '4.5rem' }}>{post.emoji}</span>
+                    )}
+                    <span style={{ position: 'absolute', bottom: '15px', right: '15px', padding: '4px 12px', background: 'var(--primary)', color: '#000814', fontSize: '0.75rem', fontWeight: 800, borderRadius: '50px', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                      {post.category}
+                    </span>
+                  </div>
 
-                {/* Content Block */}
-                <div className="responsive-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', flex: 1 }}>
-                  <div>
-                    {/* Meta Indicators */}
-                    <div style={{ display: 'flex', gap: '1.25rem', marginBottom: '1.25rem' }}>
-                      <span style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-                        <Calendar size={14} /> {post.date}
-                      </span>
-                      <span style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-                        <Clock size={14} /> {post.readTime}
-                      </span>
+                  {/* Content Block */}
+                  <div className="responsive-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', flex: 1 }}>
+                    <div>
+                      {/* Meta Indicators */}
+                      <div style={{ display: 'flex', gap: '1.25rem', marginBottom: '1.25rem' }}>
+                        <span style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                          <Calendar size={14} /> {post.date}
+                        </span>
+                        <span style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                          <Clock size={14} /> {post.readTime}
+                        </span>
+                      </div>
+
+                      <h3 style={{ fontSize: '1.4rem', color: 'var(--secondary-dark)', fontWeight: 800, marginBottom: '1rem', lineHeight: '1.3' }}>
+                        {post.title}
+                      </h3>
+                      <p style={{ color: 'var(--text-muted)', fontSize: '0.92rem', lineHeight: '1.6', marginBottom: '2rem' }}>
+                        {post.desc}
+                      </p>
                     </div>
 
-                    <h3 style={{ fontSize: '1.4rem', color: 'var(--secondary-dark)', fontWeight: 800, marginBottom: '1rem', lineHeight: '1.3' }}>
-                      {post.title}
-                    </h3>
-                    <p style={{ color: 'var(--text-muted)', fontSize: '0.92rem', lineHeight: '1.6', marginBottom: '2rem' }}>
-                      {post.desc}
-                    </p>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid #f1f5f9', paddingTop: '1.5rem', marginTop: 'auto' }}>
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.85rem', color: 'var(--text-dark)', fontWeight: 600 }}>
+                        <User size={14} style={{ color: 'var(--primary)' }} /> {post.author}
+                      </span>
+                      <span className="link-btn" style={{ margin: 0, fontSize: '0.9rem', color: 'var(--secondary)', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                        Read More <ArrowRight size={14} />
+                      </span>
+                    </div>
                   </div>
-
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid #f1f5f9', paddingTop: '1.5rem', marginTop: 'auto' }}>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.85rem', color: 'var(--text-dark)', fontWeight: 600 }}>
-                      <User size={14} style={{ color: 'var(--primary)' }} /> {post.author}
-                    </span>
-                    <a href="#" className="link-btn" style={{ margin: 0, fontSize: '0.9rem', color: 'var(--secondary)', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-                      Read More <ArrowRight size={14} />
-                    </a>
-                  </div>
-                </div>
-              </article>
+                </article>
+              </Link>
             ))}
           </div>
 

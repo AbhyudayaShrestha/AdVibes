@@ -19,51 +19,61 @@ import CTASection from '@/components/CTASection';
 export default function ServicesPage() {
   const allServices = [
     {
+      slug: "social-media-management",
       icon: <Users />,
       title: "Social Media Management",
       desc: "Engage your audience with platform-specific content, real-time community management, organic growth tactics, and interactive engagement strategies."
     },
     {
+      slug: "website-development",
       icon: <Globe />,
       title: "Website Development",
       desc: "High-performance, responsive websites built with Next.js, React, and modern tech stacks. Optimized for search engines, speed, and high conversion rates."
     },
     {
+      slug: "ai-multimedia-content",
       icon: <Cpu />,
       title: "AI video, audio, music, Image",
       desc: "Cutting-edge AI-generated multimedia content. Leverage next-gen models for realistic voices, high-fidelity sound, and stunning photorealistic marketing visual assets."
     },
     {
+      slug: "seo-optimization",
       icon: <Search />,
       title: "SEO Optimization",
       desc: "Data-driven search engine optimization. Thorough keyword research, technical on-page audits, strategic content writing, and link-building for long-term organic success."
     },
     {
+      slug: "meta-ads",
       icon: <Target />,
       title: "Meta Ads",
       desc: "Strategic Facebook and Instagram advertising. Customized audience funnel targeting, continuous A/B creative testing, and analytical scaling focused on maximum ROI."
     },
     {
+      slug: "google-ads",
       icon: <PlayCircle />,
       title: "Google Ads",
       desc: "Targeted PPC search, display, and YouTube campaigns that capture high-intent keywords and place your brand directly in front of ready-to-buy customers."
     },
     {
+      slug: "graphic-designing",
       icon: <Palette />,
       title: "Graphic Designing",
       desc: "Visual storytelling through professional graphic design. Creative branding guides, modern pitch decks, beautiful ad designs, and stunning corporate collateral."
     },
     {
+      slug: "content-creation",
       icon: <PenTool />,
       title: "Content Creation",
       desc: "Compelling copywriting, educational script writing, and high-production content assets built to captivate, educate, and convert your target audience."
     },
     {
+      slug: "branding-strategy",
       icon: <Lightbulb />,
       title: "Branding & Strategy",
       desc: "Comprehensive brand positioning and market research. Build a cohesive visual and verbal identity to establish long-term authority in your space."
     },
     {
+      slug: "ai-integrated-marketing",
       icon: <Zap />,
       title: "AI-integrated Marketing",
       desc: "Transform your operations. Deploy custom LLMs, automate routine tasks, implement predictive lead scoring, and run algorithmic marketing campaigns."
@@ -93,6 +103,7 @@ export default function ServicesPage() {
             {allServices.map((service, index) => (
               <ServiceCard
                 key={index}
+                slug={service.slug}
                 icon={service.icon}
                 title={service.title}
                 desc={service.desc}

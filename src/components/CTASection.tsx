@@ -9,7 +9,7 @@ export default function CTASection() {
         <div className="cta-content">
           <h2>Join the growth revolution.</h2>
           <p>Partner with AdVibes and turn your digital footprint into a powerful, data-driven engine for success.</p>
-          <a href="/about#contact-form" className="btn btn-primary cta-btn">Work with Us</a>
+          <a href="/enquiry" className="btn btn-primary cta-btn">Work with Us</a>
         </div>
       </div>
     </section>

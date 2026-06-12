@@ -16,6 +16,7 @@ import CTASection from '@/components/CTASection';
 export default function CoursesPage() {
   const courses = [
     {
+      slug: "digital-marketing-training",
       icon: <GraduationCap size={36} />,
       title: "Digital Marketing Training",
       subtitle: "Beginner to Advanced",
@@ -25,15 +26,17 @@ export default function CoursesPage() {
       syllabus: ["Audience Intelligence & Profiling", "Copywriting & Landing Page Architecture", "Multi-Channel Funnel Planning", "Performance Tracking & Reporting"]
     },
     {
+      slug: "ai-marketing-training",
       icon: <Cpu size={36} />,
       title: "AI in Marketing Training",
       subtitle: "Future-Ready Skills",
-      desc: "Learn how to harness cutting-edge generative AI models and workflow automations to completely transform your team's day-to-day productivity and output quality.",
+      desc: "Learn how to leverage AI tools to transform your marketing efficiency and results. Understand generative models, workflow automations, and AI agents.",
       duration: "4 Weeks",
       students: "850+ Enrolled",
       syllabus: ["Prompt Engineering & Automation", "AI Video & Imagery Production", "Copy & SEO Automation Workflows", "AI Agents for Lead Generation"]
     },
     {
+      slug: "workshops-certifications",
       icon: <Award size={36} />,
       title: "Workshops & Certifications",
       subtitle: "Hands-on Experience",
@@ -43,6 +46,7 @@ export default function CoursesPage() {
       syllabus: ["Live Cohort Strategy Build", "Campaign Auditing Lab", "Interactive Dynamic Playbooks", "Final Certification Exam Prep"]
     },
     {
+      slug: "meta-ads-scale-blueprint",
       icon: <Target size={36} />,
       title: "Meta Ads Scale Blueprint",
       subtitle: "Professional Masterclass",
@@ -74,47 +78,49 @@ export default function CoursesPage() {
         <div className="container">
           <div className="responsive-two-col">
             {courses.map((course, index) => (
-              <div key={index} className="training-card card glass-card card-glow-hover responsive-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', borderRadius: '24px' }}>
-                <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '2rem' }}>
-                    <div style={{ color: 'var(--secondary)', background: 'rgba(0, 53, 102, 0.05)', padding: '1.25rem', borderRadius: '20px' }}>
-                      {course.icon}
+              <Link key={index} href={`/courses/${course.slug}`} style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column' }}>
+                <div className="training-card card glass-card card-glow-hover responsive-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', borderRadius: '24px', flex: 1, cursor: 'pointer' }}>
+                  <div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '2rem' }}>
+                      <div style={{ color: 'var(--secondary)', background: 'rgba(0, 53, 102, 0.05)', padding: '1.25rem', borderRadius: '20px' }}>
+                        {course.icon}
+                      </div>
+                      <span style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--primary-dark)', textTransform: 'uppercase', letterSpacing: '1.5px', background: 'rgba(255, 214, 10, 0.1)', padding: '6px 14px', borderRadius: '50px' }}>
+                        {course.subtitle}
+                      </span>
                     </div>
-                    <span style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--primary-dark)', textTransform: 'uppercase', letterSpacing: '1.5px', background: 'rgba(255, 214, 10, 0.1)', padding: '6px 14px', borderRadius: '50px' }}>
-                      {course.subtitle}
-                    </span>
+
+                    <h3 style={{ fontSize: '1.8rem', color: 'var(--secondary-dark)', marginBottom: '1.25rem', fontWeight: 800 }}>{course.title}</h3>
+                    <p style={{ color: 'var(--text-muted)', marginBottom: '2rem', fontSize: '1rem', lineHeight: '1.7' }}>{course.desc}</p>
+
+                    {/* Course Details Bar */}
+                    <div style={{ display: 'flex', gap: '1.5rem', borderBottom: '1px solid #e2e8f0', paddingBottom: '1.5rem', marginBottom: '1.5rem' }}>
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.9rem', color: 'var(--text-dark)', fontWeight: 600 }}>
+                        <Clock size={16} /> {course.duration}
+                      </span>
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.9rem', color: 'var(--text-dark)', fontWeight: 600 }}>
+                        <Users2 size={16} /> {course.students}
+                      </span>
+                    </div>
+
+                    {/* Syllabus / Syllabus highlights */}
+                    <div style={{ marginBottom: '2.5rem' }}>
+                      <h4 style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--secondary-dark)', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Syllabus Highlights</h4>
+                      <ul className="syllabus-grid">
+                        {course.syllabus.map((topic, i) => (
+                          <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.85rem', color: 'rgba(0,0,0,0.7)', fontWeight: 500 }}>
+                            <span style={{ width: '6px', height: '6px', background: 'var(--primary)', borderRadius: '50%' }}></span> {topic}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
 
-                  <h3 style={{ fontSize: '1.8rem', color: 'var(--secondary-dark)', marginBottom: '1.25rem', fontWeight: 800 }}>{course.title}</h3>
-                  <p style={{ color: 'var(--text-muted)', marginBottom: '2rem', fontSize: '1rem', lineHeight: '1.7' }}>{course.desc}</p>
-
-                  {/* Course Details Bar */}
-                  <div style={{ display: 'flex', gap: '1.5rem', borderBottom: '1px solid #e2e8f0', paddingBottom: '1.5rem', marginBottom: '1.5rem' }}>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.9rem', color: 'var(--text-dark)', fontWeight: 600 }}>
-                      <Clock size={16} /> {course.duration}
-                    </span>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.9rem', color: 'var(--text-dark)', fontWeight: 600 }}>
-                      <Users2 size={16} /> {course.students}
-                    </span>
-                  </div>
-
-                  {/* Syllabus / Syllabus highlights */}
-                  <div style={{ marginBottom: '2.5rem' }}>
-                    <h4 style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--secondary-dark)', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Syllabus Highlights</h4>
-                    <ul className="syllabus-grid">
-                      {course.syllabus.map((topic, i) => (
-                        <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.85rem', color: 'rgba(0,0,0,0.7)', fontWeight: 500 }}>
-                          <span style={{ width: '6px', height: '6px', background: 'var(--primary)', borderRadius: '50%' }}></span> {topic}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <span className="btn btn-primary" style={{ width: '100%', padding: '16px', fontWeight: 700, textAlign: 'center' }}>
+                    View Details
+                  </span>
                 </div>
-
-                <button className="btn btn-primary" style={{ width: '100%', padding: '16px', fontWeight: 700 }}>
-                  Enroll Now
-                </button>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

@@ -3,15 +3,30 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ChevronDown, Menu, X } from 'lucide-react';
+import { ChevronDown, Menu, X, Clock, MapPin, Mail } from 'lucide-react';
+
+const FacebookIcon = ({ size = 14 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+);
+const InstagramIcon = ({ size = 14 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+);
+const TwitterIcon = ({ size = 14 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+);
+const LinkedinIcon = ({ size = 14 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+);
+const YoutubeIcon = ({ size = 14 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2.5 7.1C2.5 7.1 2.3 5 4.3 3c1.6-1.6 3.4-1.6 4.2-1.7 4-.3 8-.3 8-.3s4 0 8 .3c.8.1 2.6.1 4.2 1.7 2 2 1.8 4.1 1.8 4.1s.3 2.7.3 6v1.8c0 3.3-.3 6-.3 6s-.2 2.1-2.2 4.1c-1.6 1.6-3.8 1.5-4.7 1.7-2.3.2-7.8.3-7.8.3s-4 0-8-.3c-.8-.1-2.6-.1-4.2-1.7-2-2-1.8-4.1-1.8-4.1S2.2 14 2.2 10.7V8.9c0-3.3.3-6 .3-6z"/><path d="M9.8 14.5L15.3 11 9.8 7.5z"/></svg>
+);
 
 const navItems = [
   { name: 'Home', href: '/' },
   { 
-    name: 'What We Do', 
-    href: '/services',
+    name: 'Courses', 
+    href: '/courses',
     subItems: [
-      { name: 'Services', href: '/services' },
       { name: 'Courses', href: '/courses' },
       { name: 'Process', href: '/#process' },
     ]
@@ -26,7 +41,8 @@ const navItems = [
     ]
   },
   { name: 'About Us', href: '/about' },
-  { name: 'Contact Us', href: '/about#contact-form' },
+  { name: 'Services', href: '/services' },
+  { name: 'Contact Us', href: '/enquiry' },
 ];
 
 export default function Navbar() {
@@ -98,6 +114,30 @@ export default function Navbar() {
 
   return (
     <header className={`navbar-wrapper ${isScrolled ? 'scrolled' : ''} ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
+      {/* Top Bar */}
+      <div className="topbar">
+        <div className="container topbar-container">
+          <div className="topbar-left">
+            <span className="topbar-item">
+              <Clock size={14} /> Sun-Fri: Time
+            </span>
+            <span className="topbar-item">
+              <MapPin size={14} /> Location
+            </span>
+            <span className="topbar-item">
+              <Mail size={14} /> emailaddress
+            </span>
+          </div>
+          <div className="topbar-right">
+            <Link href="#" className="topbar-social"><FacebookIcon size={14} /></Link>
+            <Link href="#" className="topbar-social"><InstagramIcon size={14} /></Link>
+            <Link href="#" className="topbar-social"><TwitterIcon size={14} /></Link>
+            <Link href="#" className="topbar-social"><LinkedinIcon size={14} /></Link>
+            <Link href="#" className="topbar-social"><YoutubeIcon size={14} /></Link>
+          </div>
+        </div>
+      </div>
+
       {/* Main Navbar */}
       <nav className="navbar">
         <div className="container nav-container">

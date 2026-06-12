@@ -1,15 +1,15 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 
-export function ServiceCard({ icon, title, desc, className = '' }: { icon: React.ReactNode, title: string, desc: string, className?: string }) {
-  const [isExpanded, setIsExpanded] = useState(false);
-
+export function ServiceCard({ icon, title, desc, className = '', slug }: { icon: React.ReactNode, title: string, desc: string, className?: string, slug: string }) {
   return (
-    <div 
-      className={`service-card ${isExpanded ? 'active' : ''} ${className}`} 
-      onClick={() => setIsExpanded(!isExpanded)}
+    <Link 
+      href={`/services/${slug}`}
+      className={`service-card ${className}`}
+      style={{ textDecoration: 'none', color: 'inherit' }}
     >
       <div className="icon-box">{icon}</div>
       <h3>{title}</h3>
@@ -17,7 +17,7 @@ export function ServiceCard({ icon, title, desc, className = '' }: { icon: React
       <div className="learn-more">
         Learn More <ArrowRight size={16} />
       </div>
-    </div>
+    </Link>
   );
 }
 
