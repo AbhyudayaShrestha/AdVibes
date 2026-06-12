@@ -16,7 +16,10 @@ import {
   ArrowRight,
   GraduationCap,
   Award,
-  Users
+  Users,
+  ChevronLeft,
+  ChevronRight,
+  Clock
 } from 'lucide-react';
 import CTASection from '@/components/CTASection';
 import { ServiceCard, TrainingCard, TestimonialCard } from '@/components/Cards';
@@ -33,6 +36,66 @@ export default function Home() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  const coursesData = [
+    {
+      icon: <GraduationCap size={36} />,
+      title: "Digital Marketing Training",
+      subtitle: "Beginner to Advanced",
+      desc: "Master the core fundamentals and advanced optimization methodologies of modern digital marketing. Ideal for founders and aspiring marketing directors.",
+      duration: "8 Weeks",
+      students: "1,200+ Enrolled",
+      syllabus: ["Audience Intelligence & Profiling", "Copywriting & Landing Page Architecture", "Multi-Channel Funnel Planning", "Performance Tracking & Reporting"]
+    },
+    {
+      icon: <Cpu size={36} />,
+      title: "AI in Marketing Training",
+      subtitle: "Future-Ready Skills",
+      desc: "Learn how to leverage AI tools to transform your marketing efficiency and results. Understand generative models, workflow automations, and AI agents.",
+      duration: "4 Weeks",
+      students: "850+ Enrolled",
+      syllabus: ["Prompt Engineering & Automation", "AI Video & Imagery Production", "Copy & SEO Automation Workflows", "AI Agents for Lead Generation"]
+    },
+    {
+      icon: <Award size={36} />,
+      title: "Workshops & Certifications",
+      subtitle: "Hands-on Experience",
+      desc: "Practical interactive cohort workshops that issue industry-accredited certifications. Designed to get teams hands-on experience solving real-world case studies.",
+      duration: "2 Weeks",
+      students: "500+ Enrolled",
+      syllabus: ["Live Cohort Strategy Build", "Campaign Auditing Lab", "Interactive Dynamic Playbooks", "Final Certification Exam Prep"]
+    },
+    {
+      icon: <Target size={36} />,
+      title: "Meta Ads Scale Blueprint",
+      subtitle: "Professional Masterclass",
+      desc: "An advanced masterclass dedicated strictly to Facebook, Instagram, and WhatsApp marketing. Learn the scaling formulas used by multi-million dollar brands.",
+      duration: "6 Weeks",
+      students: "920+ Enrolled",
+      syllabus: ["Pixel & Conversions API Setup", "A/B Testing Frameworks", "CBO/ABO Bid Strategy Management", "Lookalike & Retargeting Setup"]
+    }
+  ];
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % coursesData.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [currentSlide, coursesData.length]);
+
+  const handlePrev = () => {
+    setCurrentSlide((prev) => (prev - 1 + coursesData.length) % coursesData.length);
+  };
+
+  const handleNext = () => {
+    setCurrentSlide((prev) => (prev + 1) % coursesData.length);
+  };
+
+  const handleDotClick = (index: number) => {
+    setCurrentSlide(index);
+  };
 
   return (
     <main>
@@ -187,19 +250,84 @@ export default function Home() {
             <p>Practical training programs designed to keep you ahead of the digital curve.</p>
           </div>
 
-          <div className="training-grid" style={{ gridTemplateColumns: 'repeat(2, 1fr)', maxWidth: '800px', margin: '0 auto' }}>
-            <TrainingCard
-              icon={<GraduationCap />}
-              title="Digital Marketing Training"
-              subtitle="Beginner to Advanced"
-              desc="Master the fundamentals and advanced techniques of modern digital marketing."
-            />
-            <TrainingCard
-              icon={<Cpu />}
-              title="AI in Marketing Training"
-              subtitle="Future-Ready Skills"
-              desc="Learn how to leverage AI tools to transform your marketing efficiency and results."
-            />
+          <div className="training-slider-wrapper">
+            <button 
+              className="slider-arrow arrow-left" 
+              onClick={handlePrev} 
+              aria-label="Previous slide"
+            >
+              <ChevronLeft size={24} />
+            </button>
+
+            <div className="training-slider-container">
+              <div 
+                className="training-slider-track"
+                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+              >
+                {coursesData.map((course, index) => (
+                  <div key={index} className="training-slide">
+                    <div className="training-slider-card">
+                      <div className="card-left">
+                        <div className="slider-icon-box">
+                          {course.icon}
+                        </div>
+                        <div className="card-stats">
+                          <div className="stat-item">
+                            <Clock size={16} />
+                            <span>{course.duration}</span>
+                          </div>
+                          <div className="stat-item">
+                            <Users size={16} />
+                            <span>{course.students}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="card-right">
+                        <span className="course-badge">{course.subtitle}</span>
+                        <h3 className="course-title">{course.title}</h3>
+                        <p className="course-desc">{course.desc}</p>
+                        
+                        <div className="syllabus-section">
+                          <h4 className="syllabus-title">Syllabus Highlights</h4>
+                          <ul className="syllabus-list">
+                            {course.syllabus.map((topic, i) => (
+                              <li key={i} className="syllabus-item">
+                                <span className="bullet"></span>
+                                {topic}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        <button className="btn btn-primary slider-enroll-btn">
+                          Enroll Now
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <button 
+              className="slider-arrow arrow-right" 
+              onClick={handleNext} 
+              aria-label="Next slide"
+            >
+              <ChevronRight size={24} />
+            </button>
+          </div>
+
+          <div className="slider-dots">
+            {coursesData.map((_, index) => (
+              <button
+                key={index}
+                className={`dot ${currentSlide === index ? 'active' : ''}`}
+                onClick={() => handleDotClick(index)}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
           </div>
 
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>
