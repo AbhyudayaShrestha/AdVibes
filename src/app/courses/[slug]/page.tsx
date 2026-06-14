@@ -176,7 +176,7 @@ export default async function CourseDetail({ params }: { params: Promise<{ slug:
           {/* Right Column: Sticky Form */}
           <div className="course-detail-sidebar">
             <div className="sticky-sidebar">
-              <EnrollForm defaultCourse={course.slug} />
+              <EnrollForm initialCourseSlug={course.slug} />
 
               <div className="help-widget">
                 <BookOpen className="help-icon" size={24} />
