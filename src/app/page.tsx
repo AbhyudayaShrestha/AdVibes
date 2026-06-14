@@ -81,6 +81,7 @@ export default function Home() {
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
+  const courseTouchStartRef = { current: 0 };
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -99,6 +100,17 @@ export default function Home() {
 
   const handleDotClick = (index: number) => {
     setCurrentSlide(index);
+  };
+
+  const handleCourseTouchStart = (e: React.TouchEvent) => {
+    courseTouchStartRef.current = e.touches[0].clientX;
+  };
+
+  const handleCourseTouchEnd = (e: React.TouchEvent) => {
+    const diff = courseTouchStartRef.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      diff > 0 ? handleNext() : handlePrev();
+    }
   };
 
   const blogsData = [
@@ -129,6 +141,7 @@ export default function Home() {
   ];
 
   const [currentBlogSlide, setCurrentBlogSlide] = useState(0);
+  const blogTouchStartRef = { current: 0 };
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -147,6 +160,17 @@ export default function Home() {
 
   const handleBlogDotClick = (index: number) => {
     setCurrentBlogSlide(index);
+  };
+
+  const handleBlogTouchStart = (e: React.TouchEvent) => {
+    blogTouchStartRef.current = e.touches[0].clientX;
+  };
+
+  const handleBlogTouchEnd = (e: React.TouchEvent) => {
+    const diff = blogTouchStartRef.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      diff > 0 ? handleBlogNext() : handleBlogPrev();
+    }
   };
 
   return (
@@ -314,7 +338,7 @@ export default function Home() {
               <ChevronLeft size={24} />
             </button>
 
-            <div className="training-slider-container">
+            <div className="training-slider-container" onTouchStart={handleCourseTouchStart} onTouchEnd={handleCourseTouchEnd}>
               <div 
                 className="training-slider-track"
                 style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -456,7 +480,7 @@ export default function Home() {
               <ChevronLeft size={24} />
             </button>
 
-            <div className="training-slider-container">
+            <div className="training-slider-container" onTouchStart={handleBlogTouchStart} onTouchEnd={handleBlogTouchEnd}>
               <div 
                 className="training-slider-track"
                 style={{ transform: `translateX(-${currentBlogSlide * 100}%)` }}
