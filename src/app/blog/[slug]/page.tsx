@@ -149,8 +149,9 @@ export function generateStaticParams() {
   }));
 }
 
-export default function BlogPostDetail({ params }: { params: { slug: string } }) {
-  const post = posts.find((p) => p.slug === params.slug);
+export default async function BlogPostDetail({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = await params;
+  const post = posts.find((p) => p.slug === resolvedParams.slug);
 
   if (!post) {
     notFound();
@@ -159,7 +160,7 @@ export default function BlogPostDetail({ params }: { params: { slug: string } })
   return (
     <main style={{ backgroundColor: '#fafaf8', minHeight: '100vh' }}>
       {/* Article Header */}
-      <div className="course-detail-header" style={{ padding: '160px 0 80px', textAlign: 'center' }}>
+      <div className="course-detail-header">
         <div className="container" style={{ maxWidth: '800px' }}>
           <div className="enquiry-breadcrumbs" style={{ marginBottom: '2rem' }}>
             <Link href="/">Home</Link>
@@ -169,7 +170,7 @@ export default function BlogPostDetail({ params }: { params: { slug: string } })
             <span>{post.category}</span>
           </div>
           
-          <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 900, color: 'var(--secondary-dark)', marginBottom: '1.5rem', lineHeight: '1.2' }}>
+          <h1>
             {post.title}
           </h1>
 

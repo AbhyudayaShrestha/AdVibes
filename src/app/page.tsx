@@ -101,6 +101,54 @@ export default function Home() {
     setCurrentSlide(index);
   };
 
+  const blogsData = [
+    {
+      slug: "10-ai-tools-to-transform-your-marketing-in-2026",
+      title: "10 AI Tools to Transform Your Marketing in 2026",
+      desc: "Discover the most powerful artificial intelligence models and workflow integrations that are completely redefining brand scaling and content velocity.",
+      date: "May 12, 2026",
+      image: "/blog-ai-tools.png",
+      emoji: "🤖"
+    },
+    {
+      slug: "evolution-of-seo-beyond-keywords",
+      title: "The Evolution of SEO: Beyond Keywords in 2026",
+      desc: "Why traditional keyword stuffing is obsolete. Learn how semantic search structures, user intent modeling, and page speed architecture dictate search rankings today.",
+      date: "May 05, 2026",
+      image: "/blog-seo-evolution.png",
+      emoji: "📈"
+    },
+    {
+      slug: "mastering-meta-pixel-conversions-api",
+      title: "Mastering the Meta Pixel: Conversions API Setup Guide",
+      desc: "A technical walkthrough on establishing robust server-side tracking to completely bypass cookie deprecation limits and skyrocket your ad creative ROI.",
+      date: "Apr 28, 2026",
+      image: "",
+      emoji: "🎯"
+    }
+  ];
+
+  const [currentBlogSlide, setCurrentBlogSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentBlogSlide((prev) => (prev + 1) % blogsData.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [currentBlogSlide, blogsData.length]);
+
+  const handleBlogPrev = () => {
+    setCurrentBlogSlide((prev) => (prev - 1 + blogsData.length) % blogsData.length);
+  };
+
+  const handleBlogNext = () => {
+    setCurrentBlogSlide((prev) => (prev + 1) % blogsData.length);
+  };
+
+  const handleBlogDotClick = (index: number) => {
+    setCurrentBlogSlide(index);
+  };
+
   return (
     <main>
       {/* Hero Section */}
@@ -143,7 +191,7 @@ export default function Home() {
               {/* The Arch background shape */}
               <div className="hero-arch-bg"></div>
               {/* Person image cut-out */}
-              <img src="/heroPicture.png" alt="AdVibes Team Expert" className="hero-person-img" />
+              <img src="/biraj.svg" alt="AdVibes Team Expert" className="hero-person-img" />
             </div>
 
             {/* Widget 1: 100% Clients Are Happy */}
@@ -398,19 +446,63 @@ export default function Home() {
             <h2 className="section-title">Latest From Our Blog</h2>
             <p>Stay ahead with our latest tips, trends, and strategies in digital marketing.</p>
           </div>
-          <div className="blog-grid" style={{ gridTemplateColumns: '1fr', maxWidth: '600px', margin: '0 auto' }}>
-            <Link href="/blog/10-ai-tools-to-transform-your-marketing-in-2026" style={{ textDecoration: 'none', color: 'inherit' }}>
-              <div className="blog-card card" style={{ overflow: 'hidden', cursor: 'pointer' }}>
-                <div className="blog-image" style={{ backgroundImage: 'url(/blog-ai-tools.png)', backgroundSize: 'cover', backgroundPosition: 'center', height: '240px' }}></div>
-                <div className="blog-content">
-                  <span className="blog-date">May 12, 2026</span>
-                  <h3>10 AI Tools to Transform Your Marketing in 2026</h3>
-                  <p>Discover the most powerful AI tools that are redefining how brands engage with customers.</p>
-                  <span className="link-btn">Read Article <ArrowRight className="icon-sm" /></span>
-                </div>
+          
+          <div className="training-slider-wrapper">
+            <button 
+              className="slider-arrow arrow-left" 
+              onClick={handleBlogPrev} 
+              aria-label="Previous blog slide"
+            >
+              <ChevronLeft size={24} />
+            </button>
+
+            <div className="training-slider-container">
+              <div 
+                className="training-slider-track"
+                style={{ transform: `translateX(-${currentBlogSlide * 100}%)` }}
+              >
+                {blogsData.map((post, index) => (
+                  <Link key={index} href={`/blog/${post.slug}`} className="training-slide" style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <div className="blog-card card" style={{ overflow: 'hidden', cursor: 'pointer', margin: '0 auto', maxWidth: '600px', width: '100%' }}>
+                      {post.image ? (
+                        <div className="blog-image" style={{ backgroundImage: `url(${post.image})`, backgroundSize: 'cover', backgroundPosition: 'center', height: '240px' }}></div>
+                      ) : (
+                        <div className="blog-image" style={{ background: 'var(--secondary-dark)', height: '240px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                          <span style={{ fontSize: '5rem' }}>{post.emoji}</span>
+                        </div>
+                      )}
+                      <div className="blog-content">
+                        <span className="blog-date">{post.date}</span>
+                        <h3>{post.title}</h3>
+                        <p>{post.desc}</p>
+                        <span className="link-btn">Read Article <ArrowRight className="icon-sm" /></span>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
               </div>
-            </Link>
+            </div>
+
+            <button 
+              className="slider-arrow arrow-right" 
+              onClick={handleBlogNext} 
+              aria-label="Next blog slide"
+            >
+              <ChevronRight size={24} />
+            </button>
           </div>
+
+          <div className="slider-dots">
+            {blogsData.map((_, index) => (
+              <button
+                key={index}
+                className={`dot ${currentBlogSlide === index ? 'active' : ''}`}
+                onClick={() => handleBlogDotClick(index)}
+                aria-label={`Go to blog slide ${index + 1}`}
+              />
+            ))}
+          </div>
+
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>
             <Link href="/blog" className="see-more-btn" style={{ background: 'var(--secondary-dark)', color: 'white', padding: '14px 32px', borderRadius: '50px', fontWeight: 700, fontSize: '0.95rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
               See all articles <ArrowRight size={16} />
@@ -419,37 +511,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Process Section */}
-      <section id="process" className="process">
-        <div className="container">
-          <div className="section-header">
-            <span className="section-subtitle">How We Work</span>
-            <h2 className="section-title">Our Strategic Process</h2>
-          </div>
-          <div className="process-steps">
-            <div className="step">
-              <div className="step-num">01</div>
-              <h4>Discovery</h4>
-              <p>We dive deep into your brand and goals.</p>
-            </div>
-            <div className="step">
-              <div className="step-num">02</div>
-              <h4>Strategy</h4>
-              <p>Tailored roadmap for your growth.</p>
-            </div>
-            <div className="step">
-              <div className="step-num">03</div>
-              <h4>Execution</h4>
-              <p>Deploying our specialist teams.</p>
-            </div>
-            <div className="step">
-              <div className="step-num">04</div>
-              <h4>Optimization</h4>
-              <p>Constant refinement based on data.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       {/* CTA Section */}
       <CTASection />

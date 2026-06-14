@@ -96,8 +96,9 @@ export function generateStaticParams() {
   }));
 }
 
-export default function CourseDetail({ params }: { params: { slug: string } }) {
-  const course = coursesData.find((c) => c.slug === params.slug);
+export default async function CourseDetail({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = await params;
+  const course = coursesData.find((c) => c.slug === resolvedParams.slug);
 
   if (!course) {
     notFound();

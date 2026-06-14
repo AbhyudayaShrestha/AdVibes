@@ -155,6 +155,38 @@ export default function CoursesPage() {
         </div>
       </section>
 
+      {/* Process Section */}
+      <section id="process" className="process" style={{ background: '#fafaf8' }}>
+        <div className="container">
+          <div className="section-header">
+            <span className="section-subtitle">How We Work</span>
+            <h2 className="section-title">Our Strategic Process</h2>
+          </div>
+          <div className="process-steps">
+            <div className="step">
+              <div className="step-num">01</div>
+              <h4>Discovery</h4>
+              <p>We dive deep into your brand and goals.</p>
+            </div>
+            <div className="step">
+              <div className="step-num">02</div>
+              <h4>Strategy</h4>
+              <p>Tailored roadmap for your growth.</p>
+            </div>
+            <div className="step">
+              <div className="step-num">03</div>
+              <h4>Execution</h4>
+              <p>Deploying our specialist teams.</p>
+            </div>
+            <div className="step">
+              <div className="step-num">04</div>
+              <h4>Optimization</h4>
+              <p>Constant refinement based on data.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <CTASection />
     </main>
   );

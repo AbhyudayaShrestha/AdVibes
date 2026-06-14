@@ -25,11 +25,7 @@ const navItems = [
   { name: 'Home', href: '/' },
   { 
     name: 'Courses', 
-    href: '/courses',
-    subItems: [
-      { name: 'Courses', href: '/courses' },
-      { name: 'Process', href: '/#process' },
-    ]
+    href: '/courses'
   },
   { 
     name: 'What Our Clients Say', 

@@ -2146,10 +2146,12 @@ h1, h2, h3, h4 {
 }
 
 .course-detail-header {
-  padding: 140px 0 60px;
-  background: linear-gradient(180deg, #f0f7f4 0%, #fbfbf9 100%);
+  padding: 160px 0 80px;
+  background: var(--gradient-hero);
   text-align: center;
-  border-bottom: 1px solid rgba(0, 53, 102, 0.05);
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .course-detail-header-container {
@@ -2158,10 +2160,51 @@ h1, h2, h3, h4 {
   padding: 0 2rem;
 }
 
+.course-detail-header h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 900;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+}
+
+.course-breadcrumbs {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.course-breadcrumbs a {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.course-breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+.course-breadcrumbs span {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.course-subtitle {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.15rem;
+  max-width: 650px;
+  margin: 0 auto 1.5rem auto;
+  line-height: 1.6;
+}
+
 .course-detail-title {
   font-size: clamp(2rem, 4.5vw, 3.2rem);
   font-weight: 800;
-  color: var(--secondary-dark);
+  color: var(--text-light);
   margin-bottom: 1.5rem;
   line-height: 1.2;
 }
@@ -2172,6 +2215,28 @@ h1, h2, h3, h4 {
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-top: 1rem;
+}
+
+.course-badges {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.course-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--primary);
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .course-badge-pill {
@@ -2741,30 +2806,33 @@ select.form-control {
 
 /* Hero header — soft yellow-to-mint gradient exactly like the screenshot */
 .enquiry-hero {
-  padding: 140px 0 70px;
-  background: linear-gradient(135deg, #fffde7 0%, #e8f5e9 40%, #e0f2f1 100%);
+  padding: 160px 0 80px;
+  background: var(--gradient-hero);
   text-align: center;
   position: relative;
+  overflow: hidden;
 }
 
 .enquiry-hero h1 {
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 900;
-  color: var(--secondary-dark);
-  margin-bottom: 0.75rem;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1.5rem;
 }
 
 .enquiry-breadcrumbs {
   font-size: 0.95rem;
-  color: #64748b;
+  color: rgba(255, 255, 255, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
+  gap: 0.5rem;
 }
 
 .enquiry-breadcrumbs a {
-  color: #3b82f6;
+  color: var(--primary);
   font-weight: 600;
   text-decoration: none;
 }
@@ -2774,7 +2842,7 @@ select.form-control {
 }
 
 .enquiry-breadcrumbs span {
-  color: #94a3b8;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 /* Main form section */
