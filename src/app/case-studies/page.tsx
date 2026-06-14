@@ -172,6 +172,49 @@ export default function CaseStudiesPage() {
         </div>
       </section>
 
+      {/* Student Certifications Section */}
+      <section id="student-gallery" style={{ padding: '100px 0', backgroundColor: 'var(--bg-soft)' }}>
+        <div className="container">
+          <div className="section-header" style={{ marginBottom: '5rem' }}>
+            <span className="section-subtitle">Certified Graduates</span>
+            <h2 className="section-title">Cohort <span style={{ color: 'var(--primary-dark)' }}>Success</span></h2>
+            <p>Meet some of our successful students holding their industry-accredited certifications after completing our training cohorts.</p>
+          </div>
+
+          <div className="responsive-three-col">
+            <div className="card glass-card card-glow-hover" style={{ padding: '1.25rem', borderRadius: '24px', overflow: 'hidden', display: 'flex', flexDirection: 'column', height: '100%' }}>
+              <div style={{ borderRadius: '16px', overflow: 'hidden', height: '240px', width: '100%', position: 'relative' }}>
+                <img src="/student-cert-1.jpg" alt="Meta Ads Scale Cohort Graduates" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} className="gallery-img" />
+              </div>
+              <div style={{ padding: '1.5rem 0.5rem 0.5rem 0.5rem' }}>
+                <h3 style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--secondary-dark)', marginBottom: '0.75rem' }}>Meta Ads Scale Cohort</h3>
+                <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>Graduates holding their certificates after successfully completing our advanced 6-week Meta scaling program.</p>
+              </div>
+            </div>
+
+            <div className="card glass-card card-glow-hover" style={{ padding: '1.25rem', borderRadius: '24px', overflow: 'hidden', display: 'flex', flexDirection: 'column', height: '100%' }}>
+              <div style={{ borderRadius: '16px', overflow: 'hidden', height: '240px', width: '100%', position: 'relative' }}>
+                <img src="/student-cert-2.jpg" alt="Digital Marketing Masterclass Graduates" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} className="gallery-img" />
+              </div>
+              <div style={{ padding: '1.5rem 0.5rem 0.5rem 0.5rem' }}>
+                <h3 style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--secondary-dark)', marginBottom: '0.75rem' }}>Digital Marketing Masterclass</h3>
+                <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>Our successful graduating class celebrating their completion of the comprehensive digital strategy roadmap program.</p>
+              </div>
+            </div>
+
+            <div className="card glass-card card-glow-hover" style={{ padding: '1.25rem', borderRadius: '24px', overflow: 'hidden', display: 'flex', flexDirection: 'column', height: '100%' }}>
+              <div style={{ borderRadius: '16px', overflow: 'hidden', height: '240px', width: '100%', position: 'relative' }}>
+                <img src="/student-cert-3.png" alt="AI in Marketing Cohort Graduates" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} className="gallery-img" />
+              </div>
+              <div style={{ padding: '1.5rem 0.5rem 0.5rem 0.5rem' }}>
+                <h3 style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--secondary-dark)', marginBottom: '0.75rem' }}>AI in Marketing Cohort</h3>
+                <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>Professionals holding their credentials showing expertise in generative AI marketing models and workflow automations.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <CTASection />
     </main>
   );

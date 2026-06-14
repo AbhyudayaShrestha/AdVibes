@@ -396,6 +396,24 @@ export default function Home() {
             >
               <ChevronRight size={24} />
             </button>
+
+            {/* Mobile Navigation Arrows */}
+            <div className="slider-mobile-nav">
+              <button 
+                className="slider-arrow arrow-left" 
+                onClick={handlePrev} 
+                aria-label="Previous slide"
+              >
+                <ChevronLeft size={24} />
+              </button>
+              <button 
+                className="slider-arrow arrow-right" 
+                onClick={handleNext} 
+                aria-label="Next slide"
+              >
+                <ChevronRight size={24} />
+              </button>
+            </div>
           </div>
 
           <div className="slider-dots">
@@ -514,6 +532,24 @@ export default function Home() {
             >
               <ChevronRight size={24} />
             </button>
+
+            {/* Mobile Navigation Arrows */}
+            <div className="slider-mobile-nav">
+              <button 
+                className="slider-arrow arrow-left" 
+                onClick={handleBlogPrev} 
+                aria-label="Previous blog slide"
+              >
+                <ChevronLeft size={24} />
+              </button>
+              <button 
+                className="slider-arrow arrow-right" 
+                onClick={handleBlogNext} 
+                aria-label="Next blog slide"
+              >
+                <ChevronRight size={24} />
+              </button>
+            </div>
           </div>
 
           <div className="slider-dots">

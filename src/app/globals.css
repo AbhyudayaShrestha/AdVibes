@@ -719,6 +719,7 @@ h1, h2, h3, h4 {
   }
   .widget-satisfaction {
     left: 10px;
+    top: 55%;
   }
   .widget-reviews {
     right: 10px;
@@ -751,6 +752,7 @@ h1, h2, h3, h4 {
   .widget-satisfaction {
     padding: 16px 20px;
     min-width: 160px;
+    top: 52%;
   }
   .widget-satisfaction .percent-text {
     font-size: 2.4rem;
@@ -2118,12 +2120,25 @@ h1, h2, h3, h4 {
     position: relative;
   }
 
+  /* Hide desktop side arrows */
+  .training-slider-wrapper > .slider-arrow {
+    display: none !important;
+  }
+
   /* Move arrows below the card on mobile */
-  .training-slider-wrapper .slider-arrow {
-    display: flex;
-    position: static;
+  .slider-mobile-nav .slider-arrow {
+    display: flex !important;
     width: 44px;
     height: 44px;
+  }
+
+  .slider-mobile-nav {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    z-index: 10;
   }
 
   /* Row of arrows + dots on mobile */
@@ -3077,4 +3092,16 @@ select.form-control {
   .enquiry-card {
     padding: 2rem 1.5rem;
   }
+}
+
+.slider-mobile-nav {
+  display: none;
+}
+
+/* Graduates Gallery Style */
+.gallery-img {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.gallery-img:hover {
+  transform: scale(1.05);
 }
