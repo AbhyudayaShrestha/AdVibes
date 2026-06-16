@@ -59,8 +59,7 @@ const coursesData = [
     syllabus: [
       "Live Cohort Strategy Build",
       "Campaign Auditing Lab",
-      "Interactive Dynamic Playbooks",
-      "Final Certification Exam Prep"
+      "Viral Loop Architecture Workshop"
     ],
     outcomes: [
       "Walk away with a verified industry certification",
