@@ -9,7 +9,9 @@ import {
   Target,
   ArrowRight,
   Clock,
-  Users2
+  Users2,
+  Calendar,
+  Users
 } from 'lucide-react';
 import CTASection from '@/components/CTASection';
 
@@ -43,7 +45,7 @@ export default function CoursesPage() {
       desc: "Practical interactive cohort workshops that issue industry-accredited certifications. Designed to get teams hands-on experience solving real-world case studies.",
       duration: "2 Weeks",
       students: "500+ Enrolled",
-      syllabus: ["Live Cohort Strategy Build", "Campaign Auditing Lab", "Interactive Dynamic Playbooks", "Final Certification Exam Prep"]
+      syllabus: ["Live Cohort Strategy Build", "Campaign Auditing Lab", "Viral Loop Architecture Workshop"]
     },
     {
       slug: "meta-ads-scale-blueprint",
@@ -79,46 +81,77 @@ export default function CoursesPage() {
           <div className="responsive-two-col">
             {courses.map((course, index) => (
               <Link key={index} href={`/courses/${course.slug}`} style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column' }}>
-                <div className="training-card card glass-card card-glow-hover responsive-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', borderRadius: '24px', flex: 1, cursor: 'pointer' }}>
-                  <div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '2rem' }}>
-                      <div style={{ color: 'var(--secondary)', background: 'rgba(0, 53, 102, 0.05)', padding: '1.25rem', borderRadius: '20px' }}>
-                        {course.icon}
-                      </div>
-                      <span style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--primary-dark)', textTransform: 'uppercase', letterSpacing: '1.5px', background: 'rgba(255, 214, 10, 0.1)', padding: '6px 14px', borderRadius: '50px' }}>
-                        {course.subtitle}
-                      </span>
-                    </div>
-
-                    <h3 style={{ fontSize: '1.8rem', color: 'var(--secondary-dark)', marginBottom: '1.25rem', fontWeight: 800 }}>{course.title}</h3>
-                    <p style={{ color: 'var(--text-muted)', marginBottom: '2rem', fontSize: '1rem', lineHeight: '1.7' }}>{course.desc}</p>
-
-                    {/* Course Details Bar */}
-                    <div style={{ display: 'flex', gap: '1.5rem', borderBottom: '1px solid #e2e8f0', paddingBottom: '1.5rem', marginBottom: '1.5rem' }}>
-                      <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.9rem', color: 'var(--text-dark)', fontWeight: 600 }}>
-                        <Clock size={16} /> {course.duration}
-                      </span>
-                      <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.9rem', color: 'var(--text-dark)', fontWeight: 600 }}>
-                        <Users2 size={16} /> {course.students}
-                      </span>
-                    </div>
-
-                    {/* Syllabus / Syllabus highlights */}
-                    <div style={{ marginBottom: '2.5rem' }}>
-                      <h4 style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--secondary-dark)', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Syllabus Highlights</h4>
-                      <ul className="syllabus-grid">
-                        {course.syllabus.map((topic, i) => (
-                          <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.85rem', color: 'rgba(0,0,0,0.7)', fontWeight: 500 }}>
-                            <span style={{ width: '6px', height: '6px', background: 'var(--primary)', borderRadius: '50%' }}></span> {topic}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                <div className="training-card card glass-card card-glow-hover responsive-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', borderRadius: '24px', flex: 1, cursor: 'pointer', padding: 0, overflow: 'hidden' }}>
+                  {/* Mobile Banner Image */}
+                  <div className="mobile-course-banner">
+                    <img src={`/${course.slug}.png`} alt={course.title} />
                   </div>
 
-                  <span className="btn btn-primary" style={{ width: '100%', padding: '16px', fontWeight: 700, textAlign: 'center' }}>
-                    View Details
-                  </span>
+                  {/* Desktop Top Area (Icon & Subtitle) - Hidden on Mobile */}
+                  <div className="desktop-only-element" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '2rem', padding: '2.5rem 2.5rem 0' }}>
+                    <div style={{ color: 'var(--secondary)', background: 'rgba(0, 53, 102, 0.05)', padding: '1.25rem', borderRadius: '20px' }}>
+                      {course.icon}
+                    </div>
+                    <span style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--primary-dark)', textTransform: 'uppercase', letterSpacing: '1.5px', background: 'rgba(255, 214, 10, 0.1)', padding: '6px 14px', borderRadius: '50px' }}>
+                      {course.subtitle}
+                    </span>
+                  </div>
+
+                  {/* Card Content area */}
+                  <div className="courses-card-content-wrap" style={{ padding: '0 2.5rem 2.5rem', display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
+                    <div>
+                      <h3 className="desktop-only-element" style={{ fontSize: '1.8rem', color: 'var(--secondary-dark)', marginBottom: '1.25rem', fontWeight: 800 }}>{course.title}</h3>
+                      <p className="desktop-only-element" style={{ color: 'var(--text-muted)', marginBottom: '2rem', fontSize: '1rem', lineHeight: '1.7' }}>{course.desc}</p>
+
+                      {/* Mobile Stats (Duration & Enrolled) */}
+                      <div className="mobile-course-stats">
+                        <div className="mobile-stat-item">
+                          <span className="stat-icon-wrapper">
+                            <Calendar size={18} />
+                          </span>
+                          <div className="stat-text-wrapper">
+                            <span className="stat-label">DURATION</span>
+                            <span className="stat-value">{course.duration}</span>
+                          </div>
+                        </div>
+                        <div className="mobile-stat-item">
+                          <span className="stat-icon-wrapper">
+                            <Users size={18} />
+                          </span>
+                          <div className="stat-text-wrapper">
+                            <span className="stat-label">ENROLLED</span>
+                            <span className="stat-value">{course.students.replace(' Enrolled', '')}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Desktop Details Bar - Hidden on Mobile */}
+                      <div className="desktop-only-element" style={{ display: 'flex', gap: '1.5rem', borderBottom: '1px solid #e2e8f0', paddingBottom: '1.5rem', marginBottom: '1.5rem' }}>
+                        <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.9rem', color: 'var(--text-dark)', fontWeight: 600 }}>
+                          <Clock size={16} /> {course.duration}
+                        </span>
+                        <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.9rem', color: 'var(--text-dark)', fontWeight: 600 }}>
+                          <Users2 size={16} /> {course.students}
+                        </span>
+                      </div>
+
+                      {/* Syllabus / Syllabus highlights */}
+                      <div style={{ marginBottom: '2.5rem' }}>
+                        <h4 className="syllabus-title" style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--secondary-dark)', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Syllabus Highlights</h4>
+                        <ul className="syllabus-grid">
+                          {course.syllabus.map((topic, i) => (
+                            <li key={i} className="syllabus-item-course-page" style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.85rem', color: 'rgba(0,0,0,0.7)', fontWeight: 500 }}>
+                              <span className="bullet" style={{ width: '6px', height: '6px', background: 'var(--primary)', borderRadius: '50%', display: 'inline-block' }}></span> {topic}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+
+                    <span className="btn btn-primary courses-enroll-btn" style={{ width: '100%', padding: '16px', fontWeight: 700, textAlign: 'center' }}>
+                      View Details
+                    </span>
+                  </div>
                 </div>
               </Link>
             ))}

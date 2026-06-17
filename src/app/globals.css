@@ -2146,6 +2146,11 @@ h1, h2, h3, h4 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+  }
+
+  .training-slider-container {
+    width: 100% !important;
   }
 
   /* Course card stacks top→bottom on mobile */
@@ -3104,4 +3109,136 @@ select.form-control {
 }
 .gallery-img:hover {
   transform: scale(1.05);
+}
+
+/* Mobile-friendly course card overrides */
+.mobile-course-banner {
+  display: none;
+  width: 100%;
+}
+
+.mobile-course-banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.mobile-course-stats {
+  display: none;
+}
+
+/* On mobile screens (max-width: 768px) */
+@media (max-width: 768px) {
+  .desktop-only-element {
+    display: none !important;
+  }
+
+  .mobile-course-banner {
+    display: block !important;
+  }
+
+  .mobile-course-stats {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid #e2e8f0;
+    width: 100%;
+  }
+
+  .mobile-stat-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .mobile-stat-item .stat-icon-wrapper {
+    background-color: rgba(254, 216, 3, 0.1);
+    color: #a77a16;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobile-stat-item .stat-text-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .mobile-stat-item .stat-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #64748b;
+    letter-spacing: 0.5px;
+  }
+
+  .mobile-stat-item .stat-value {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--secondary-dark);
+  }
+
+  /* Slider Card Override */
+  .training-slider-card .card-right {
+    padding: 0 !important;
+  }
+
+  .mobile-card-content-wrap {
+    padding: 1.75rem 1.25rem !important;
+  }
+
+  /* Courses List Page Card Override */
+  .courses-card-content-wrap {
+    padding: 1.75rem 1.25rem !important;
+  }
+
+  /* Yellow bullet points for syllabus highlights on mobile */
+  .training-slider-card .syllabus-item .bullet,
+  .syllabus-item-course-page .bullet {
+    background-color: #ffd60a !important;
+    width: 8px !important;
+    height: 8px !important;
+    border-radius: 50%;
+  }
+
+  .training-slider-card .syllabus-title,
+  .courses-card-content-wrap .syllabus-title {
+    font-size: 0.8rem !important;
+    color: #64748b !important;
+    letter-spacing: 0.5px !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .training-slider-card .syllabus-list,
+  .courses-card-content-wrap .syllabus-grid {
+    gap: 0.75rem !important;
+  }
+
+  .training-slider-card .syllabus-item,
+  .syllabus-item-course-page {
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+    color: #334155 !important;
+  }
+
+  /* Mobile Enroll Button (yellow background) */
+  .training-slider-card .slider-enroll-btn,
+  .courses-enroll-btn {
+    background-color: #fcdc12 !important;
+    color: var(--secondary-dark) !important;
+    border: none !important;
+    border-radius: 12px !important;
+    padding: 14px 20px !important;
+    font-size: 1rem !important;
+    font-weight: 750 !important;
+    box-shadow: 0 4px 12px rgba(252, 220, 18, 0.2) !important;
+    width: 100% !important;
+    text-align: center !important;
+    display: inline-block !important;
+  }
 }

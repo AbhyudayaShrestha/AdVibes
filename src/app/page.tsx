@@ -19,7 +19,8 @@ import {
   Users,
   ChevronLeft,
   ChevronRight,
-  Clock
+  Clock,
+  Calendar
 } from 'lucide-react';
 import CTASection from '@/components/CTASection';
 import { ServiceCard, TrainingCard, TestimonialCard } from '@/components/Cards';
@@ -66,7 +67,7 @@ export default function Home() {
       desc: "Practical interactive cohort workshops that issue industry-accredited certifications. Designed to get teams hands-on experience solving real-world case studies.",
       duration: "2 Weeks",
       students: "500+ Enrolled",
-      syllabus: ["Live Cohort Strategy Build", "Campaign Auditing Lab", "Interactive Dynamic Playbooks", "Final Certification Exam Prep"]
+      syllabus: ["Live Cohort Strategy Build", "Campaign Auditing Lab", "Viral Loop Architecture Workshop"]
     },
     {
       slug: "meta-ads-scale-blueprint",
@@ -346,7 +347,7 @@ export default function Home() {
                 {coursesData.map((course, index) => (
                   <Link key={index} href={`/courses/${course.slug}`} className="training-slide" style={{ textDecoration: 'none', color: 'inherit' }}>
                     <div className="training-slider-card" style={{ cursor: 'pointer' }}>
-                      <div className="card-left">
+                      <div className="card-left desktop-only-element">
                         <div className="slider-icon-box">
                           {course.icon}
                         </div>
@@ -363,25 +364,54 @@ export default function Home() {
                       </div>
 
                       <div className="card-right">
-                        <span className="course-badge">{course.subtitle}</span>
-                        <h3 className="course-title">{course.title}</h3>
-                        <p className="course-desc">{course.desc}</p>
-                        
-                        <div className="syllabus-section">
-                          <h4 className="syllabus-title">Syllabus Highlights</h4>
-                          <ul className="syllabus-list">
-                            {course.syllabus.map((topic, i) => (
-                              <li key={i} className="syllabus-item">
-                                <span className="bullet"></span>
-                                {topic}
-                              </li>
-                            ))}
-                          </ul>
+                        {/* Mobile Banner Image */}
+                        <div className="mobile-course-banner">
+                          <img src={`/${course.slug}.png`} alt={course.title} />
                         </div>
 
-                        <span className="btn btn-primary slider-enroll-btn">
-                          View Details
-                        </span>
+                        <div className="mobile-card-content-wrap">
+                          <span className="course-badge desktop-only-element">{course.subtitle}</span>
+                          <h3 className="course-title desktop-only-element">{course.title}</h3>
+                          <p className="course-desc desktop-only-element">{course.desc}</p>
+                          
+                          {/* Mobile Course Stats */}
+                          <div className="mobile-course-stats">
+                            <div className="mobile-stat-item">
+                              <span className="stat-icon-wrapper">
+                                <Calendar size={18} />
+                              </span>
+                              <div className="stat-text-wrapper">
+                                <span className="stat-label">DURATION</span>
+                                <span className="stat-value">{course.duration}</span>
+                              </div>
+                            </div>
+                            <div className="mobile-stat-item">
+                              <span className="stat-icon-wrapper">
+                                <Users size={18} />
+                              </span>
+                              <div className="stat-text-wrapper">
+                                <span className="stat-label">ENROLLED</span>
+                                <span className="stat-value">{course.students.replace(' Enrolled', '')}</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="syllabus-section">
+                            <h4 className="syllabus-title">Syllabus Highlights</h4>
+                            <ul className="syllabus-list">
+                              {course.syllabus.map((topic, i) => (
+                                <li key={i} className="syllabus-item">
+                                  <span className="bullet"></span>
+                                  {topic}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+
+                          <span className="btn btn-primary slider-enroll-btn">
+                            View Details
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </Link>
