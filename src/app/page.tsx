@@ -477,17 +477,17 @@ export default function Home() {
               <div className="portfolio-tag" style={{ background: 'rgba(255, 214, 10, 0.15)', color: 'var(--primary-dark)' }}>Case Study</div>
               <h3>Social Growth Revolution</h3>
               <p>How we increased engagement by 400% for a luxury fashion brand.</p>
-              <Link href="/case-studies" className="link-btn">Read Case Study <ArrowRight className="icon-sm" /></Link>
+              <Link href="/about#case-studies-list" className="link-btn">Read Case Study <ArrowRight className="icon-sm" /></Link>
             </div>
           </div>
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>
-            <Link href="/case-studies" className="see-more-btn" style={{ background: 'var(--secondary-dark)', color: 'white', padding: '14px 32px', borderRadius: '50px', fontWeight: 700, fontSize: '0.95rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+            <Link href="/about#case-studies-list" className="see-more-btn" style={{ background: 'var(--secondary-dark)', color: 'white', padding: '14px 32px', borderRadius: '50px', fontWeight: 700, fontSize: '0.95rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
               See all case studies & testimonials <ArrowRight size={16} />
             </Link>
           </div>
         </div>
       </section>
-
+ 
       {/* Testimonials Preview */}
       <section id="testimonials" className="testimonials">
         <div className="container">
@@ -503,7 +503,7 @@ export default function Home() {
             />
           </div>
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>
-            <Link href="/case-studies#testimonials" className="see-more-btn" style={{ background: 'var(--primary)', color: '#000814', padding: '14px 32px', borderRadius: '50px', fontWeight: 700, fontSize: '0.95rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+            <Link href="/about#testimonials" className="see-more-btn" style={{ background: 'var(--primary)', color: '#000814', padding: '14px 32px', borderRadius: '50px', fontWeight: 700, fontSize: '0.95rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
               See all testimonials <ArrowRight size={16} />
             </Link>
           </div>

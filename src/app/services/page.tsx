@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
   Users,
@@ -17,6 +18,50 @@ import { ServiceCard } from '@/components/Cards';
 import CTASection from '@/components/CTASection';
 
 export default function ServicesPage() {
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+
+  const upcomingClasses = [
+    {
+      title: "Digital Marketing Masterclass",
+      offer: "Special Launch Offer: 20% OFF",
+      desc: "Master SEO, SEM, Meta Ads, and content marketing in this hands-on 8-week certification course.",
+      image: "/digital-marketing-training.png",
+      badge: "Limited Seats",
+      link: "/enquiry?course=digital-marketing"
+    },
+    {
+      title: "AI-Integrated Marketing Workshop",
+      offer: "Exclusive Bonus: AI Tools Kit Free",
+      desc: "Learn to leverage ChatGPT, Midjourney, and automated workflow pipelines to scale your campaigns.",
+      image: "/ai-marketing-training.png",
+      badge: "Trending",
+      link: "/enquiry?course=ai-marketing"
+    },
+    {
+      title: "Workshops & Certifications BootCamp",
+      offer: "Get Certified: Job Placement Support",
+      desc: "Deep-dive practical labs designed for teams and professionals aiming for industry-recognized credentials.",
+      image: "/workshops-certifications.png",
+      badge: "Hot Offer",
+      link: "/enquiry?course=certifications"
+    }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveSlideIndex((prev) => (prev + 1) % upcomingClasses.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const nextSlide = () => {
+    setActiveSlideIndex((prev) => (prev + 1) % upcomingClasses.length);
+  };
+
+  const prevSlide = () => {
+    setActiveSlideIndex((prev) => (prev - 1 + upcomingClasses.length) % upcomingClasses.length);
+  };
+
   const allServices = [
     {
       slug: "social-media-management",
@@ -94,6 +139,84 @@ export default function ServicesPage() {
           </p>
         </div>
         <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '130%', height: '130%', background: 'radial-gradient(circle, rgba(255, 214, 10, 0.05) 0%, transparent 70%)', pointerEvents: 'none', zIndex: 0 }}></div>
+      </section>
+
+      {/* Upcoming Classes Slider Section */}
+      <section className="upcoming-classes-slider" style={{ background: '#000814', color: 'white', padding: '40px 0', borderBottom: '1px solid rgba(255, 214, 10, 0.15)' }}>
+        <div className="container">
+          <div className="upcoming-slider-wrapper">
+            <div className="upcoming-slider-grid">
+              
+              {/* Left Side Content */}
+              <div className="upcoming-slider-info">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+                  <span className="upcoming-slider-badge">
+                    {upcomingClasses[activeSlideIndex].badge}
+                  </span>
+                  <span className="upcoming-slider-offer">
+                    🔥 {upcomingClasses[activeSlideIndex].offer}
+                  </span>
+                </div>
+                
+                <h3 className="upcoming-slider-title">
+                  {upcomingClasses[activeSlideIndex].title}
+                </h3>
+                
+                <p className="upcoming-slider-desc">
+                  {upcomingClasses[activeSlideIndex].desc}
+                </p>
+
+                <div style={{ marginTop: '10px' }}>
+                  <Link href={upcomingClasses[activeSlideIndex].link} className="btn btn-primary" style={{ textTransform: 'uppercase', fontSize: '0.9rem', letterSpacing: '1.5px', padding: '14px 32px' }}>
+                    Lock Offer Now
+                  </Link>
+                </div>
+              </div>
+
+              {/* Right Side Image */}
+              <div className="upcoming-slider-image-box">
+                <img 
+                  src={upcomingClasses[activeSlideIndex].image} 
+                  alt={upcomingClasses[activeSlideIndex].title}
+                  className="upcoming-slider-img"
+                  key={activeSlideIndex}
+                />
+              </div>
+
+            </div>
+
+            {/* Slider Controls */}
+            <div className="upcoming-slider-controls">
+              <div className="upcoming-slider-dots">
+                {upcomingClasses.map((_, idx) => (
+                  <button 
+                    key={idx}
+                    onClick={() => setActiveSlideIndex(idx)}
+                    className={`upcoming-slider-dot ${activeSlideIndex === idx ? 'active' : ''}`}
+                    aria-label={`Go to slide ${idx + 1}`}
+                  />
+                ))}
+              </div>
+
+              <div className="upcoming-slider-navigation">
+                <button 
+                  onClick={prevSlide}
+                  className="upcoming-slider-btn"
+                  aria-label="Previous Slide"
+                >
+                  ←
+                </button>
+                <button 
+                  onClick={nextSlide}
+                  className="upcoming-slider-btn"
+                  aria-label="Next Slide"
+                >
+                  →
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Grid of All Services */}
