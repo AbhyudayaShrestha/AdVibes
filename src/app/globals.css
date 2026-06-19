@@ -956,7 +956,13 @@ h1, h2, h3, h4 {
 
 /* Training Styles */
 .training {
-  background-color: #e2e8f0; /* Darker grey for better separation */
+  background: var(--gradient-hero);
+  color: white;
+}
+
+.training .section-title,
+.training p {
+  color: white;
 }
 
 .training-grid {
@@ -3380,3 +3386,782 @@ select.form-control {
     min-height: 200px;
   }
 }
+
+/* ==========================================================================
+   Redesigned Premium Course Cards & Compact Offer Highlight Card
+   ========================================================================== */
+
+/* Course Grid Container */
+.course-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+@media (max-width: 992px) {
+  .course-card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .course-card-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1.25rem;
+    padding-bottom: 1.5rem;
+    margin: 0 -1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  .course-card-grid::-webkit-scrollbar {
+    height: 6px;
+  }
+  .course-card-grid::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+  }
+  .course-card-grid::-webkit-scrollbar-thumb {
+    background: rgba(0, 8, 20, 0.1);
+    border-radius: 10px;
+  }
+}
+
+/* Premium Card Design */
+.premium-course-card {
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 8, 20, 0.04);
+  border: 1px solid rgba(0, 8, 20, 0.05);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+
+.premium-course-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 8, 20, 0.08);
+}
+
+@media (max-width: 768px) {
+  .premium-course-card {
+    flex: 0 0 85%;
+    scroll-snap-align: start;
+    height: auto;
+  }
+}
+
+/* Card Banner (Dark Blue Gradient) */
+.premium-course-banner {
+  position: relative;
+  height: 200px;
+  background: linear-gradient(135deg, #021B4C 0%, #000814 100%);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  color: white;
+}
+
+/* Top logo in banner */
+.premium-course-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 2;
+}
+
+.premium-course-logo-icon {
+  font-size: 1.1rem;
+}
+
+.premium-course-logo-text-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.premium-course-logo-title {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: white;
+  line-height: 1.1;
+  letter-spacing: 0.5px;
+}
+
+.premium-course-logo-subtitle {
+  font-size: 0.55rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+}
+
+/* Banner Title Text styling */
+.premium-course-banner-title {
+  margin-top: auto;
+  margin-bottom: 0.5rem;
+  z-index: 2;
+}
+
+.premium-course-duration-label {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: white;
+  opacity: 0.95;
+  line-height: 1.2;
+}
+
+.premium-course-subject-label {
+  display: block;
+  font-size: 1.55rem;
+  font-weight: 900;
+  line-height: 1.2;
+  color: #ffd60a;
+}
+
+/* Banner Badge/Pill overlay */
+.premium-course-badge-pill {
+  align-self: flex-start;
+  padding: 4px 12px;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: white;
+  letter-spacing: 0.2px;
+  z-index: 2;
+}
+
+/* Banner indicators dots */
+.premium-course-banner-dots {
+  display: flex;
+  gap: 4px;
+  position: absolute;
+  bottom: 1.2rem;
+  left: 1.5rem;
+  z-index: 2;
+}
+
+.premium-course-banner-dot {
+  width: 12px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 2px;
+}
+
+.premium-course-banner-dot.active {
+  background: white;
+  width: 16px;
+}
+
+/* Image space placeholder on right of banner */
+.premium-course-image-space {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 42%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.02);
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+  z-index: 1;
+}
+
+/* Body container of Course Card */
+.premium-course-body {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  background: #ffffff;
+}
+
+.premium-course-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #000814;
+  line-height: 1.4;
+  margin-bottom: 1.25rem;
+  min-height: 52px;
+}
+
+.premium-course-specs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 1.75rem;
+}
+
+.premium-course-spec-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: #475569;
+  font-weight: 600;
+}
+
+.premium-course-spec-item svg {
+  color: #475569;
+  opacity: 0.85;
+}
+
+.premium-course-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 14px;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  background: #ffd60a;
+  color: #000814;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(255, 214, 10, 0.15);
+  text-decoration: none;
+}
+
+.premium-course-card:hover .premium-course-btn {
+  background: #fcdc12;
+  box-shadow: 0 6px 16px rgba(255, 214, 10, 0.3);
+}
+
+/* ==========================================================================
+   Compact Offer Highlight Card in Services Page
+   ========================================================================== */
+.upcoming-classes-slider {
+  padding: 60px 0 !important;
+}
+
+.upcoming-slider-grid-new {
+  display: grid;
+  grid-template-columns: 1fr 450px;
+  gap: 4rem;
+  align-items: center;
+}
+
+.upcoming-intro-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.upcoming-intro-info .section-subtitle {
+  color: #ffd60a;
+  letter-spacing: 2px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.upcoming-intro-info h2 {
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  color: white;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.upcoming-intro-info p {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+/* Redesigned Offer Card - mimics Course Card layout */
+.upcoming-offer-card {
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.upcoming-offer-banner {
+  position: relative;
+  height: 180px;
+  background: linear-gradient(135deg, #091a3a 0%, #000814 100%);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  color: white;
+}
+
+.upcoming-offer-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 2;
+}
+
+.upcoming-offer-logo .logo-icon {
+  font-size: 1.1rem;
+}
+
+.upcoming-offer-logo .logo-title {
+  font-size: 0.75rem;
+  font-weight: 800;
+  background: var(--gradient-accent);
+  color: #000814;
+  padding: 3px 10px;
+  border-radius: 50px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.upcoming-offer-banner-title {
+  margin-top: auto;
+  margin-bottom: 0.5rem;
+  z-index: 2;
+}
+
+.upcoming-offer-banner-title .duration-label {
+  display: block;
+  font-size: 1rem;
+  font-weight: 800;
+  color: white;
+  opacity: 0.95;
+  line-height: 1.2;
+}
+
+.upcoming-offer-banner-title .subject-label {
+  display: block;
+  font-size: 1.45rem;
+  font-weight: 900;
+  line-height: 1.2;
+  color: #ffd60a;
+}
+
+.upcoming-offer-badge-pill {
+  align-self: flex-start;
+  padding: 4px 12px;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: white;
+  letter-spacing: 0.2px;
+  z-index: 2;
+}
+
+.upcoming-offer-image-space {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 40%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.02);
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+  z-index: 1;
+}
+
+.upcoming-offer-body {
+  padding: 1.75rem;
+  background: #ffffff;
+  color: #000814;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.upcoming-offer-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #000814;
+  line-height: 1.3;
+}
+
+.upcoming-offer-desc {
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.upcoming-offer-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 14px;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  background: #ffd60a;
+  color: #000814;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(255, 214, 10, 0.15);
+  text-decoration: none;
+}
+
+.upcoming-offer-btn:hover {
+  background: #fcdc12;
+  box-shadow: 0 6px 16px rgba(255, 214, 10, 0.3);
+}
+
+/* Controls inside upcoming area */
+.upcoming-controls-row {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 992px) {
+  .upcoming-slider-grid-new {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .upcoming-slider-grid-new {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* ==========================================================================
+   Scroll Reveal Animations
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   Redesigned Premium Course Detail Page (Dark Theme style)
+   ========================================================================== */
+.course-detail-dark-wrapper {
+  background-color: #030712;
+  color: #f9fafb;
+  min-height: 100vh;
+  padding: 160px 0 100px;
+}
+
+.course-detail-intro-new {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 4rem;
+  align-items: center;
+  margin-bottom: 5rem;
+}
+
+@media (max-width: 992px) {
+  .course-detail-intro-new {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+.course-detail-info-new {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.course-detail-info-new h1 {
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 900;
+  line-height: 1.1;
+  color: white;
+}
+
+.course-detail-info-new p {
+  color: rgba(249, 250, 251, 0.75);
+  font-size: 1.15rem;
+  line-height: 1.7;
+  max-width: 650px;
+}
+
+/* Pills underneath description */
+.course-detail-badges-new {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.course-detail-badge-new {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.course-detail-badge-new.green-pill {
+  border-color: rgba(52, 211, 153, 0.25);
+  color: #34d399;
+}
+
+.course-detail-badge-new svg {
+  color: inherit;
+  opacity: 0.9;
+}
+
+/* Enroll Now Button - Gradient border style */
+.course-enroll-btn-new {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  padding: 14px 36px;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: transparent;
+  color: white;
+  border: 2px solid transparent;
+  background-image: linear-gradient(#030712, #030712), linear-gradient(135deg, #a78bfa 0%, #3b82f6 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 20px rgba(59, 130, 246, 0.12);
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.course-enroll-btn-new:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px rgba(167, 139, 250, 0.25);
+  background-image: linear-gradient(rgba(167, 139, 250, 0.1), rgba(59, 130, 246, 0.1)), linear-gradient(135deg, #a78bfa 0%, #3b82f6 100%);
+}
+
+/* Card image space placeholder on right of intro */
+.course-detail-visual-new {
+  position: relative;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  height: 300px;
+  background: linear-gradient(135deg, #091a3a 0%, #000814 100%);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.course-detail-visual-new::after {
+  content: 'AD';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 8rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.015);
+  letter-spacing: 5px;
+}
+
+/* Course Highlights Block */
+.course-highlights-box-new {
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 20px;
+  padding: 2.5rem;
+  margin-bottom: 4rem;
+}
+
+.highlights-title-new {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  color: white;
+}
+
+.highlights-bar-new {
+  width: 4px;
+  height: 24px;
+  background: #a78bfa;
+  border-radius: 2px;
+}
+
+.highlights-grid-new {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+@media (max-width: 640px) {
+  .highlights-grid-new {
+    grid-template-columns: 1fr;
+  }
+}
+
+.highlight-card-new {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.highlight-bullet-new {
+  width: 8px;
+  height: 8px;
+  background: #3b82f6;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Course Curriculum Accordions Block */
+.course-curriculum-box-new {
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 20px;
+  padding: 2.5rem;
+}
+
+.curriculum-subtext-new {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.95rem;
+  margin-top: -1.5rem;
+  margin-bottom: 2rem;
+}
+
+.curriculum-list-new {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Accordion Item Card */
+.curriculum-accordion-item-new {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.25s ease;
+}
+
+.curriculum-accordion-item-new:hover {
+  border-color: rgba(167, 139, 250, 0.2);
+}
+
+.curriculum-accordion-header-new {
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+}
+
+.curriculum-header-left-new {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.curriculum-number-circle-new {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #a78bfa 0%, #3b82f6 100%);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.curriculum-title-new {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.curriculum-chevron-new {
+  color: rgba(255, 255, 255, 0.4);
+  transition: transform 0.25s ease;
+}
+
+.curriculum-accordion-item-new.open .curriculum-chevron-new {
+  transform: rotate(180deg);
+  color: #a78bfa;
+}
+
+.curriculum-content-expanded-new {
+  padding: 0 1.5rem 1.5rem 4.25rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+  padding-top: 1rem;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   Courses Auto-Slider Styles
+   ========================================================================== */
+.courses-slider-container {
+  overflow: hidden;
+  width: 100%;
+  margin-top: 3rem;
+  padding: 10px 0;
+}
+
+.courses-slider-track {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.courses-slider-slide {
+  flex: 0 0 33.333333%;
+  padding: 0 12px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 992px) {
+  .courses-slider-slide {
+    flex: 0 0 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .courses-slider-slide {
+    flex: 0 0 100%;
+  }
+}
+

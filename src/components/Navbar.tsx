@@ -26,15 +26,7 @@ const navItems = [
   { name: 'Services', href: '/services' },
   { name: 'Courses', href: '/courses' },
   { name: 'Blog', href: '/blog' },
-  { 
-    name: 'About Us', 
-    href: '/about',
-    subItems: [
-      { name: 'About Us', href: '/about' },
-      { name: 'Case Studies', href: '/about#case-studies-list' },
-      { name: 'Testimonials', href: '/about#testimonials' },
-    ]
-  },
+  { name: 'About Us', href: '/about' },
   { name: 'Contact Us', href: '/enquiry' },
 ];
 

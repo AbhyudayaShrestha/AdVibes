@@ -129,7 +129,7 @@ export default function ServicesPage() {
     <main className="services-page-wrapper">
       {/* Inner Page Hero */}
       <section className="inner-hero" style={{ background: 'var(--gradient-hero)', color: 'white', padding: '160px 0 80px', position: 'relative', overflow: 'hidden', textAlign: 'center' }}>
-        <div className="container">
+        <div className="container reveal">
           <span className="section-subtitle" style={{ color: 'var(--primary)', letterSpacing: '2px' }}>Expert Solutions</span>
           <h1 className="line-bottom" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontWeight: 900, marginBottom: '1.5rem', background: 'var(--gradient-accent)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
             Our Professional Services
@@ -142,79 +142,83 @@ export default function ServicesPage() {
       </section>
 
       {/* Upcoming Classes Slider Section */}
-      <section className="upcoming-classes-slider" style={{ background: '#000814', color: 'white', padding: '40px 0', borderBottom: '1px solid rgba(255, 214, 10, 0.15)' }}>
+      <section className="upcoming-classes-slider" style={{ background: '#000814', color: 'white', padding: '60px 0', borderBottom: '1px solid rgba(255, 214, 10, 0.15)' }}>
         <div className="container">
-          <div className="upcoming-slider-wrapper">
-            <div className="upcoming-slider-grid">
+          <div className="upcoming-slider-grid-new reveal">
+            
+            {/* Left Side Content */}
+            <div className="upcoming-intro-info">
+              <span className="section-subtitle">Exclusive Cohort Offers</span>
+              <h2>Lock Your Seat for the Upcoming Masterclasses</h2>
+              <p>
+                Get exclusive bonuses, launch discounts, and immediate access to our marketing assets by locking your seat in one of our upcoming active cohorts.
+              </p>
               
-              {/* Left Side Content */}
-              <div className="upcoming-slider-info">
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
-                  <span className="upcoming-slider-badge">
-                    {upcomingClasses[activeSlideIndex].badge}
-                  </span>
-                  <span className="upcoming-slider-offer">
-                    🔥 {upcomingClasses[activeSlideIndex].offer}
-                  </span>
+              {/* Slider Controls inside the left text side for compactness */}
+              <div className="upcoming-controls-row">
+                <div className="upcoming-slider-dots">
+                  {upcomingClasses.map((_, idx) => (
+                    <button 
+                      key={idx}
+                      onClick={() => setActiveSlideIndex(idx)}
+                      className={`upcoming-slider-dot ${activeSlideIndex === idx ? 'active' : ''}`}
+                      aria-label={`Go to slide ${idx + 1}`}
+                    />
+                  ))}
+                </div>
+
+                <div className="upcoming-slider-navigation">
+                  <button 
+                    onClick={prevSlide}
+                    className="upcoming-slider-btn"
+                    aria-label="Previous Slide"
+                  >
+                    ←
+                  </button>
+                  <button 
+                    onClick={nextSlide}
+                    className="upcoming-slider-btn"
+                    aria-label="Next Slide"
+                  >
+                    →
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Side Compact Card (Course card format) */}
+            <div className="upcoming-offer-card-wrapper">
+              <div className="upcoming-offer-card">
+                <div className="upcoming-offer-banner">
+                  <div className="upcoming-offer-logo">
+                    <span className="logo-icon">🔥</span>
+                    <span className="logo-title">{upcomingClasses[activeSlideIndex].badge}</span>
+                  </div>
+                  
+                  <div className="upcoming-offer-banner-title">
+                    <span className="duration-label">Limited Offer</span>
+                    <span className="subject-label">
+                      {upcomingClasses[activeSlideIndex].offer.replace('Special Launch Offer: ', '').replace('Exclusive Bonus: ', '').replace('Get Certified: ', '')}
+                    </span>
+                  </div>
+                  
+                  <span className="upcoming-offer-badge-pill">Upcoming Cohort</span>
+
+                  {/* Placeholder space for the image */}
+                  <div className="upcoming-offer-image-space"></div>
                 </div>
                 
-                <h3 className="upcoming-slider-title">
-                  {upcomingClasses[activeSlideIndex].title}
-                </h3>
-                
-                <p className="upcoming-slider-desc">
-                  {upcomingClasses[activeSlideIndex].desc}
-                </p>
-
-                <div style={{ marginTop: '10px' }}>
-                  <Link href={upcomingClasses[activeSlideIndex].link} className="btn btn-primary" style={{ textTransform: 'uppercase', fontSize: '0.9rem', letterSpacing: '1.5px', padding: '14px 32px' }}>
+                <div className="upcoming-offer-body">
+                  <h3 className="upcoming-offer-title">{upcomingClasses[activeSlideIndex].title}</h3>
+                  <p className="upcoming-offer-desc">{upcomingClasses[activeSlideIndex].desc}</p>
+                  
+                  <Link href={upcomingClasses[activeSlideIndex].link} className="upcoming-offer-btn">
                     Lock Offer Now
                   </Link>
                 </div>
               </div>
-
-              {/* Right Side Image */}
-              <div className="upcoming-slider-image-box">
-                <img 
-                  src={upcomingClasses[activeSlideIndex].image} 
-                  alt={upcomingClasses[activeSlideIndex].title}
-                  className="upcoming-slider-img"
-                  key={activeSlideIndex}
-                />
-              </div>
-
             </div>
 
-            {/* Slider Controls */}
-            <div className="upcoming-slider-controls">
-              <div className="upcoming-slider-dots">
-                {upcomingClasses.map((_, idx) => (
-                  <button 
-                    key={idx}
-                    onClick={() => setActiveSlideIndex(idx)}
-                    className={`upcoming-slider-dot ${activeSlideIndex === idx ? 'active' : ''}`}
-                    aria-label={`Go to slide ${idx + 1}`}
-                  />
-                ))}
-              </div>
-
-              <div className="upcoming-slider-navigation">
-                <button 
-                  onClick={prevSlide}
-                  className="upcoming-slider-btn"
-                  aria-label="Previous Slide"
-                >
-                  ←
-                </button>
-                <button 
-                  onClick={nextSlide}
-                  className="upcoming-slider-btn"
-                  aria-label="Next Slide"
-                >
-                  →
-                </button>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -222,7 +226,7 @@ export default function ServicesPage() {
       {/* Grid of All Services */}
       <section className="all-services-grid-section premium-gradient-bg" style={{ padding: '100px 0' }}>
         <div className="container">
-          <div className="services-grid">
+          <div className="services-grid reveal" style={{ animationDelay: '0.1s' }}>
             {allServices.map((service, index) => (
               <ServiceCard
                 key={index}
@@ -238,7 +242,7 @@ export default function ServicesPage() {
 
       {/* FAQ or Value Prop section */}
       <section className="service-features" style={{ background: 'white', padding: '100px 0' }}>
-        <div className="container">
+        <div className="container reveal">
           <div className="section-header" style={{ marginBottom: '5rem' }}>
             <span className="section-subtitle">How We Deliver</span>
             <h2 className="section-title">Engineered For Performance</h2>

@@ -20,7 +20,9 @@ import {
   ChevronLeft,
   ChevronRight,
   Clock,
-  Calendar
+  Calendar,
+  FileText,
+  BookOpen
 } from 'lucide-react';
 import CTASection from '@/components/CTASection';
 import { ServiceCard, TrainingCard, TestimonialCard } from '@/components/Cards';
@@ -40,79 +42,119 @@ export default function Home() {
 
   const coursesData = [
     {
-      slug: "digital-marketing-training",
-      icon: <GraduationCap size={36} />,
-      title: "Digital Marketing Training",
-      subtitle: "Beginner to Advanced",
-      desc: "Master the core fundamentals and advanced optimization methodologies of modern digital marketing. Ideal for founders and aspiring marketing directors.",
-      duration: "8 Weeks",
-      students: "1,200+ Enrolled",
-      syllabus: ["Audience Intelligence & Profiling", "Copywriting & Landing Page Architecture", "Multi-Channel Funnel Planning", "Performance Tracking & Reporting"]
-    },
-    {
-      slug: "ai-marketing-training",
-      icon: <Cpu size={36} />,
-      title: "AI in Marketing Training",
-      subtitle: "Future-Ready Skills",
-      desc: "Learn how to leverage AI tools to transform your marketing efficiency and results. Understand generative models, workflow automations, and AI agents.",
-      duration: "4 Weeks",
+      slug: "content-creation-mastery",
+      title: "Content Creation Mastery Course (Photoshoot + Video)",
+      bannerDuration: "2 Months",
+      bannerSubject: "Content Creation",
+      bannerPill: "Mastery Course + Video",
+      duration: "2 Months",
+      format: "Practical + AI-Enhanced",
+      level: "Beginner to Intermediate",
       students: "850+ Enrolled",
-      syllabus: ["Prompt Engineering & Automation", "AI Video & Imagery Production", "Copy & SEO Automation Workflows", "AI Agents for Lead Generation"]
+      syllabus: [
+        "Audience Intent & Viral Hook Design",
+        "Camera Settings, Lighting & Photoshoot Layout",
+        "Video Editing & Color Grading Workflows",
+        "AI-Enhanced Asset Generation Tools"
+      ]
     },
     {
-      slug: "workshops-certifications",
-      icon: <Award size={36} />,
-      title: "Workshops & Certifications",
-      subtitle: "Hands-on Experience",
-      desc: "Practical interactive cohort workshops that issue industry-accredited certifications. Designed to get teams hands-on experience solving real-world case studies.",
-      duration: "2 Weeks",
-      students: "500+ Enrolled",
-      syllabus: ["Live Cohort Strategy Build", "Campaign Auditing Lab", "Viral Loop Architecture Workshop"]
+      slug: "digital-marketing-beginners",
+      title: "Digital Marketing Course for Beginners",
+      bannerDuration: "2 Months",
+      bannerSubject: "Digital Marketing",
+      bannerPill: "Course for Beginners",
+      duration: "2 Months",
+      format: "Practical + AI-Enhanced",
+      level: "Beginner to Intermediate",
+      students: "1,200+ Enrolled",
+      syllabus: [
+        "Digital Marketing Foundations & Channels",
+        "Organic SEO & Content Funnel Strategy",
+        "Social Media Management & Community Setup",
+        "Intro to Meta & Google Ads Scaling"
+      ]
     },
     {
-      slug: "meta-ads-scale-blueprint",
-      icon: <Target size={36} />,
-      title: "Meta Ads Scale Blueprint",
-      subtitle: "Professional Masterclass",
-      desc: "An advanced masterclass dedicated strictly to Facebook, Instagram, and WhatsApp marketing. Learn the scaling formulas used by multi-million dollar brands.",
-      duration: "6 Weeks",
+      slug: "graphics-designing",
+      title: "Graphics Designing for Digital Marketing Course",
+      bannerDuration: "2 Months",
+      bannerSubject: "Graphics Designing",
+      bannerPill: "For Digital Marketing Course",
+      duration: "2 Months",
+      format: "Practical + AI-Enhanced",
+      level: "Beginner to Intermediate",
       students: "920+ Enrolled",
-      syllabus: ["Pixel & Conversions API Setup", "A/B Testing Frameworks", "CBO/ABO Bid Strategy Management", "Lookalike & Retargeting Setup"]
+      syllabus: [
+        "Design Philosophy & Color Harmonies",
+        "Ad Creative Layouts & Copy Overlays",
+        "Performance Display Banners & A/B Creative Formats",
+        "Advanced Vector Tools & Brand Assets"
+      ]
+    },
+    {
+      slug: "advanced-seo-strategies",
+      title: "Advanced SEO & Semantic Search Masterclass",
+      bannerDuration: "2 Months",
+      bannerSubject: "Advanced SEO",
+      bannerPill: "Professional Masterclass",
+      duration: "2 Months",
+      format: "Practical + AI-Enhanced",
+      level: "Beginner to Intermediate",
+      students: "750+ Enrolled",
+      syllabus: [
+        "Semantic Search & Entity Architecture",
+        "Technical Core Web Vitals Optimization",
+        "AI-Assisted SEO Content Velocity",
+        "Backlink Profiling & Authority Funnels"
+      ]
+    },
+    {
+      slug: "ai-workflow-automation",
+      title: "AI Agent & Workflow Automation Bootcamp",
+      bannerDuration: "2 Months",
+      bannerSubject: "AI Automation",
+      bannerPill: "Future-Ready Skills",
+      duration: "2 Months",
+      format: "Practical + AI-Enhanced",
+      level: "Beginner to Intermediate",
+      students: "610+ Enrolled",
+      syllabus: [
+        "Generative Agents & Tool Integrations",
+        "Low-Code/No-Code Operation Funnels",
+        "Custom GPT & LLM Fine-Tuning Labs",
+        "Ethical AI Governance & Workflows"
+      ]
     }
   ];
 
+  const [mounted, setMounted] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const courseTouchStartRef = { current: 0 };
+  const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+      setIsTablet(window.innerWidth > 768 && window.innerWidth <= 1024);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % coursesData.length);
-    }, 5000);
+      setCurrentSlide((prev) => {
+        const itemsCount = coursesData.length;
+        const visibleItems = isMobile ? 1 : (isTablet ? 2 : 3);
+        const limit = itemsCount - visibleItems + 1;
+        return (prev + 1) % Math.max(1, limit);
+      });
+    }, 3500);
     return () => clearInterval(timer);
-  }, [currentSlide, coursesData.length]);
-
-  const handlePrev = () => {
-    setCurrentSlide((prev) => (prev - 1 + coursesData.length) % coursesData.length);
-  };
-
-  const handleNext = () => {
-    setCurrentSlide((prev) => (prev + 1) % coursesData.length);
-  };
-
-  const handleDotClick = (index: number) => {
-    setCurrentSlide(index);
-  };
-
-  const handleCourseTouchStart = (e: React.TouchEvent) => {
-    courseTouchStartRef.current = e.touches[0].clientX;
-  };
-
-  const handleCourseTouchEnd = (e: React.TouchEvent) => {
-    const diff = courseTouchStartRef.current - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) {
-      diff > 0 ? handleNext() : handlePrev();
-    }
-  };
+  }, [isMobile, isTablet, coursesData.length]);
 
   const blogsData = [
     {
@@ -141,37 +183,34 @@ export default function Home() {
     }
   ];
 
-  const [currentBlogSlide, setCurrentBlogSlide] = useState(0);
-  const blogTouchStartRef = { current: 0 };
+  const caseStudiesData = [
+    { title: "Social Growth Revolution", desc: "How we increased engagement by 400% for a luxury fashion brand.", tag: "Case Study", slug: "#case-studies-list" },
+    { title: "E-Commerce Scaling", desc: "Generated $2M in Q4 through targeted Meta campaigns.", tag: "Case Study", slug: "#case-studies-list" },
+    { title: "B2B Lead Generation", desc: "Reduced CPL by 60% while doubling lead quality.", tag: "Case Study", slug: "#case-studies-list" }
+  ];
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentBlogSlide((prev) => (prev + 1) % blogsData.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [currentBlogSlide, blogsData.length]);
+  const testimonialsData = [
+    { text: "AdVibes transformed our digital presence. Their AI-driven approach is truly revolutionary.", author: "Sarah Johnson", role: "CEO, TechPulse" },
+    { text: "The team's dedication to our success is unmatched. We saw ROI within the first month.", author: "Michael Chen", role: "CMO, ElevateBrands" },
+    { text: "A strategic partner that actually delivers on their promises. Highly recommended.", author: "Emma Davis", role: "Founder, StyleHub" }
+  ];
 
-  const handleBlogPrev = () => {
-    setCurrentBlogSlide((prev) => (prev - 1 + blogsData.length) % blogsData.length);
+  const handleCoursePrev = () => {
+    setCurrentSlide((prev) => {
+      const itemsCount = coursesData.length;
+      const visibleItems = isMobile ? 1 : (isTablet ? 2 : 3);
+      const limit = itemsCount - visibleItems + 1;
+      return (prev - 1 + Math.max(1, limit)) % Math.max(1, limit);
+    });
   };
 
-  const handleBlogNext = () => {
-    setCurrentBlogSlide((prev) => (prev + 1) % blogsData.length);
-  };
-
-  const handleBlogDotClick = (index: number) => {
-    setCurrentBlogSlide(index);
-  };
-
-  const handleBlogTouchStart = (e: React.TouchEvent) => {
-    blogTouchStartRef.current = e.touches[0].clientX;
-  };
-
-  const handleBlogTouchEnd = (e: React.TouchEvent) => {
-    const diff = blogTouchStartRef.current - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) {
-      diff > 0 ? handleBlogNext() : handleBlogPrev();
-    }
+  const handleCourseNext = () => {
+    setCurrentSlide((prev) => {
+      const itemsCount = coursesData.length;
+      const visibleItems = isMobile ? 1 : (isTablet ? 2 : 3);
+      const limit = itemsCount - visibleItems + 1;
+      return (prev + 1) % Math.max(1, limit);
+    });
   };
 
   return (
@@ -250,7 +289,7 @@ export default function Home() {
       </section>
 
       {/* Services Showcase Section */}
-      <section id="services" className="services">
+      <section id="services" className="services reveal">
         <div className="container">
           <div className="section-header">
             <span className="section-subtitle">Expert Solutions</span>
@@ -288,41 +327,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Us Preview */}
-      <section id="about" className="why-us">
-        <div className="container why-container">
-          <div className="why-content">
-            <span className="section-subtitle">About Us</span>
-            <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '1.5rem' }}>Why Choose AdVibes?</h2>
-            <p className="mb-2">We don't just provide services; we partner with you to achieve measurable success.</p>
-            <ul className="why-list" style={{ marginBottom: '2rem' }}>
-              <li><CheckCircle className="icon" style={{ color: 'var(--primary)', marginRight: '8px' }} /> Data-Driven decision making</li>
-              <li><CheckCircle className="icon" style={{ color: 'var(--primary)', marginRight: '8px' }} /> Cutting-edge AI technology integration</li>
-              <li><CheckCircle className="icon" style={{ color: 'var(--primary)', marginRight: '8px' }} /> Dedicated team of specialists</li>
-            </ul>
-            <Link href="/about" className="btn btn-outline" style={{ border: '2px solid var(--secondary)', color: 'var(--secondary)' }}>
-              Read Our Story
-            </Link>
-          </div>
-          <div className="why-stats">
-            <div className="stat-card">
-              <h3>98%</h3>
-              <p>Client Satisfaction</p>
-            </div>
-            <div className="stat-card">
-              <h3>250+</h3>
-              <p>Projects Completed</p>
-            </div>
-            <div className="stat-card">
-              <h3>120%</h3>
-              <p>Average ROI Increase</p>
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       {/* Courses Showcase Section */}
-      <section id="training" className="training">
+      <section id="training" className="training reveal">
         <div className="container">
           <div className="section-header">
             <span className="section-subtitle">Empower Your Team</span>
@@ -330,131 +338,77 @@ export default function Home() {
             <p>Practical training programs designed to keep you ahead of the digital curve.</p>
           </div>
 
-          <div className="training-slider-wrapper">
-            <button 
-              className="slider-arrow arrow-left" 
-              onClick={handlePrev} 
-              aria-label="Previous slide"
-            >
+          <div className="courses-slider-container" style={{ position: 'relative' }}>
+            <button onClick={handleCoursePrev} style={{ position: 'absolute', left: '-20px', top: '50%', transform: 'translateY(-50%)', zIndex: 10, background: 'var(--secondary)', color: 'white', border: 'none', borderRadius: '50%', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}>
               <ChevronLeft size={24} />
             </button>
-
-            <div className="training-slider-container" onTouchStart={handleCourseTouchStart} onTouchEnd={handleCourseTouchEnd}>
-              <div 
-                className="training-slider-track"
-                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-              >
-                {coursesData.map((course, index) => (
-                  <Link key={index} href={`/courses/${course.slug}`} className="training-slide" style={{ textDecoration: 'none', color: 'inherit' }}>
-                    <div className="training-slider-card" style={{ cursor: 'pointer' }}>
-                      <div className="card-left desktop-only-element">
-                        <div className="slider-icon-box">
-                          {course.icon}
-                        </div>
-                        <div className="card-stats">
-                          <div className="stat-item">
-                            <Clock size={16} />
-                            <span>{course.duration}</span>
-                          </div>
-                          <div className="stat-item">
-                            <Users size={16} />
-                            <span>{course.students}</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="card-right">
-                        {/* Mobile Banner Image */}
-                        <div className="mobile-course-banner">
-                          <img src={`/${course.slug}.png`} alt={course.title} />
-                        </div>
-
-                        <div className="mobile-card-content-wrap">
-                          <span className="course-badge desktop-only-element">{course.subtitle}</span>
-                          <h3 className="course-title desktop-only-element">{course.title}</h3>
-                          <p className="course-desc desktop-only-element">{course.desc}</p>
-                          
-                          {/* Mobile Course Stats */}
-                          <div className="mobile-course-stats">
-                            <div className="mobile-stat-item">
-                              <span className="stat-icon-wrapper">
-                                <Calendar size={18} />
-                              </span>
-                              <div className="stat-text-wrapper">
-                                <span className="stat-label">DURATION</span>
-                                <span className="stat-value">{course.duration}</span>
-                              </div>
-                            </div>
-                            <div className="mobile-stat-item">
-                              <span className="stat-icon-wrapper">
-                                <Users size={18} />
-                              </span>
-                              <div className="stat-text-wrapper">
-                                <span className="stat-label">ENROLLED</span>
-                                <span className="stat-value">{course.students.replace(' Enrolled', '')}</span>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="syllabus-section">
-                            <h4 className="syllabus-title">Syllabus Highlights</h4>
-                            <ul className="syllabus-list">
-                              {course.syllabus.map((topic, i) => (
-                                <li key={i} className="syllabus-item">
-                                  <span className="bullet"></span>
-                                  {topic}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-
-                          <span className="btn btn-primary slider-enroll-btn">
-                            View Details
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-            <button 
-              className="slider-arrow arrow-right" 
-              onClick={handleNext} 
-              aria-label="Next slide"
-            >
+            <button onClick={handleCourseNext} style={{ position: 'absolute', right: '-20px', top: '50%', transform: 'translateY(-50%)', zIndex: 10, background: 'var(--secondary)', color: 'white', border: 'none', borderRadius: '50%', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}>
               <ChevronRight size={24} />
             </button>
+            <div 
+              className="courses-slider-track"
+              style={{
+                transform: mounted 
+                  ? `translateX(-${currentSlide * (isMobile ? 100 : (isTablet ? 50 : 33.333333))}%)` 
+                  : 'none'
+              }}
+            >
+              {coursesData.map((course, index) => (
+                <div key={index} className="courses-slider-slide">
+                  <Link href={`/courses/${course.slug}`} className="premium-course-card">
+                    <div className="premium-course-banner">
+                      <div className="premium-course-logo">
+                        <span className="premium-course-logo-icon">🎓</span>
+                        <div className="premium-course-logo-text-group">
+                          <span className="premium-course-logo-title">NextLevel</span>
+                          <span className="premium-course-logo-subtitle">Skills & Careers</span>
+                        </div>
+                      </div>
+                      
+                      <div className="premium-course-banner-title">
+                        <span className="premium-course-duration-label">{course.bannerDuration}</span>
+                        <span className="premium-course-subject-label">{course.bannerSubject}</span>
+                      </div>
+                      
+                      <span className="premium-course-badge-pill">{course.bannerPill}</span>
+                      
+                      <div className="premium-course-banner-dots">
+                        <span className={`premium-course-banner-dot ${index === 0 ? 'active' : ''}`}></span>
+                        <span className={`premium-course-banner-dot ${index === 1 ? 'active' : ''}`}></span>
+                        <span className={`premium-course-banner-dot ${index === 2 ? 'active' : ''}`}></span>
+                        <span className={`premium-course-banner-dot ${index === 3 ? 'active' : ''}`}></span>
+                        <span className={`premium-course-banner-dot ${index === 4 ? 'active' : ''}`}></span>
+                      </div>
 
-            {/* Mobile Navigation Arrows */}
-            <div className="slider-mobile-nav">
-              <button 
-                className="slider-arrow arrow-left" 
-                onClick={handlePrev} 
-                aria-label="Previous slide"
-              >
-                <ChevronLeft size={24} />
-              </button>
-              <button 
-                className="slider-arrow arrow-right" 
-                onClick={handleNext} 
-                aria-label="Next slide"
-              >
-                <ChevronRight size={24} />
-              </button>
+                      <div className="premium-course-image-space"></div>
+                    </div>
+                    
+                    <div className="premium-course-body">
+                      <h3 className="premium-course-title">{course.title}</h3>
+                      
+                      <div className="premium-course-specs">
+                        <div className="premium-course-spec-item">
+                          <Clock size={16} />
+                          <span>Duration: {course.duration}</span>
+                        </div>
+                        <div className="premium-course-spec-item">
+                          <FileText size={16} />
+                          <span>Format: {course.format}</span>
+                        </div>
+                        <div className="premium-course-spec-item">
+                          <BookOpen size={16} />
+                          <span>Level: {course.level}</span>
+                        </div>
+                      </div>
+                      
+                      <span className="premium-course-btn">
+                        View Details
+                      </span>
+                    </div>
+                  </Link>
+                </div>
+              ))}
             </div>
-          </div>
-
-          <div className="slider-dots">
-            {coursesData.map((_, index) => (
-              <button
-                key={index}
-                className={`dot ${currentSlide === index ? 'active' : ''}`}
-                onClick={() => handleDotClick(index)}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
           </div>
 
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>
@@ -465,138 +419,92 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Case Studies Preview */}
-      <section id="portfolio" className="portfolio">
+      {/* Combined Insights Section */}
+      <section id="insights" className="insights-combined reveal premium-gradient-bg" style={{ padding: '100px 0' }}>
         <div className="container">
-          <div className="section-header">
-            <span className="section-subtitle">Our Work</span>
-            <h2 className="section-title">Success Stories</h2>
-          </div>
-          <div className="portfolio-grid" style={{ gridTemplateColumns: '1fr', maxWidth: '650px', margin: '0 auto' }}>
-            <div className="portfolio-item card">
-              <div className="portfolio-tag" style={{ background: 'rgba(255, 214, 10, 0.15)', color: 'var(--primary-dark)' }}>Case Study</div>
-              <h3>Social Growth Revolution</h3>
-              <p>How we increased engagement by 400% for a luxury fashion brand.</p>
-              <Link href="/about#case-studies-list" className="link-btn">Read Case Study <ArrowRight className="icon-sm" /></Link>
-            </div>
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>
-            <Link href="/about#case-studies-list" className="see-more-btn" style={{ background: 'var(--secondary-dark)', color: 'white', padding: '14px 32px', borderRadius: '50px', fontWeight: 700, fontSize: '0.95rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
-              See all case studies & testimonials <ArrowRight size={16} />
-            </Link>
-          </div>
-        </div>
-      </section>
- 
-      {/* Testimonials Preview */}
-      <section id="testimonials" className="testimonials">
-        <div className="container">
-          <div className="section-header">
-            <span className="section-subtitle">Testimonials</span>
-            <h2 className="section-title">What Our Clients Say</h2>
-          </div>
-          <div className="testimonials-grid" style={{ gridTemplateColumns: '1fr', maxWidth: '650px', margin: '0 auto' }}>
-            <TestimonialCard
-              text="AdVibes transformed our digital presence. Their AI-driven approach is truly revolutionary."
-              author="Sarah Johnson"
-              role="CEO, TechPulse"
-            />
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>
-            <Link href="/about#testimonials" className="see-more-btn" style={{ background: 'var(--primary)', color: '#000814', padding: '14px 32px', borderRadius: '50px', fontWeight: 700, fontSize: '0.95rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
-              See all testimonials <ArrowRight size={16} />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Blog Preview Section */}
-      <section id="blog" className="blog">
-        <div className="container">
-          <div className="section-header">
-            <span className="section-subtitle">Insights</span>
-            <h2 className="section-title">Latest From Our Blog</h2>
-            <p>Stay ahead with our latest tips, trends, and strategies in digital marketing.</p>
+          <div className="section-header" style={{ marginBottom: '4rem' }}>
+            <span className="section-subtitle">Our Ecosystem</span>
+            <h2 className="section-title">Insights, Proof & Stories</h2>
+            <p>Explore our latest case studies, what our clients say, and our latest industry insights.</p>
           </div>
           
-          <div className="training-slider-wrapper">
-            <button 
-              className="slider-arrow arrow-left" 
-              onClick={handleBlogPrev} 
-              aria-label="Previous blog slide"
-            >
-              <ChevronLeft size={24} />
-            </button>
-
-            <div className="training-slider-container" onTouchStart={handleBlogTouchStart} onTouchEnd={handleBlogTouchEnd}>
-              <div 
-                className="training-slider-track"
-                style={{ transform: `translateX(-${currentBlogSlide * 100}%)` }}
-              >
-                {blogsData.map((post, index) => (
-                  <Link key={index} href={`/blog/${post.slug}`} className="training-slide" style={{ textDecoration: 'none', color: 'inherit' }}>
-                    <div className="blog-card card" style={{ overflow: 'hidden', cursor: 'pointer', margin: '0 auto', maxWidth: '600px', width: '100%' }}>
-                      {post.image ? (
-                        <div className="blog-image" style={{ backgroundImage: `url(${post.image})`, backgroundSize: 'cover', backgroundPosition: 'center', height: '240px' }}></div>
-                      ) : (
-                        <div className="blog-image" style={{ background: 'var(--secondary-dark)', height: '240px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                          <span style={{ fontSize: '5rem' }}>{post.emoji}</span>
+          <div className="insights-grid" style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
+            gap: '2rem',
+            alignItems: 'stretch' 
+          }}>
+            {/* Case Studies */}
+            <div className="insight-column" style={{ display: 'flex', flexDirection: 'column' }}>
+              <h3 style={{ marginBottom: '1.5rem', fontSize: '1.5rem', textAlign: 'center', color: 'var(--primary)' }}>Case Studies</h3>
+              <div className="premium-course-card" style={{ flexGrow: 1, padding: 0, overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column' }}>
+                 <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+                   <div style={{ minWidth: '100%', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                     <div className="premium-course-banner" style={{ minHeight: '180px', position: 'relative' }}>
+                        <span className="premium-course-badge-pill" style={{ position: 'absolute', top: '1rem', right: '1rem', zIndex: 2 }}>{caseStudiesData[0].tag}</span>
+                        <div className="premium-course-banner-title" style={{ position: 'relative', zIndex: 2 }}>
+                          <span className="premium-course-subject-label" style={{ fontSize: '1.2rem' }}>{caseStudiesData[0].title}</span>
                         </div>
-                      )}
-                      <div className="blog-content">
-                        <span className="blog-date">{post.date}</span>
-                        <h3>{post.title}</h3>
-                        <p>{post.desc}</p>
-                        <span className="link-btn">Read Article <ArrowRight className="icon-sm" /></span>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
+                     </div>
+                     <div className="premium-course-body" style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+                       <p style={{ color: 'var(--text-muted)', marginBottom: '1.5rem', flexGrow: 1, fontSize: '1.05rem' }}>{caseStudiesData[0].desc}</p>
+                       <Link href="/case-studies" className="see-more-btn" style={{ background: 'var(--secondary-dark)', color: 'white', padding: '14px 32px', borderRadius: '50px', fontWeight: 700, fontSize: '0.95rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'center', marginTop: 'auto' }}>
+                         View more <ArrowRight size={16} />
+                       </Link>
+                     </div>
+                   </div>
+                 </div>
               </div>
             </div>
 
-            <button 
-              className="slider-arrow arrow-right" 
-              onClick={handleBlogNext} 
-              aria-label="Next blog slide"
-            >
-              <ChevronRight size={24} />
-            </button>
-
-            {/* Mobile Navigation Arrows */}
-            <div className="slider-mobile-nav">
-              <button 
-                className="slider-arrow arrow-left" 
-                onClick={handleBlogPrev} 
-                aria-label="Previous blog slide"
-              >
-                <ChevronLeft size={24} />
-              </button>
-              <button 
-                className="slider-arrow arrow-right" 
-                onClick={handleBlogNext} 
-                aria-label="Next blog slide"
-              >
-                <ChevronRight size={24} />
-              </button>
+            {/* Testimonials */}
+            <div className="insight-column" style={{ display: 'flex', flexDirection: 'column' }}>
+              <h3 style={{ marginBottom: '1.5rem', fontSize: '1.5rem', textAlign: 'center', color: 'var(--primary)' }}>Testimonials</h3>
+              <div className="premium-course-card" style={{ flexGrow: 1, padding: 0, overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column' }}>
+                 <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+                   <div style={{ minWidth: '100%', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                     <div className="premium-course-banner" style={{ minHeight: '180px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
+                        <div style={{ fontSize: '6rem', color: 'var(--primary)', lineHeight: 1, opacity: 0.8, position: 'relative', zIndex: 2 }}>"</div>
+                     </div>
+                     <div className="premium-course-body" style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+                       <p style={{ fontStyle: 'italic', color: 'white', marginBottom: '1.5rem', flexGrow: 1, fontSize: '1.05rem', textAlign: 'center' }}>{testimonialsData[0].text}</p>
+                       <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+                         <h4 style={{ color: 'var(--primary)', margin: 0, fontSize: '1.1rem' }}>{testimonialsData[0].author}</h4>
+                         <span style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>{testimonialsData[0].role}</span>
+                       </div>
+                       <Link href="/about#testimonials" className="see-more-btn" style={{ background: 'var(--secondary-dark)', color: 'white', padding: '14px 32px', borderRadius: '50px', fontWeight: 700, fontSize: '0.95rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'center', marginTop: 'auto' }}>
+                         View more <ArrowRight size={16} />
+                       </Link>
+                     </div>
+                   </div>
+                 </div>
+              </div>
             </div>
-          </div>
 
-          <div className="slider-dots">
-            {blogsData.map((_, index) => (
-              <button
-                key={index}
-                className={`dot ${currentBlogSlide === index ? 'active' : ''}`}
-                onClick={() => handleBlogDotClick(index)}
-                aria-label={`Go to blog slide ${index + 1}`}
-              />
-            ))}
-          </div>
-
-          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>
-            <Link href="/blog" className="see-more-btn" style={{ background: 'var(--secondary-dark)', color: 'white', padding: '14px 32px', borderRadius: '50px', fontWeight: 700, fontSize: '0.95rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
-              See all articles <ArrowRight size={16} />
-            </Link>
+            {/* Blog */}
+            <div className="insight-column" style={{ display: 'flex', flexDirection: 'column' }}>
+              <h3 style={{ marginBottom: '1.5rem', fontSize: '1.5rem', textAlign: 'center', color: 'var(--primary)' }}>Blog</h3>
+              <div className="premium-course-card" style={{ flexGrow: 1, padding: 0, overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column' }}>
+                 <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+                   <div style={{ minWidth: '100%', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                     <div className="premium-course-banner" style={{ minHeight: '180px', background: blogsData[0].image ? `url(${blogsData[0].image}) center/cover` : undefined, position: 'relative' }}>
+                        {!blogsData[0].image && (
+                          <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '4rem', zIndex: 1 }}>
+                            {blogsData[0].emoji}
+                          </div>
+                        )}
+                     </div>
+                     <div className="premium-course-body" style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+                       <span style={{ color: 'var(--primary)', fontSize: '0.85rem', marginBottom: '0.5rem', fontWeight: 600 }}>{blogsData[0].date}</span>
+                       <h3 className="premium-course-title" style={{ fontSize: '1.1rem', marginBottom: '1rem', flexGrow: 1 }}>{blogsData[0].title}</h3>
+                       <Link href="/blog" className="see-more-btn" style={{ background: 'var(--secondary-dark)', color: 'white', padding: '14px 32px', borderRadius: '50px', fontWeight: 700, fontSize: '0.95rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'center', marginTop: 'auto' }}>
+                         View more <ArrowRight size={16} />
+                       </Link>
+                     </div>
+                   </div>
+                 </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
