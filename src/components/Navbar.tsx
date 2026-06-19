@@ -23,21 +23,10 @@ const YoutubeIcon = ({ size = 14 }) => (
 
 const navItems = [
   { name: 'Home', href: '/' },
-  { 
-    name: 'Courses', 
-    href: '/courses'
-  },
-  { 
-    name: 'What Our Clients Say', 
-    href: '/case-studies',
-    subItems: [
-      { name: 'Case Studies', href: '/case-studies' },
-      { name: 'Testimonials', href: '/case-studies#testimonials' },
-      { name: 'Blog', href: '/blog' },
-    ]
-  },
-  { name: 'About Us', href: '/about' },
   { name: 'Services', href: '/services' },
+  { name: 'Courses', href: '/courses' },
+  { name: 'Blog', href: '/blog' },
+  { name: 'About Us', href: '/about' },
   { name: 'Contact Us', href: '/enquiry' },
 ];
 

@@ -3,6 +3,7 @@ import { Outfit, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -29,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${outfit.variable} ${plusJakartaSans.variable}`}>
       <body>
+        <ScrollReveal />
         <Navbar />
         {children}
         <Footer />

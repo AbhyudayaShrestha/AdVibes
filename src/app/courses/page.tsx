@@ -11,51 +11,97 @@ import {
   Clock,
   Users2,
   Calendar,
-  Users
+  Users,
+  FileText
 } from 'lucide-react';
 import CTASection from '@/components/CTASection';
 
 export default function CoursesPage() {
   const courses = [
     {
-      slug: "digital-marketing-training",
-      icon: <GraduationCap size={36} />,
-      title: "Digital Marketing Training",
-      subtitle: "Beginner to Advanced",
-      desc: "Master the core fundamentals and advanced optimization methodologies of modern digital marketing. Ideal for founders and aspiring marketing directors.",
-      duration: "8 Weeks",
-      students: "1,200+ Enrolled",
-      syllabus: ["Audience Intelligence & Profiling", "Copywriting & Landing Page Architecture", "Multi-Channel Funnel Planning", "Performance Tracking & Reporting"]
-    },
-    {
-      slug: "ai-marketing-training",
-      icon: <Cpu size={36} />,
-      title: "AI in Marketing Training",
-      subtitle: "Future-Ready Skills",
-      desc: "Learn how to leverage AI tools to transform your marketing efficiency and results. Understand generative models, workflow automations, and AI agents.",
-      duration: "4 Weeks",
+      slug: "content-creation-mastery",
+      title: "Content Creation Mastery Course (Photoshoot + Video)",
+      bannerDuration: "2 Months",
+      bannerSubject: "Content Creation",
+      bannerPill: "Mastery Course + Video",
+      duration: "2 Months",
+      format: "Practical + AI-Enhanced",
+      level: "Beginner to Intermediate",
       students: "850+ Enrolled",
-      syllabus: ["Prompt Engineering & Automation", "AI Video & Imagery Production", "Copy & SEO Automation Workflows", "AI Agents for Lead Generation"]
+      syllabus: [
+        "Audience Intent & Viral Hook Design",
+        "Camera Settings, Lighting & Photoshoot Layout",
+        "Video Editing & Color Grading Workflows",
+        "AI-Enhanced Asset Generation Tools"
+      ]
     },
     {
-      slug: "workshops-certifications",
-      icon: <Award size={36} />,
-      title: "Workshops & Certifications",
-      subtitle: "Hands-on Experience",
-      desc: "Practical interactive cohort workshops that issue industry-accredited certifications. Designed to get teams hands-on experience solving real-world case studies.",
-      duration: "2 Weeks",
-      students: "500+ Enrolled",
-      syllabus: ["Live Cohort Strategy Build", "Campaign Auditing Lab", "Viral Loop Architecture Workshop"]
+      slug: "digital-marketing-beginners",
+      title: "Digital Marketing Course for Beginners",
+      bannerDuration: "2 Months",
+      bannerSubject: "Digital Marketing",
+      bannerPill: "Course for Beginners",
+      duration: "2 Months",
+      format: "Practical + AI-Enhanced",
+      level: "Beginner to Intermediate",
+      students: "1,200+ Enrolled",
+      syllabus: [
+        "Digital Marketing Foundations & Channels",
+        "Organic SEO & Content Funnel Strategy",
+        "Social Media Management & Community Setup",
+        "Intro to Meta & Google Ads Scaling"
+      ]
     },
     {
-      slug: "meta-ads-scale-blueprint",
-      icon: <Target size={36} />,
-      title: "Meta Ads Scale Blueprint",
-      subtitle: "Professional Masterclass",
-      desc: "An advanced masterclass dedicated strictly to Facebook, Instagram, and WhatsApp marketing. Learn the scaling formulas used by multi-million dollar brands.",
-      duration: "6 Weeks",
+      slug: "graphics-designing",
+      title: "Graphics Designing for Digital Marketing Course",
+      bannerDuration: "2 Months",
+      bannerSubject: "Graphics Designing",
+      bannerPill: "For Digital Marketing Course",
+      duration: "2 Months",
+      format: "Practical + AI-Enhanced",
+      level: "Beginner to Intermediate",
       students: "920+ Enrolled",
-      syllabus: ["Pixel & Conversions API Setup", "A/B Testing Frameworks", "CBO/ABO Bid Strategy Management", "Lookalike & Retargeting Setup"]
+      syllabus: [
+        "Design Philosophy & Color Harmonies",
+        "Ad Creative Layouts & Copy Overlays",
+        "Performance Display Banners & A/B Creative Formats",
+        "Advanced Vector Tools & Brand Assets"
+      ]
+    },
+    {
+      slug: "advanced-seo-strategies",
+      title: "Advanced SEO & Semantic Search Masterclass",
+      bannerDuration: "2 Months",
+      bannerSubject: "Advanced SEO",
+      bannerPill: "Professional Masterclass",
+      duration: "2 Months",
+      format: "Practical + AI-Enhanced",
+      level: "Beginner to Intermediate",
+      students: "750+ Enrolled",
+      syllabus: [
+        "Semantic Search & Entity Architecture",
+        "Technical Core Web Vitals Optimization",
+        "AI-Assisted SEO Content Velocity",
+        "Backlink Profiling & Authority Funnels"
+      ]
+    },
+    {
+      slug: "ai-workflow-automation",
+      title: "AI Agent & Workflow Automation Bootcamp",
+      bannerDuration: "2 Months",
+      bannerSubject: "AI Automation",
+      bannerPill: "Future-Ready Skills",
+      duration: "2 Months",
+      format: "Practical + AI-Enhanced",
+      level: "Beginner to Intermediate",
+      students: "610+ Enrolled",
+      syllabus: [
+        "Generative Agents & Tool Integrations",
+        "Low-Code/No-Code Operation Funnels",
+        "Custom GPT & LLM Fine-Tuning Labs",
+        "Ethical AI Governance & Workflows"
+      ]
     }
   ];
 
@@ -63,7 +109,7 @@ export default function CoursesPage() {
     <main className="courses-page-wrapper">
       {/* Page Hero */}
       <section className="inner-hero" style={{ background: 'var(--gradient-hero)', color: 'white', padding: '160px 0 80px', position: 'relative', overflow: 'hidden', textAlign: 'center' }}>
-        <div className="container">
+        <div className="container reveal">
           <span className="section-subtitle" style={{ color: 'var(--primary)', letterSpacing: '2px' }}>Empower Your Brand</span>
           <h1 className="line-bottom" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontWeight: 900, marginBottom: '1.5rem', background: 'var(--gradient-accent)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
             Marketing Masterclasses
@@ -77,81 +123,56 @@ export default function CoursesPage() {
 
       {/* Grid of Courses */}
       <section className="all-courses-section premium-gradient-bg" style={{ padding: '100px 0' }}>
-        <div className="container">
-          <div className="responsive-two-col">
+        <div className="container reveal" style={{ animationDelay: '0.1s' }}>
+          <div className="course-card-grid">
             {courses.map((course, index) => (
-              <Link key={index} href={`/courses/${course.slug}`} style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column' }}>
-                <div className="training-card card glass-card card-glow-hover responsive-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', borderRadius: '24px', flex: 1, cursor: 'pointer', padding: 0, overflow: 'hidden' }}>
-                  {/* Mobile Banner Image */}
-                  <div className="mobile-course-banner">
-                    <img src={`/${course.slug}.png`} alt={course.title} />
-                  </div>
-
-                  {/* Desktop Top Area (Icon & Subtitle) - Hidden on Mobile */}
-                  <div className="desktop-only-element" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '2rem', padding: '2.5rem 2.5rem 0' }}>
-                    <div style={{ color: 'var(--secondary)', background: 'rgba(0, 53, 102, 0.05)', padding: '1.25rem', borderRadius: '20px' }}>
-                      {course.icon}
+              <Link key={index} href={`/courses/${course.slug}`} className="premium-course-card">
+                <div className="premium-course-banner">
+                  <div className="premium-course-logo">
+                    <span className="premium-course-logo-icon">🎓</span>
+                    <div className="premium-course-logo-text-group">
+                      <span className="premium-course-logo-title">NextLevel</span>
+                      <span className="premium-course-logo-subtitle">Skills & Careers</span>
                     </div>
-                    <span style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--primary-dark)', textTransform: 'uppercase', letterSpacing: '1.5px', background: 'rgba(255, 214, 10, 0.1)', padding: '6px 14px', borderRadius: '50px' }}>
-                      {course.subtitle}
-                    </span>
+                  </div>
+                  
+                  <div className="premium-course-banner-title">
+                    <span className="premium-course-duration-label">{course.bannerDuration}</span>
+                    <span className="premium-course-subject-label">{course.bannerSubject}</span>
+                  </div>
+                  
+                  <span className="premium-course-badge-pill">{course.bannerPill}</span>
+                  
+                  <div className="premium-course-banner-dots">
+                    <span className={`premium-course-banner-dot ${index === 0 ? 'active' : ''}`}></span>
+                    <span className={`premium-course-banner-dot ${index === 1 ? 'active' : ''}`}></span>
+                    <span className={`premium-course-banner-dot ${index === 2 ? 'active' : ''}`}></span>
                   </div>
 
-                  {/* Card Content area */}
-                  <div className="courses-card-content-wrap" style={{ padding: '0 2.5rem 2.5rem', display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
-                    <div>
-                      <h3 className="desktop-only-element" style={{ fontSize: '1.8rem', color: 'var(--secondary-dark)', marginBottom: '1.25rem', fontWeight: 800 }}>{course.title}</h3>
-                      <p className="desktop-only-element" style={{ color: 'var(--text-muted)', marginBottom: '2rem', fontSize: '1rem', lineHeight: '1.7' }}>{course.desc}</p>
-
-                      {/* Mobile Stats (Duration & Enrolled) */}
-                      <div className="mobile-course-stats">
-                        <div className="mobile-stat-item">
-                          <span className="stat-icon-wrapper">
-                            <Calendar size={18} />
-                          </span>
-                          <div className="stat-text-wrapper">
-                            <span className="stat-label">DURATION</span>
-                            <span className="stat-value">{course.duration}</span>
-                          </div>
-                        </div>
-                        <div className="mobile-stat-item">
-                          <span className="stat-icon-wrapper">
-                            <Users size={18} />
-                          </span>
-                          <div className="stat-text-wrapper">
-                            <span className="stat-label">ENROLLED</span>
-                            <span className="stat-value">{course.students.replace(' Enrolled', '')}</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Desktop Details Bar - Hidden on Mobile */}
-                      <div className="desktop-only-element" style={{ display: 'flex', gap: '1.5rem', borderBottom: '1px solid #e2e8f0', paddingBottom: '1.5rem', marginBottom: '1.5rem' }}>
-                        <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.9rem', color: 'var(--text-dark)', fontWeight: 600 }}>
-                          <Clock size={16} /> {course.duration}
-                        </span>
-                        <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.9rem', color: 'var(--text-dark)', fontWeight: 600 }}>
-                          <Users2 size={16} /> {course.students}
-                        </span>
-                      </div>
-
-                      {/* Syllabus / Syllabus highlights */}
-                      <div style={{ marginBottom: '2.5rem' }}>
-                        <h4 className="syllabus-title" style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--secondary-dark)', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Syllabus Highlights</h4>
-                        <ul className="syllabus-grid">
-                          {course.syllabus.map((topic, i) => (
-                            <li key={i} className="syllabus-item-course-page" style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.85rem', color: 'rgba(0,0,0,0.7)', fontWeight: 500 }}>
-                              <span className="bullet" style={{ width: '6px', height: '6px', background: 'var(--primary)', borderRadius: '50%', display: 'inline-block' }}></span> {topic}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+                  <div className="premium-course-image-space"></div>
+                </div>
+                
+                <div className="premium-course-body">
+                  <h3 className="premium-course-title">{course.title}</h3>
+                  
+                  <div className="premium-course-specs">
+                    <div className="premium-course-spec-item">
+                      <Clock size={16} />
+                      <span>Duration: {course.duration}</span>
                     </div>
-
-                    <span className="btn btn-primary courses-enroll-btn" style={{ width: '100%', padding: '16px', fontWeight: 700, textAlign: 'center' }}>
-                      View Details
-                    </span>
+                    <div className="premium-course-spec-item">
+                      <FileText size={16} />
+                      <span>Format: {course.format}</span>
+                    </div>
+                    <div className="premium-course-spec-item">
+                      <BookOpen size={16} />
+                      <span>Level: {course.level}</span>
+                    </div>
                   </div>
+                  
+                  <span className="premium-course-btn">
+                    View Details
+                  </span>
                 </div>
               </Link>
             ))}

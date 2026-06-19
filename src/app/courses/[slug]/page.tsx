@@ -1,90 +1,109 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { ChevronRight, Clock, Users, BookOpen, CheckCircle2 } from 'lucide-react';
-import EnrollForm from '@/components/EnrollForm';
+import { ChevronRight, Clock, Users, Globe, BookOpen } from 'lucide-react';
+import CurriculumAccordion from '@/components/CurriculumAccordion';
 
-// We duplicate the data here for simplicity of SSG
+// Dynamic courses database for SSG
 const coursesData = [
   {
-    slug: "digital-marketing-training",
-    title: "Digital Marketing Training",
-    subtitle: "Beginner to Advanced",
-    desc: "Master the core fundamentals and advanced optimization methodologies of modern digital marketing. Ideal for founders and aspiring marketing directors. This comprehensive program covers everything from baseline SEO to complex paid media strategies, ensuring you leave with actionable skills.",
-    duration: "8 Weeks",
-    students: "1,200+ Enrolled",
-    syllabus: [
-      "Audience Intelligence & Profiling",
-      "Copywriting & Landing Page Architecture",
-      "Multi-Channel Funnel Planning",
-      "Performance Tracking & Reporting",
-      "Advanced SEO Strategies",
-      "Email Marketing Automations",
-    ],
-    outcomes: [
-      "Build a complete multi-channel campaign from scratch",
-      "Understand and utilize advanced Google Analytics 4 tracking",
-      "Gain a solid framework for conversion rate optimization"
-    ]
-  },
-  {
-    slug: "ai-marketing-training",
-    title: "AI in Marketing Training",
-    subtitle: "Future-Ready Skills",
-    desc: "Learn how to leverage AI tools to transform your marketing efficiency and results. Understand generative models, workflow automations, and AI agents. Step into the future and 10x your output without burning out your team.",
-    duration: "4 Weeks",
+    slug: "content-creation-mastery",
+    title: "Content Creation Mastery Course (Photoshoot + Video)",
+    subtitle: "Mastery Course + Video",
+    desc: "Master the art of planning, executing, and optimizing high-impact multimedia content. Learn photoshoot frameworks, professional video editing, and AI-assisted creation flow. This course is built to get you hands-on with camera gear, lighting setups, editing software, and generative AI tools to maximize content velocity.",
+    duration: "2 Months",
     students: "850+ Enrolled",
     syllabus: [
-      "Prompt Engineering & Automation",
-      "AI Video & Imagery Production",
-      "Copy & SEO Automation Workflows",
-      "AI Agents for Lead Generation",
-      "Building Custom GPTs for Brand Voice",
-      "Ethical Considerations & AI Governance"
+      "Audience Intent & Viral Hook Design",
+      "Camera Settings, Lighting & Photoshoot Layout",
+      "Video Editing & Color Grading Workflows",
+      "AI-Enhanced Asset Generation Tools"
     ],
     outcomes: [
-      "Automate repetitive content creation workflows",
-      "Generate high-quality video and image assets at scale",
-      "Implement AI agents into your daily operational stack"
+      "Plan and execute photoshoots and short-form videos from scratch",
+      "Use advanced AI tools to accelerate content volume 5x",
+      "Build a portfolio-grade content strategy for client acquisition",
+      "Receive official certification from AdVibes Academy"
     ]
   },
   {
-    slug: "workshops-certifications",
-    title: "Workshops & Certifications",
-    subtitle: "Hands-on Experience",
-    desc: "Practical interactive cohort workshops that issue industry-accredited certifications. Designed to get teams hands-on experience solving real-world case studies in a controlled, expert-led environment.",
-    duration: "2 Weeks",
-    students: "500+ Enrolled",
+    slug: "digital-marketing-beginners",
+    title: "Digital Marketing Course for Beginners",
+    subtitle: "Course for Beginners",
+    desc: "A solid baseline for anyone looking to break into digital marketing. Acquire fundamental skills in SEO, social media management, organic positioning, and introductory paid search campaigns. Ideal for startup founders, marketing associates, and career switchers.",
+    duration: "2 Months",
+    students: "1,200+ Enrolled",
     syllabus: [
-      "Live Cohort Strategy Build",
-      "Campaign Auditing Lab",
-      "Viral Loop Architecture Workshop"
+      "Digital Marketing Foundations & Channels",
+      "Organic SEO & Content Funnel Strategy",
+      "Social Media Management & Community Setup",
+      "Intro to Meta & Google Ads Scaling"
     ],
     outcomes: [
-      "Walk away with a verified industry certification",
-      "Solve a real-world case study with a team of peers",
-      "Receive personalized feedback from agency leaders"
+      "Analyze client websites and run baseline SEO audits",
+      "Build operational multi-channel organic campaigns",
+      "Gain certificates recognized by active modern startups",
+      "Get direct mentorship from senior operators"
     ]
   },
   {
-    slug: "meta-ads-scale-blueprint",
-    title: "Meta Ads Scale Blueprint",
-    subtitle: "Professional Masterclass",
-    desc: "An advanced masterclass dedicated strictly to Facebook, Instagram, and WhatsApp marketing. Learn the scaling formulas used by multi-million dollar brands to break through ROAS ceilings.",
-    duration: "6 Weeks",
+    slug: "graphics-designing",
+    title: "Graphics Designing for Digital Marketing Course",
+    subtitle: "For Digital Marketing Course",
+    desc: "Bridge the gap between design theory and performance marketing. Learn to construct conversion-focused display designs, high-converting social media templates, and professional brand guides. Designed specifically for modern ad layouts and creative testing workflows.",
+    duration: "2 Months",
     students: "920+ Enrolled",
     syllabus: [
-      "Pixel & Conversions API Setup",
-      "A/B Testing Frameworks",
-      "CBO/ABO Bid Strategy Management",
-      "Lookalike & Retargeting Setup",
-      "Scaling Horizontally vs. Vertically"
+      "Design Philosophy & Color Harmonies",
+      "Ad Creative Layouts & Copy Overlays",
+      "Performance Display Banners & A/B Creative Formats",
+      "Advanced Vector Tools & Brand Assets"
     ],
     outcomes: [
-      "Implement server-side tracking seamlessly",
-      "Scale campaigns without breaking the learning phase",
-      "Master ad creative fatigue management"
+      "Design client pitch templates and ad grids that convert",
+      "Produce high-quality brand assets optimized for web & print",
+      "Create high-ROAS social media ad designs in record time",
+      "Establish a robust production portfolio on Behance / Dribbble"
+    ]
+  },
+  {
+    slug: "advanced-seo-strategies",
+    title: "Advanced SEO & Semantic Search Masterclass",
+    subtitle: "Professional Masterclass",
+    desc: "Understand how search engines model user intent beyond keywords. Learn semantic schemas, entity relations, page speed speedups, and algorithmic link building strategies to rank first.",
+    duration: "2 Months",
+    students: "750+ Enrolled",
+    syllabus: [
+      "Semantic Search & Entity Architecture",
+      "Technical Core Web Vitals Optimization",
+      "AI-Assisted SEO Content Velocity",
+      "Backlink Profiling & Authority Funnels"
+    ],
+    outcomes: [
+      "Conduct in-depth technical schema and Core Web Vitals audits",
+      "Automate high-velocity content production with AI tools",
+      "Establish a high-authority backlink outreach funnel",
+      "Develop data-driven keyword maps that capture purchase intent"
+    ]
+  },
+  {
+    slug: "ai-workflow-automation",
+    title: "AI Agent & Workflow Automation Bootcamp",
+    subtitle: "Future-Ready Skills",
+    desc: "Learn to build multi-agent pipelines and leverage custom LLMs to automate manual marketing tasks. Bridge the gap between low-code setups and dynamic generative systems.",
+    duration: "2 Months",
+    students: "610+ Enrolled",
+    syllabus: [
+      "Generative Agents & Tool Integrations",
+      "Low-Code/No-Code Operation Funnels",
+      "Custom GPT & LLM Fine-Tuning Labs",
+      "Ethical AI Governance & Workflows"
+    ],
+    outcomes: [
+      "Deploy custom AI agents that automate routine lead generation",
+      "Establish low-code pipelines saving your team 15+ hours weekly",
+      "Fine-tune customized LLM instances to match brand copy",
+      "Set up dynamic automated alerts for campaign tracking"
     ]
   }
 ];
@@ -103,90 +122,87 @@ export default async function CourseDetail({ params }: { params: Promise<{ slug:
     notFound();
   }
 
+  // Google Form Link placeholder for course enrollment
+  const googleFormLink = "https://docs.google.com/forms/d/e/1FAIpQLSfD_course_enrollment/viewform";
+
   return (
-    <main style={{ backgroundColor: '#fafaf8', minHeight: '100vh', paddingBottom: '100px' }}>
-      {/* Header Banner */}
-      <div className="course-detail-header">
-        <div className="container">
-          <div className="course-breadcrumbs">
-            <Link href="/">Home</Link>
-            <ChevronRight size={14} />
-            <Link href="/courses">Courses</Link>
-            <ChevronRight size={14} />
-            <span>{course.title}</span>
+    <main className="course-detail-dark-wrapper">
+      <div className="container">
+        
+        {/* Breadcrumbs */}
+        <div className="course-breadcrumbs reveal" style={{ justifyContent: 'flex-start', marginBottom: '2.5rem', opacity: 0.6 }}>
+          <Link href="/" style={{ color: 'white', textDecoration: 'none' }}>Home</Link>
+          <ChevronRight size={14} style={{ margin: '0 8px' }} />
+          <Link href="/courses" style={{ color: 'white', textDecoration: 'none' }}>Courses</Link>
+          <ChevronRight size={14} style={{ margin: '0 8px' }} />
+          <span style={{ color: '#a78bfa', fontWeight: 600 }}>{course.title}</span>
+        </div>
+
+        {/* Intro Grid */}
+        <div className="course-detail-intro-new">
+          <div className="course-detail-info-new reveal">
+            <h1>{course.title}</h1>
+            <p>{course.desc}</p>
+            
+            {/* Pills Specifications */}
+            <div className="course-detail-badges-new">
+              <div className="course-detail-badge-new">
+                <Clock size={16} />
+                <span>{course.duration}</span>
+              </div>
+              <div className="course-detail-badge-new">
+                <Globe size={16} />
+                <span>Online Available</span>
+              </div>
+              <div className="course-detail-badge-new green-pill">
+                <Users size={16} />
+                <span>Physical Class Available</span>
+              </div>
+            </div>
+
+            {/* Enroll Now Link Button */}
+            <a 
+              href="#" 
+              className="course-enroll-btn-new"
+            >
+              Enroll Now
+            </a>
           </div>
-          <h1>{course.title}</h1>
-          <p className="course-subtitle">{course.subtitle}</p>
-          <div className="course-badges">
-            <div className="course-badge"><Clock size={16} /> {course.duration}</div>
-            <div className="course-badge"><Users size={16} /> {course.students}</div>
+
+          {/* Graphic Banner space placeholder on the right */}
+          <div className="course-detail-visual-new reveal" style={{ animationDelay: '0.2s' }}>
+            {/* Styled blank block for user images */}
           </div>
         </div>
-      </div>
 
-      <div className="container" style={{ marginTop: '40px' }}>
-        <div className="course-detail-grid">
+        {/* Course Highlights */}
+        <div className="course-highlights-box-new reveal" style={{ animationDelay: '0.1s' }}>
+          <div className="highlights-title-new">
+            <div className="highlights-bar-new"></div>
+            <h3>Course Highlights</h3>
+          </div>
           
-          {/* Left Column: Details */}
-          <div className="course-detail-content">
-            <div className="course-banner-img">
-              <Image 
-                src={`/${course.slug}.png`} 
-                alt={course.title}
-                width={800}
-                height={450}
-                style={{ width: '100%', height: 'auto', display: 'block' }}
-                priority
-              />
-            </div>
-
-            <section className="course-section">
-              <h2>About This Course</h2>
-              <p>{course.desc}</p>
-            </section>
-
-            <section className="course-section">
-              <h2>What You'll Learn</h2>
-              <div className="course-outcomes">
-                {course.outcomes.map((outcome, idx) => (
-                  <div key={idx} className="outcome-item">
-                    <CheckCircle2 className="outcome-icon" />
-                    <span>{outcome}</span>
-                  </div>
-                ))}
+          <div className="highlights-grid-new">
+            {course.outcomes.map((outcome, idx) => (
+              <div key={idx} className="highlight-card-new">
+                <div className="highlight-bullet-new"></div>
+                <span>{outcome}</span>
               </div>
-            </section>
-
-            <section className="course-section">
-              <h2>Course Syllabus</h2>
-              <div className="course-syllabus">
-                {course.syllabus.map((item, idx) => (
-                  <div key={idx} className="syllabus-item">
-                    <div className="syllabus-number">
-                      {String(idx + 1).padStart(2, '0')}
-                    </div>
-                    <div className="syllabus-text">{item}</div>
-                  </div>
-                ))}
-              </div>
-            </section>
+            ))}
           </div>
-
-          {/* Right Column: Sticky Form */}
-          <div className="course-detail-sidebar">
-            <div className="sticky-sidebar">
-              <EnrollForm initialCourseSlug={course.slug} />
-
-              <div className="help-widget">
-                <BookOpen className="help-icon" size={24} />
-                <h4>Need Help Deciding?</h4>
-                <p>Not sure if this course is right for your career path? Speak with our academic advisor.</p>
-                <Link href="/enquiry" className="help-link">Contact Advisor →</Link>
-              </div>
-            </div>
-          </div>
-
         </div>
+
+        {/* Course Curriculum */}
+        <div className="course-curriculum-box-new reveal" style={{ animationDelay: '0.2s' }}>
+          <div className="highlights-title-new">
+            <div className="highlights-bar-new" style={{ background: '#3b82f6' }}></div>
+            <h3>Course Curriculum</h3>
+          </div>
+          <p className="curriculum-subtext-new">Detailed breakdown of lessons and topics covered</p>
+
+          <CurriculumAccordion syllabus={course.syllabus} />
+        </div>
+
       </div>
     </main>
   );
